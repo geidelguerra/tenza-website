@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-black">
+  <div class="flex justify-center items-center min-h-screen">
     <div>
       <h1 class="font-bold text-4xl text-center text-white">
         Tenza Design
