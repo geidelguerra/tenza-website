@@ -18,8 +18,10 @@ dracoLoader.setDecoderConfig({ type: 'js' })
 dracoLoader.setDecoderPath('/draco/gltf/')
 dracoLoader.preload()
 
+const noop = () => {}
+
 export class ProjectScene {
-  constructor (canvas) {
+  constructor (canvas, options = {}) {
     this.canvas = canvas
     this.renderer = null
     this.pmremGenerator = null
@@ -30,6 +32,7 @@ export class ProjectScene {
     this.envHrdLoader = null
     this.mixers = []
     this.clock = new Clock()
+    this.onCameraChange = options.onCameraChange || noop
   }
 
   init (width, height) {
@@ -57,6 +60,13 @@ export class ProjectScene {
     this.controls.enablePan = false
     this.controls.enableDamping = true
     this.controls.update()
+    this.controls.addEventListener('change', () => {
+      this.onCameraChange({
+        distance: this.controls.getDistance(),
+        polarAngle: this.controls.getPolarAngle(),
+        azimuthalAngle: this.controls.getAzimuthalAngle()
+      })
+    })
 
     const tick = () => {
       requestAnimationFrame(tick)

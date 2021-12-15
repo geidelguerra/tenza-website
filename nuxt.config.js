@@ -6,6 +6,10 @@ export default {
 
   ssr: false,
 
+  env: {
+    debug: process.env.DEBUG === true || process.env.NODE_ENV !== 'production'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Tenza Design',
