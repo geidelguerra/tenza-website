@@ -25,9 +25,9 @@ export default {
   components: {
     ProjectViewer
   },
-  async asyncData ({ params }) {
+  async asyncData ({ params, payload }) {
     return {
-      project: await getProject(params.id)
+      project: payload || await getProject(params.id)
     }
   },
   data () {

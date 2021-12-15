@@ -1,3 +1,5 @@
+import { getProjects } from './api'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'client',
@@ -57,5 +59,11 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  generate: {
+    routes () {
+      return getProjects().then(projects => projects.map(({ url }) => url))
+    }
   }
 }
