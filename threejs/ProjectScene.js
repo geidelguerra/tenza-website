@@ -110,8 +110,6 @@ export class ProjectScene {
     return new Promise((resolve, reject) => {
       this.loader.load(url, (gltf) => {
         const model = gltf.scene
-        model.position.set(1, 1, 0)
-        model.scale.set(0.01, 0.01, 0.01)
         this.scene.add(model)
 
         if (gltf.animations.length > 0) {
