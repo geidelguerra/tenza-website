@@ -9,7 +9,10 @@
       </div>
     </div>
     <client-only>
-      <ProjectViewer :project="project" class="absolute top-0 bottom-0 left-0 right-0" />
+      <ProjectViewer
+        :project="project"
+        class="absolute top-0 bottom-0 left-0 right-0"
+      />
     </client-only>
   </div>
 </template>

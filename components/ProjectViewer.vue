@@ -19,7 +19,8 @@ export default {
   mounted () {
     const projectScene = this.projectScene = new ProjectScene(this.$refs.canvas)
     projectScene.init(this.$el.clientWidth, this.$el.clientHeight)
-    projectScene.loadModel('/models/LittlestTokyo.glb')
+    projectScene.loadModel(this.project.scene.path)
+    projectScene.loadEnvHDR('/hdr/urban_street_01_2k.hdr')
 
     window.addEventListener('resize', () => {
       projectScene.setSize(this.$el.clientWidth, this.$el.clientHeight)

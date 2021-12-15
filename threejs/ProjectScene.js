@@ -5,12 +5,13 @@ import {
   Clock,
   sRGBEncoding,
   PMREMGenerator,
-  AnimationMixer
+  AnimationMixer,
+  UnsignedByteType
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
-import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment'
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 
 const dracoLoader = new DRACOLoader()
 dracoLoader.setDecoderConfig({ type: 'js' })
@@ -26,6 +27,7 @@ export class ProjectScene {
     this.camera = null
     this.controls = null
     this.loader = null
+    this.envHrdLoader = null
     this.mixers = []
     this.clock = new Clock()
   }
@@ -37,10 +39,11 @@ export class ProjectScene {
     this.renderer.outputEncoding = sRGBEncoding
 
     this.pmremGenerator = new PMREMGenerator(this.renderer)
+    this.pmremGenerator.compileEquirectangularShader()
 
     this.scene = new Scene()
     // this.scene.background = new Color(0xBFE3DD)
-    this.scene.environment = this.pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture
+    // this.scene.environment = this.pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture
 
     this.camera = new PerspectiveCamera(75, width / height, 0.1, 1000)
     this.camera.position.set(5, 2, 8)
@@ -76,6 +79,21 @@ export class ProjectScene {
     this.camera.updateProjectionMatrix()
   }
 
+  loadEnvHDR (url) {
+    return new Promise((resolve, reject) => {
+      this.envHrdLoader = new RGBELoader()
+        .setDataType(UnsignedByteType)
+        .load(url, (texture) => {
+          this.scene.environment = this.pmremGenerator.fromEquirectangular(texture).texture
+          texture.dispose()
+          this.pmremGenerator.dispose()
+          resolve()
+        }, undefined, function (error) {
+          reject(error)
+        })
+    })
+  }
+
   loadModel (url) {
     this.mixers = []
 
@@ -86,10 +104,11 @@ export class ProjectScene {
         model.scale.set(0.01, 0.01, 0.01)
         this.scene.add(model)
 
-        const mixer = new AnimationMixer(model)
-        mixer.clipAction(gltf.animations[0]).play()
-
-        this.mixers.push(mixer)
+        if (gltf.animations.length > 0) {
+          const mixer = new AnimationMixer(model)
+          mixer.clipAction(gltf.animations[0]).play()
+          this.mixers.push(mixer)
+        }
 
         resolve()
       }, undefined, function (error) {
