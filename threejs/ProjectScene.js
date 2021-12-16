@@ -23,6 +23,12 @@ dracoLoader.preload()
 
 const noop = () => {}
 
+const DEFAULT_MIN_DISTANCE = 40
+const DEFAULT_MAX_DISTANCE = 77
+const DEFAULT_MIN_POLAR_ANGLE = MathUtils.degToRad(0)
+const DEFAULT_MAX_POLAR_ANGLE = MathUtils.degToRad(90)
+const DEFAULT_DAMPING_FACTOR = 0.025
+
 export class ProjectScene {
   constructor (canvas, options = {}) {
     this.canvas = canvas
@@ -64,7 +70,6 @@ export class ProjectScene {
     // this.scene.environment = this.pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture
 
     this.camera = new PerspectiveCamera(30, width / height, 0.1, 100)
-    this.camera.position.set(63, 63, 77)
     this.scene.add(this.camera)
 
     this.loader = new GLTFLoader()
@@ -75,13 +80,15 @@ export class ProjectScene {
     this.controls.enablePan = true
     this.controls.screenSpacePanning = true
     this.controls.enableDamping = true
-    this.controls.dampingFactor = 0.025
-    this.controls.minDistance = 40
-    this.controls.maxDistance = 77
-    this.controls.minPolarAngle = MathUtils.degToRad(40)
-    this.controls.maxPolarAngle = MathUtils.degToRad(90)
+    this.controls.dampingFactor = DEFAULT_DAMPING_FACTOR
+    this.controls.minDistance = DEFAULT_MIN_DISTANCE
+    this.controls.maxDistance = DEFAULT_MAX_DISTANCE
+    this.controls.minPolarAngle = DEFAULT_MIN_POLAR_ANGLE
+    this.controls.maxPolarAngle = DEFAULT_MAX_POLAR_ANGLE
+
     this.controls.saveState()
     this.controls.update()
+
     this.controls.addEventListener('change', () => {
       this.onCameraChange({
         distance: this.controls.getDistance(),
@@ -147,16 +154,30 @@ export class ProjectScene {
     return new Promise((resolve, reject) => {
       this.loader.load(url, (gltf) => {
         // eslint-disable-next-line no-console
-        console.log('Scene:', gltf.scene)
+        console.log('Gltf:', gltf)
 
         const model = gltf.scene
         model.castShadow = this.castShadow
+        model.traverse((obj) => {
+          // If scene has a camera use its position
+          if (obj.name === 'camera') {
+            this.camera.position.set(
+              obj.position.x,
+              obj.position.y,
+              obj.position.z
+            )
+            this.controls.saveState()
+          }
+        })
 
         this.scene.add(model)
 
+        // Handle animations
         if (gltf.animations.length > 0) {
           const mixer = new AnimationMixer(model)
+
           mixer.clipAction(gltf.animations[0]).play()
+
           this.mixers.push(mixer)
         }
 
