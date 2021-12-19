@@ -21,13 +21,14 @@ dracoLoader.setDecoderConfig({ type: 'js' })
 dracoLoader.setDecoderPath('/draco/gltf/')
 dracoLoader.preload()
 
-const noop = () => {}
+const noop = () => { }
 
 const DEFAULT_MIN_DISTANCE = 40
 const DEFAULT_MAX_DISTANCE = 77
 const DEFAULT_MIN_POLAR_ANGLE = MathUtils.degToRad(0)
 const DEFAULT_MAX_POLAR_ANGLE = MathUtils.degToRad(90)
 const DEFAULT_DAMPING_FACTOR = 0.025
+const DEFAULT_AUTO_ROTATE_SPEED = 2.0
 
 export class ProjectScene {
   constructor (canvas, options = {}) {
@@ -46,6 +47,7 @@ export class ProjectScene {
     this.castShadow = options.castShadow || false
     this.showHelpers = options.showHelpers || false
     this.showStats = options.showStats || false
+    this.autoRotate = options.autoRotate || false
   }
 
   init (width, height) {
@@ -85,6 +87,8 @@ export class ProjectScene {
     this.controls.maxDistance = DEFAULT_MAX_DISTANCE
     this.controls.minPolarAngle = DEFAULT_MIN_POLAR_ANGLE
     this.controls.maxPolarAngle = DEFAULT_MAX_POLAR_ANGLE
+    this.controls.autoRotate = this.autoRotate
+    this.controls.autoRotateSpeed = DEFAULT_AUTO_ROTATE_SPEED
 
     this.controls.saveState()
     this.controls.update()
@@ -93,14 +97,20 @@ export class ProjectScene {
       this.onCameraChange({
         distance: this.controls.getDistance(),
         polarAngle: MathUtils.radToDeg(this.controls.getPolarAngle()),
-        azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle())
+        azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle()),
+        x: this.camera.position.x,
+        y: this.camera.position.y,
+        z: this.camera.position.z
       })
     })
 
     this.onCameraChange({
       distance: this.controls.getDistance(),
       polarAngle: MathUtils.radToDeg(this.controls.getPolarAngle()),
-      azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle())
+      azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle()),
+      x: this.camera.position.x,
+      y: this.camera.position.y,
+      z: this.camera.position.z
     })
 
     if (this.showHelpers) {

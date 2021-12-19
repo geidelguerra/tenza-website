@@ -6,7 +6,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Grotto House',
         scene: {
-          path: '/models/LittlestTokyo.glb'
+          path: '/models/scene_test.glb'
         }
       },
       {

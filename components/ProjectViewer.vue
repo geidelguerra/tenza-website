@@ -7,6 +7,9 @@
           <span class="font-bold">       Distance:</span> {{ cameraStats.distance.toFixed(2) }}m
           <span class="font-bold">    Polar Angle:</span> {{ cameraStats.polarAngle.toFixed(2) }}&deg;
           <span class="font-bold">Azimuthal Angle:</span> {{ cameraStats.azimuthalAngle.toFixed(2) }}&deg;
+          <span class="font-bold">              X:</span> {{ cameraStats.x.toFixed(2) || 0 }}
+          <span class="font-bold">              Y:</span> {{ cameraStats.y.toFixed(2) || 0 }}
+          <span class="font-bold">              Z:</span> {{ cameraStats.z.toFixed(2) || 0 }}
         </pre>
       </div>
     </div>
