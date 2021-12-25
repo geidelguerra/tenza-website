@@ -5,7 +5,7 @@
         <li :key="i">
           <NuxtLink
             :to="item.url"
-            class="p-2 text-white transition-colors duration-500 bg-transparent rounded"
+            class="p-2 text-black transition-colors duration-500 bg-transparent rounded"
           >
             {{ item.text }}
           </NuxtLink>

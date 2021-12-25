@@ -9,7 +9,9 @@ import {
   UnsignedByteType,
   PCFSoftShadowMap,
   AxesHelper,
-  MathUtils
+  MathUtils,
+  DirectionalLightHelper,
+  CameraHelper
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -44,7 +46,7 @@ export class ProjectScene {
     this.clock = new Clock()
     this.stats = null
     this.onCameraChange = options.onCameraChange || noop
-    this.castShadow = options.castShadow || false
+    this.castShadow = options.castShadow || true
     this.showHelpers = options.showHelpers || false
     this.showStats = options.showStats || false
     this.autoRotate = options.autoRotate || false
@@ -54,8 +56,7 @@ export class ProjectScene {
     this.renderer = new WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true })
     this.renderer.physicallyCorrectLights = true
     this.renderer.outputEncoding = sRGBEncoding
-    // this.renderer.toneMapping = ReinhardToneMapping
-    // this.renderer.toneMappingExposure = 1
+    // this.renderer.toneMappingExposure = 0.5
     this.renderer.setSize(width, height)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -71,7 +72,7 @@ export class ProjectScene {
     // this.scene.background = new Color(0xBFE3DD)
     // this.scene.environment = this.pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture
 
-    this.camera = new PerspectiveCamera(30, width / height, 0.1, 100)
+    this.camera = new PerspectiveCamera(30, width / height, 0.1, 1000)
     this.scene.add(this.camera)
 
     this.loader = new GLTFLoader()
@@ -167,16 +168,72 @@ export class ProjectScene {
         console.log('Gltf:', gltf)
 
         const model = gltf.scene
-        model.castShadow = this.castShadow
+
         model.traverse((obj) => {
+          // eslint-disable-next-line no-console
+          console.log('Name:', obj.name, 'Type:', obj.type)
+
           // If scene has a camera use its position
           if (obj.name === 'camera') {
+            // eslint-disable-next-line no-console
+            console.log('Camera pos:', obj.position)
             this.camera.position.set(
               obj.position.x,
               obj.position.y,
               obj.position.z
             )
+
+            if (obj.children.length > 0 && obj.children[0].userData !== null) {
+              const userData = obj.children[0].userData
+
+              if (userData.minDistance) {
+                this.controls.minDistance = userData.minDistance * 2
+              }
+
+              if (userData.maxDistance) {
+                this.controls.maxDistance = userData.maxDistance * 2
+              }
+            }
+
             this.controls.saveState()
+            this.controls.update()
+          }
+
+          // Setup shadows
+          if (obj.isMesh) {
+            obj.castShadow = this.castShadow
+            obj.receiveShadow = this.castShadow
+
+            if (obj.material.map) {
+              obj.material.map.anisotropy = 16
+            }
+          }
+
+          if (obj.name === 'directional_shadow') {
+            obj.children[0].castShadow = this.castShadow
+            // obj.children[0].shadow.mapSize.width = 1024 * 2
+            // obj.children[0].shadow.mapSize.height = 1024 * 2
+            // obj.children[0].shadow.camera.near = 0.5
+            // obj.children[0].shadow.camera.far = 1000
+            // obj.children[0].shadow.camera.top = 100
+            // obj.children[0].shadow.camera.left = 100
+            // obj.children[0].shadow.camera.bottom = -100
+          }
+
+          // Add helpers
+          if (this.showHelpers) {
+            switch (obj.type) {
+              case 'DirectionalLight':
+                this.scene.add(new DirectionalLightHelper(obj, 5, 0x000000))
+
+                if (obj.castShadow) {
+                  this.scene.add(new CameraHelper(obj.shadow.camera))
+                }
+                break
+              case 'PointLight':
+                // this.scene.add(new PointLightHelper(obj, 5))
+                break
+            }
           }
         })
 

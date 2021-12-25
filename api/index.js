@@ -6,7 +6,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Grotto House',
         scene: {
-          path: '/models/scene_test.glb'
+          path: '/models/placeholder.glb'
         }
       },
       {
@@ -14,7 +14,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Cliff House',
         scene: {
-          path: '/models/LittlestTokyo.glb'
+          path: '/models/placeholder.glb'
         }
       },
       {
@@ -22,7 +22,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Youth Center',
         scene: {
-          path: '/models/LittlestTokyo.glb'
+          path: '/models/placeholder.glb'
         }
       },
       {
@@ -30,7 +30,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Rooftop Bar Addition',
         scene: {
-          path: '/models/LittlestTokyo.glb'
+          path: '/models/placeholder.glb'
         }
       },
       {
@@ -38,7 +38,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Brazil Restaurant',
         scene: {
-          path: '/projects/Brazil_Restaurant/Brazil_Restaurant.glb'
+          path: '/projects/Brazil_Restaurant/Brazil_Restaurant3.glb'
         }
       },
       {
@@ -46,7 +46,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Penthouse Duplex',
         scene: {
-          path: '/models/LittlestTokyo.glb'
+          path: '/models/placeholder.glb'
         }
       },
       {
@@ -54,7 +54,7 @@ export const getProjects = () => {
         year: 2021,
         name: 'Lake House',
         scene: {
-          path: '/models/LittlestTokyo.glb'
+          path: '/models/placeholder.glb'
         }
       }
     ].map(item => ({ ...item, url: `/projects/${item.id}` }))
