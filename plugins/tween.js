@@ -9,7 +9,7 @@ function animate () {
 }
 
 Vue.use({
-  install (app) {
+  install (app) {``
     app.prototype.$tween = function (object) {
       return new Tween(object)
     }

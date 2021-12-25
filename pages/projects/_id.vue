@@ -1,6 +1,6 @@
 <template>
-  <div class="relative">
-    <div class="absolute z-10 px-6 drop-shadow-lg">
+  <div class="relative h-screen bg-[#EBEAE5]">
+    <div class="absolute z-10 top-20 left-8">
       <h1 class="text-5xl font-bold text-center">
         {{ project.name }}
       </h1>
@@ -25,6 +25,7 @@ export default {
   components: {
     ProjectViewer
   },
+  layout: 'project',
   async asyncData ({ params, payload }) {
     return {
       project: payload || await getProject(params.id)

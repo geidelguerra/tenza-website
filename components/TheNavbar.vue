@@ -1,11 +1,12 @@
 <template>
-  <nav class="flex justify-center w-full">
-    <ul class="flex items-center my-4 space-x-3">
+  <nav class="fixed top-8 right-8 z-40">
+    <ul>
       <template v-for="(item, i) in menu">
         <li :key="i">
           <NuxtLink
             :to="item.url"
-            class="p-2 text-black transition-colors duration-500 bg-transparent rounded"
+            class="p-1 transition-colors duration-500 text-right uppercase block text-sm font-medium tracking-wide"
+            :class="lightMode ? 'text-black' : 'text-white'"
           >
             {{ item.text }}
           </NuxtLink>
@@ -20,10 +21,14 @@ export default {
   data () {
     return {
       menu: [
-        { text: 'Studio', url: '/studio' },
         { text: 'Projects', url: '/projects' },
-        { text: 'Contact', url: '/contact' }
+        { text: 'Studio', url: '/studio' }
       ]
+    }
+  },
+  computed: {
+    lightMode () {
+      return this.$route.path !== '/'
     }
   }
 }

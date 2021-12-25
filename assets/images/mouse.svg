@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12.59 33.04" stroke="currentColor">
+  <defs>
+    <style>.cls-1{fill:none;stroke-linecap:round;stroke-width:0.5px;}</style>
+  </defs>
+  <title>mouse</title>
+  <polyline class="cls-1" points="1.23 27.88 6.29 32.7 11.36 27.88"/>
+  <path class="cls-1" d="M6.3,2.38V5.27m0,14.83h0a6.07,6.07,0,0,1-6-6.1V6.3a6,6,0,1,1,12.09,0V14A6.07,6.07,0,0,1,6.3,20.1Z" transform="translate(0 0.04)"/>
+</svg>

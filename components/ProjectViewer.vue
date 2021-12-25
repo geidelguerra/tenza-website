@@ -1,9 +1,15 @@
 <template>
   <div>
     <canvas ref="canvas" />
-    <div v-if="showDebugStats" class="absolute top-2 right-2 z-40 font-mono">
-      <div v-if="cameraStats" class="flex justify-end flex-col text-right">
-        <pre>
+    <div class="absolute top-20 right-8 z-40">
+      <div class="text-right font-medium uppercase flex flex-col space-y-3">
+        <div>Left click to Pan</div>
+        <div>Middle click to Rotate</div>
+        <div>Scroll to Zoom</div>
+      </div>
+      <div v-if="showDebugStats" class="font-mono mt-8">
+        <div v-if="cameraStats" class="flex justify-end flex-col text-right">
+          <pre>
           <span class="font-bold">       Distance:</span> {{ cameraStats.distance.toFixed(2) }}m
           <span class="font-bold">    Polar Angle:</span> {{ cameraStats.polarAngle.toFixed(2) }}&deg;
           <span class="font-bold">Azimuthal Angle:</span> {{ cameraStats.azimuthalAngle.toFixed(2) }}&deg;
@@ -11,6 +17,7 @@
           <span class="font-bold">              Y:</span> {{ cameraStats.y.toFixed(2) }}
           <span class="font-bold">              Z:</span> {{ cameraStats.z.toFixed(2) }}
         </pre>
+        </div>
       </div>
     </div>
   </div>
