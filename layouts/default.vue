@@ -13,7 +13,7 @@
     /> -->
     <button
       :class="lightMode ? 'text-black border-black' : 'text-white border-white'"
-      class="uppercase font-semibold text-sm p-2 border-2 absolute bottom-8 right-8 tracking-widest transition-colors duration-500"
+      class="uppercase text-[11px] p-2 border-2 absolute bottom-8 right-8 tracking-[0.5em] transition-colors duration-500"
     >
       Get in touch
     </button>

@@ -2,32 +2,40 @@
   <div class="h-screen bg-black">
     <client-only>
       <agile
+        ref="featuredSlides"
         :nav-buttons="false"
         :dots="false"
         :autoplay="true"
+        :autoplay-speed="6000"
+        :speed="600"
         :pause-on-hover="false"
+        :fade="true"
+        :change-delay="300"
         class="featured-slides relative"
         @after-change="event => currentSlideIndex = event.currentSlide"
       >
         <template #caption>
           <div class="flex flex-col justify-center pl-40 pr-8 h-full">
-            <div class="mb-24">
-              <div class="text-white text-xs font-bold">
-                {{ (currentSlideIndex + 1).toString().padStart(2, '0') }} / {{ numberOfSlides.toString().padStart(2, '0') }}
-              </div>
+            <div class="mb-[98px] flex space-x-[40px]">
+              <button @click="previousSlide">
+                <ArrowLeft class="h-[20px]" />
+              </button>
+              <button @click="nextSlide">
+                <ArrowRight class="h-[20px]" />
+              </button>
             </div>
             <div class="flex items-center justify-between">
-              <h2 class="text-white text-9xl font-black">
+              <h2 class="text-white text-[93px] tracking-[0.15em] font-extrabold uppercase">
                 Form<br> Intrudes<br> Function
               </h2>
-              <div class="text-white text-right">
-                <div class="italic text-3xl">
+              <div class="text-white text-right uppercase">
+                <div class="italic text-[20px] tracking-[0.15em]">
                   {{ currentSlide.project.name }}
                 </div>
-                <div class="text-xl">
+                <div class="text-[13px] tracking-[0.5em]">
                   {{ currentSlide.project.location }}
                 </div>
-                <div class="text-xl">
+                <div class="text-[13px] tracking-[0.5em]">
                   {{ currentSlide.project.year }}
                 </div>
               </div>
@@ -52,10 +60,14 @@
 
 <script>
 import Mouse from '~/assets/images/mouse.svg?inline'
+import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
+import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 
 export default {
   components: {
-    Mouse
+    Mouse,
+    ArrowLeft,
+    ArrowRight
   },
   data () {
     return {
@@ -95,12 +107,20 @@ export default {
     numberOfSlides () {
       return this.slides.length
     }
+  },
+  methods: {
+    previousSlide () {
+      this.$refs.featuredSlides.goToPrev()
+    },
+    nextSlide () {
+      this.$refs.featuredSlides.goToNext()
+    }
   }
 }
 </script>
 
 <style>
 .featured-slides .agile__caption {
-  @apply absolute top-0 bottom-0 left-0 right-0 pointer-events-none;
+  @apply absolute top-0 bottom-0 left-0 right-0;
 }
 </style>
