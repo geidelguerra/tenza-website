@@ -29,7 +29,7 @@
                 Form<br> Intrudes<br> Function
               </h2>
               <div class="text-white text-right uppercase">
-                <div class="italic text-[20px] tracking-[0.15em]">
+                <div class="text-[20px] tracking-[0.15em]">
                   {{ currentSlide.project.name }}
                 </div>
                 <div class="text-[13px] tracking-[0.5em]">
@@ -49,7 +49,6 @@
             class="h-screen bg-cover bg-none bg-center relative"
           >
             <div class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-radial from-white to-black  mix-blend-multiply opacity-80" />
-            <!--  -->
           </div>
         </template>
       </agile>

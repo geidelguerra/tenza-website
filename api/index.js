@@ -78,7 +78,7 @@ export const getProjects = () => {
           path: '/projects/lake_house/lake_house.glb'
         }
       }
-    ].map(item => ({ ...item, url: `/projects/${item.id}` }))
+    ]
 
     resolve(projects)
   })
