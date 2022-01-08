@@ -1,11 +1,11 @@
 <template>
-  <nav class="fixed top-8 right-8 z-40">
-    <ul>
+  <nav class="fixed top-[36px] right-[36px] z-40">
+    <ul class="flex flex-col space-y-[18px]">
       <template v-for="(item, i) in menu">
         <li :key="i">
           <NuxtLink
             :to="item.url"
-            class="p-1 transition-colors duration-500 text-right uppercase block text-[11px] tracking-widest"
+            class="transition-colors duration-500 text-right uppercase block text-[11px] tracking-widest"
             :class="lightMode ? 'text-black' : 'text-white'"
           >
             {{ item.text }}

@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col h-screen text-black">
-    <div class="fixed top-8 left-8 z-40">
+    <div class="fixed top-[36px] left-[36px] z-40">
       <NuxtLink to="/" class="bg-transparent block">
-        <Logo class="h-5 transition-colors duration-500" :class="lightMode ? 'text-black' : 'text-white'" />
+        <Logo class="w-[42px] transition-colors duration-500" :class="lightMode ? 'text-black' : 'text-white'" />
       </NuxtLink>
     </div>
     <TheNavbar />
@@ -13,7 +13,7 @@
     /> -->
     <button
       :class="lightMode ? 'text-black border-black' : 'text-white border-white'"
-      class="uppercase text-[11px] p-2 border-2 absolute bottom-8 right-8 tracking-[0.5em] transition-colors duration-500"
+      class="uppercase text-[11px] p-2 border-2 absolute bottom-[36px] right-[36px] tracking-[0.5em] transition-colors duration-500"
     >
       Get in touch
     </button>
@@ -22,7 +22,6 @@
 
 <script>
 import TheNavbar from '@/components/TheNavbar.vue'
-
 import Logo from '~/assets/images/logo.svg?inline'
 
 export default {

@@ -2,11 +2,6 @@
   <div>
     <canvas ref="canvas" />
     <div class="absolute top-20 right-8 z-40">
-      <div class="text-right font-medium uppercase flex flex-col space-y-3">
-        <div>Left click to Pan</div>
-        <div>Middle click to Rotate</div>
-        <div>Scroll to Zoom</div>
-      </div>
       <div v-if="showDebugStats" class="font-mono mt-8">
         <div v-if="cameraStats" class="flex justify-end flex-col text-right">
           <pre>

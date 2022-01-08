@@ -25,40 +25,17 @@
         <img :src="project.thumbnail.url" alt="" class="w-full h-auto">
       </div>
       <div class="pl-[125px] w-[392px]">
+        <div class="uppercase font-bold text-[20px]">
+          {{ project.location }} ({{ project.year }})
+        </div>
+        <div class="border-t-2 border-black mt-[30px] pb-[30px] w-[20px]" />
         <div class="space-y-[40px] mb-[42px]">
           <div>
             <div class="font-bold text-[14px] uppercase">
-              Customer
+              Area
             </div>
             <div class="text-[#ccc] font-bold">
-              {{ project.customer || 'project.customer' }}
-            </div>
-          </div>
-
-          <div>
-            <div class="font-bold text-[14px] uppercase">
-              Size
-            </div>
-            <div class="text-[#ccc] font-bold">
-              {{ project.size || 'project.size' }}
-            </div>
-          </div>
-
-          <div>
-            <div class="font-bold text-[14px] uppercase">
-              Location
-            </div>
-            <div class="text-[#ccc] font-bold">
-              {{ project.location || 'project.location' }}
-            </div>
-          </div>
-
-          <div>
-            <div class="font-bold text-[14px] uppercase">
-              Status
-            </div>
-            <div class="text-[#ccc] font-bold">
-              {{ project.status || 'project.status' }}
+              {{ project.area }} SQFT
             </div>
           </div>
         </div>

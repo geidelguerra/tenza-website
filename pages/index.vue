@@ -15,7 +15,7 @@
         @after-change="event => currentSlideIndex = event.currentSlide"
       >
         <template #caption>
-          <div class="flex flex-col justify-center pl-40 pr-8 h-full">
+          <div class="flex flex-col justify-center pl-[88px] pr-[36px] h-full">
             <div class="mb-[98px] flex space-x-[40px]">
               <button @click="previousSlide">
                 <ArrowLeft class="h-[20px]" />
@@ -25,17 +25,17 @@
               </button>
             </div>
             <div class="flex items-center justify-between">
-              <h2 class="text-white text-[93px] tracking-[0.15em] font-extrabold uppercase">
-                Form<br> Intrudes<br> Function
+              <h2 class="text-white text-[119px] tracking-[1.19px] font-extrabold">
+                Building<br> your legacy
               </h2>
               <div class="text-white text-right uppercase">
-                <div class="text-[20px] tracking-[0.15em]">
+                <div class="text-[20px] tracking-[12px] font-semibold mb-[21px]">
                   {{ currentSlide.project.name }}
                 </div>
-                <div class="text-[13px] tracking-[0.5em]">
+                <div class="text-[14px] tracking-[7px]">
                   {{ currentSlide.project.location }}
                 </div>
-                <div class="text-[13px] tracking-[0.5em]">
+                <div class="text-[14px] tracking-[7px]">
                   {{ currentSlide.project.year }}
                 </div>
               </div>
@@ -53,7 +53,7 @@
         </template>
       </agile>
     </client-only>
-    <Mouse class="w-4 absolute bottom-8 left-8 text-white border-white" />
+    <Mouse class="w-4 absolute bottom-[36px] left-[36px] text-white border-white" />
   </div>
 </template>
 

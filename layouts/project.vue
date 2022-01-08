@@ -1,17 +1,11 @@
 <template>
   <div class="flex flex-col h-screen text-black">
-    <div class="fixed top-8 left-8 z-40">
+    <div class="fixed top-[36px] left-[36px] z-40">
       <NuxtLink to="/" class="bg-transparent block">
-        <Logo class="h-5 text-black" />
+        <Logo class="w-[42px] transition-colors duration-500" />
       </NuxtLink>
     </div>
     <Nuxt />
-    <nuxt-link
-      to="/projects"
-      class="uppercase font-semibold text-sm p-2 border-2 absolute bottom-8 left-8 tracking-widest transition-colors duration-500 text-black border-black"
-    >
-      Back
-    </nuxt-link>
   </div>
 </template>
 
