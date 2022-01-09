@@ -1,8 +1,8 @@
 <template>
   <div>
     <canvas ref="canvas" />
-    <div class="absolute top-20 right-8 z-40">
-      <div v-if="showDebugStats" class="font-mono mt-8">
+    <div class="absolute top-0 right-8 z-40">
+      <div v-if="showDebugPane" class="font-mono mt-8">
         <div v-if="cameraStats" class="flex justify-end flex-col text-right">
           <pre>
           <span class="font-bold">       Distance:</span> {{ cameraStats.distance.toFixed(2) }}m
@@ -27,7 +27,7 @@ export default {
   },
   data () {
     return {
-      showDebugStats: process.env.debug,
+      showDebugPane: process.env.debug,
       projectScene: null,
       cameraStats: null
     }
@@ -35,14 +35,14 @@ export default {
   mounted () {
     const projectScene = this.projectScene = new ProjectScene(this.$refs.canvas, {
       onCameraChange: (stats) => { this.cameraStats = stats },
-      castShadow: false,
+      castShadow: true,
       showHelpers: process.env.debug,
       showStats: process.env.debug
     })
 
     projectScene.init(this.$el.clientWidth, this.$el.clientHeight)
     projectScene.loadModel(this.project.scene.path)
-    projectScene.loadEnvHDR('/hdr/urban_street_01_2k.hdr')
+    // projectScene.loadEnvHDR('/hdr/urban_street_01_2k.hdr')
 
     window.addEventListener('keyup', (event) => {
       if (event.key === 'r') {

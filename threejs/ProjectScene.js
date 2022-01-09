@@ -27,9 +27,9 @@ const noop = () => { }
 
 const DEFAULT_MIN_DISTANCE = 40
 const DEFAULT_MAX_DISTANCE = 77
-const DEFAULT_MIN_POLAR_ANGLE = MathUtils.degToRad(0)
-const DEFAULT_MAX_POLAR_ANGLE = MathUtils.degToRad(90)
-const DEFAULT_DAMPING_FACTOR = 0.025
+// const DEFAULT_MIN_POLAR_ANGLE = MathUtils.degToRad(0)
+// const DEFAULT_MAX_POLAR_ANGLE = MathUtils.degToRad(90)
+const DEFAULT_DAMPING_FACTOR = 0.015
 const DEFAULT_AUTO_ROTATE_SPEED = 2.0
 
 export class ProjectScene {
@@ -45,18 +45,23 @@ export class ProjectScene {
     this.mixers = []
     this.clock = new Clock()
     this.stats = null
-    this.onCameraChange = options.onCameraChange || noop
-    this.castShadow = options.castShadow || true
+    this.onCameraChangeCallback = options.onCameraChange || noop
+    this.castShadow = options.castShadow === undefined ? false : options.castShadow
     this.showHelpers = options.showHelpers || false
     this.showStats = options.showStats || false
     this.autoRotate = options.autoRotate || false
+    this.width = null
+    this.height = null
+    this.helpers = []
   }
 
   init (width, height) {
+    this.width = width
+    this.height = height
+
     this.renderer = new WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true })
     this.renderer.physicallyCorrectLights = true
     this.renderer.outputEncoding = sRGBEncoding
-    // this.renderer.toneMappingExposure = 0.5
     this.renderer.setSize(width, height)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -69,8 +74,6 @@ export class ProjectScene {
     this.pmremGenerator.compileEquirectangularShader()
 
     this.scene = new Scene()
-    // this.scene.background = new Color(0xBFE3DD)
-    // this.scene.environment = this.pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture
 
     this.camera = new PerspectiveCamera(30, width / height, 0.1, 1000)
     this.scene.add(this.camera)
@@ -78,41 +81,7 @@ export class ProjectScene {
     this.loader = new GLTFLoader()
     this.loader.setDRACOLoader(dracoLoader)
 
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement)
-    this.controls.target.set(0, 0, 0)
-    this.controls.enablePan = true
-    this.controls.screenSpacePanning = true
-    this.controls.enableDamping = true
-    this.controls.dampingFactor = DEFAULT_DAMPING_FACTOR
-    this.controls.minDistance = DEFAULT_MIN_DISTANCE
-    this.controls.maxDistance = DEFAULT_MAX_DISTANCE
-    this.controls.minPolarAngle = DEFAULT_MIN_POLAR_ANGLE
-    this.controls.maxPolarAngle = DEFAULT_MAX_POLAR_ANGLE
-    this.controls.autoRotate = this.autoRotate
-    this.controls.autoRotateSpeed = DEFAULT_AUTO_ROTATE_SPEED
-
-    this.controls.saveState()
-    this.controls.update()
-
-    this.controls.addEventListener('change', () => {
-      this.onCameraChange({
-        distance: this.controls.getDistance(),
-        polarAngle: MathUtils.radToDeg(this.controls.getPolarAngle()),
-        azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle()),
-        x: this.camera.position.x,
-        y: this.camera.position.y,
-        z: this.camera.position.z
-      })
-    })
-
-    this.onCameraChange({
-      distance: this.controls.getDistance(),
-      polarAngle: MathUtils.radToDeg(this.controls.getPolarAngle()),
-      azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle()),
-      x: this.camera.position.x,
-      y: this.camera.position.y,
-      z: this.camera.position.z
-    })
+    this.initControls()
 
     if (this.showHelpers) {
       const axesHelper = new AxesHelper(50)
@@ -125,23 +94,104 @@ export class ProjectScene {
       const delta = this.clock.getDelta()
 
       this.mixers.forEach(mixer => mixer.update(delta))
-      this.controls.update(delta)
-      this.renderer.render(this.scene, this.camera)
+
+      if (this.controls) {
+        this.controls.update(delta)
+      }
+
+      if (this.camera) {
+        this.renderer.render(this.scene, this.camera)
+      }
     }
 
     tick()
   }
 
   resetCamera () {
-    this.controls.reset()
+    if (this.controls) {
+      this.controls.reset()
+    }
   }
 
   setSize (width, height) {
+    this.width = width
+    this.height = height
     this.renderer.setSize(width, height)
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-    this.camera.aspect = width / height
-    this.camera.updateProjectionMatrix()
+    if (this.camera) {
+      this.camera.aspect = width / height
+      this.camera.updateProjectionMatrix()
+    }
+  }
+
+  useCamera (camera, positionOnly = false) {
+    if (positionOnly) {
+      this.camera.position.set(
+        camera.parent.position.x,
+        camera.parent.position.y,
+        camera.parent.position.z
+      )
+
+      if (camera.userData.minDistance) {
+        this.controls.minDistance = camera.userData.minDistance * 2
+      }
+
+      if (camera.userData.maxDistance) {
+        this.controls.maxDistance = camera.userData.maxDistance * 2
+      }
+
+      this.controls.saveState()
+      this.controls.update()
+    } else {
+      if (this.camera) {
+        this.camera.removeFromParent()
+      }
+
+      this.camera = camera
+      this.camera.aspect = this.width / this.height
+      this.camera.updateProjectionMatrix()
+
+      this.initControls()
+    }
+  }
+
+  initControls () {
+    if (!this.camera || !this.renderer) {
+      return
+    }
+
+    if (this.controls) {
+      this.controls.dispose()
+    }
+
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement)
+    this.controls.target.set(0, 0, 0)
+    this.controls.enablePan = true
+    this.controls.screenSpacePanning = true
+    this.controls.enableDamping = true
+
+    this.controls.minDistance = DEFAULT_MIN_DISTANCE
+    this.controls.maxDistance = DEFAULT_MAX_DISTANCE
+
+    if (this.camera.userData.minDistance) {
+      this.controls.minDistance = this.camera.userData.minDistance * 2
+    }
+
+    if (this.camera.userData.maxDistance) {
+      this.controls.maxDistance = this.camera.userData.maxDistance * 2
+    }
+
+    this.controls.dampingFactor = DEFAULT_DAMPING_FACTOR
+    this.controls.autoRotate = this.autoRotate
+    this.controls.autoRotateSpeed = DEFAULT_AUTO_ROTATE_SPEED
+
+    this.controls.saveState()
+    this.controls.update()
+
+    this.controls.addEventListener('change', this.onCameraChange.bind(this))
+
+    this.onCameraChange()
   }
 
   loadEnvHDR (url) {
@@ -161,97 +211,99 @@ export class ProjectScene {
 
   loadModel (url) {
     this.mixers = []
+    this.scene.remove(this.helpers)
 
     return new Promise((resolve, reject) => {
       this.loader.load(url, (gltf) => {
-        // eslint-disable-next-line no-console
-        console.log('Gltf:', gltf)
-
-        const model = gltf.scene
-
-        model.traverse((obj) => {
-          // eslint-disable-next-line no-console
-          console.log('Name:', obj.name, 'Type:', obj.type)
-
-          // If scene has a camera use its position
-          if (obj.name === 'camera') {
-            // eslint-disable-next-line no-console
-            console.log('Camera pos:', obj.position)
-            this.camera.position.set(
-              obj.position.x,
-              obj.position.y,
-              obj.position.z
-            )
-
-            if (obj.children.length > 0 && obj.children[0].userData !== null) {
-              const userData = obj.children[0].userData
-
-              if (userData.minDistance) {
-                this.controls.minDistance = userData.minDistance * 2
-              }
-
-              if (userData.maxDistance) {
-                this.controls.maxDistance = userData.maxDistance * 2
-              }
-            }
-
-            this.controls.saveState()
-            this.controls.update()
-          }
-
-          // Setup shadows
-          if (obj.isMesh) {
-            obj.castShadow = this.castShadow
-            obj.receiveShadow = this.castShadow
-
-            if (obj.material.map) {
-              obj.material.map.anisotropy = 16
-            }
-          }
-
-          if (obj.name === 'directional_shadow') {
-            obj.children[0].castShadow = this.castShadow
-            // obj.children[0].shadow.mapSize.width = 1024 * 2
-            // obj.children[0].shadow.mapSize.height = 1024 * 2
-            // obj.children[0].shadow.camera.near = 0.5
-            // obj.children[0].shadow.camera.far = 1000
-            // obj.children[0].shadow.camera.top = 100
-            // obj.children[0].shadow.camera.left = 100
-            // obj.children[0].shadow.camera.bottom = -100
-          }
-
-          // Add helpers
-          if (this.showHelpers) {
-            switch (obj.type) {
-              case 'DirectionalLight':
-                this.scene.add(new DirectionalLightHelper(obj, 5, 0x000000))
-
-                if (obj.castShadow) {
-                  this.scene.add(new CameraHelper(obj.shadow.camera))
-                }
-                break
-              case 'PointLight':
-                // this.scene.add(new PointLightHelper(obj, 5))
-                break
-            }
-          }
-        })
-
-        this.scene.add(model)
-
-        // Handle animations
-        if (gltf.animations.length > 0) {
-          const mixer = new AnimationMixer(model)
-
-          mixer.clipAction(gltf.animations[0]).play()
-
-          this.mixers.push(mixer)
-        }
-
+        this.onModelLoaded(gltf)
         resolve()
       }, undefined, function (error) {
         reject(error)
       })
     })
+  }
+
+  addHelper (obj) {
+    this.scene.add(obj)
+    this.helpers.push(obj)
+  }
+
+  checkScene () {
+    this.scene.traverse(obj => this.checkObj(obj))
+  }
+
+  checkObj (obj) {
+    if (obj.isMesh) {
+      obj.castShadow = this.castShadow
+      obj.receiveShadow = this.castShadow
+
+      if (obj.material.map) {
+        obj.material.map.anisotropy = 16
+      }
+    }
+
+    if (obj.isLight) {
+      if (this.showHelpers) {
+        this.addHelper(new DirectionalLightHelper(obj, 5, 0x000000))
+        if (obj.castShadow) {
+          this.addHelper(new CameraHelper(obj.shadow.camera))
+        }
+      }
+    }
+  }
+
+  onCameraChange () {
+    if (this.controls && this.camera) {
+      const data = {
+        distance: this.controls.getDistance(),
+        polarAngle: MathUtils.radToDeg(this.controls.getPolarAngle()),
+        azimuthalAngle: MathUtils.radToDeg(this.controls.getAzimuthalAngle()),
+        x: this.camera.position.x,
+        y: this.camera.position.y,
+        z: this.camera.position.z
+      }
+
+      this.onCameraChangeCallback(data)
+    }
+  }
+
+  onModelLoaded (gltf) {
+    const model = gltf.scene
+
+    model.traverse((obj) => {
+      if (obj.isCamera) {
+        this.useCamera(obj, true)
+      }
+
+      if (obj.isLight) {
+        obj.shadow.camera.near = 0.001
+        obj.shadow.camera.updateProjectionMatrix()
+
+        if (this.showHelpers) {
+          this.addHelper(new DirectionalLightHelper(obj, 5, 0x000000))
+        }
+
+        if (obj.name === 'directional_shadow_Orientation') {
+          obj.castShadow = this.castShadow
+
+          if (this.showHelpers) {
+            this.addHelper(new CameraHelper(obj.shadow.camera))
+          }
+        }
+      }
+
+      this.checkObj(obj)
+    })
+
+    // Handle animations
+    if (gltf.animations.length > 0) {
+      const mixer = new AnimationMixer(model)
+
+      mixer.clipAction(gltf.animations[0]).play()
+
+      this.mixers.push(mixer)
+    }
+
+    this.scene.add(model)
   }
 }
