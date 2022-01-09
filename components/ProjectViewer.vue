@@ -1,10 +1,20 @@
 <template>
   <div>
     <canvas ref="canvas" />
-    <div class="absolute top-0 right-8 z-40">
-      <div v-if="showDebugPane" class="font-mono mt-8">
-        <div v-if="cameraStats" class="flex justify-end flex-col text-right">
-          <pre>
+    <div
+      v-if="showDebugPane && projectScene !== null"
+      class="absolute top-[100px] right-[36px] z-40 flex justify-end flex-col space-y-4"
+    >
+      <div class="flex flex-col space-y-2">
+        <button class="block p-2 uppercase border-2 text-sm border-black" @click="toggleShadows">
+          {{ projectScene.castShadow ? 'Disable shadows' : 'Enable shadows' }}
+        </button>
+        <button class="block p-2 uppercase border-2 text-sm border-black" @click="toggleHelpers">
+          {{ projectScene.showHelpers ? 'Hide helpers' : 'Show helpers' }}
+        </button>
+      </div>
+      <div v-if="cameraStats" class="text-right">
+        <pre>
           <span class="font-bold">       Distance:</span> {{ cameraStats.distance.toFixed(2) }}m
           <span class="font-bold">    Polar Angle:</span> {{ cameraStats.polarAngle.toFixed(2) }}&deg;
           <span class="font-bold">Azimuthal Angle:</span> {{ cameraStats.azimuthalAngle.toFixed(2) }}&deg;
@@ -12,7 +22,6 @@
           <span class="font-bold">              Y:</span> {{ cameraStats.y.toFixed(2) }}
           <span class="font-bold">              Z:</span> {{ cameraStats.z.toFixed(2) }}
         </pre>
-        </div>
       </div>
     </div>
   </div>
@@ -53,6 +62,16 @@ export default {
     window.addEventListener('resize', () => {
       projectScene.setSize(this.$el.clientWidth, this.$el.clientHeight)
     })
+  },
+  methods: {
+    toggleShadows () {
+      this.projectScene.castShadow = !this.projectScene.castShadow
+      this.projectScene.updateShadows()
+    },
+    toggleHelpers () {
+      this.projectScene.showHelpers = !this.projectScene.showHelpers
+      this.projectScene.updateHelpers()
+    }
   }
 }
 </script>

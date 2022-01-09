@@ -83,11 +83,6 @@ export class ProjectScene {
 
     this.initControls()
 
-    if (this.showHelpers) {
-      const axesHelper = new AxesHelper(50)
-      this.scene.add(axesHelper)
-    }
-
     const tick = () => {
       requestAnimationFrame(tick)
 
@@ -211,7 +206,6 @@ export class ProjectScene {
 
   loadModel (url) {
     this.mixers = []
-    this.scene.remove(this.helpers)
 
     return new Promise((resolve, reject) => {
       this.loader.load(url, (gltf) => {
@@ -223,33 +217,55 @@ export class ProjectScene {
     })
   }
 
+  updateHelpers () {
+    this.helpers.forEach(obj => obj.removeFromParent())
+
+    if (this.showHelpers) {
+      this.addHelper(new AxesHelper(50))
+
+      this.scene.traverse((obj) => {
+        if (obj.type === 'DirectionalLight') {
+          this.addHelper(new DirectionalLightHelper(obj, 5, 0x000000))
+
+          if (obj.castShadow) {
+            this.addHelper(new CameraHelper(obj.shadow.camera))
+          }
+        }
+      })
+    }
+  }
+
   addHelper (obj) {
     this.scene.add(obj)
     this.helpers.push(obj)
   }
 
-  checkScene () {
-    this.scene.traverse(obj => this.checkObj(obj))
+  updateScene () {
+    this.updateHelpers()
+    this.updateShadows()
   }
 
-  checkObj (obj) {
-    if (obj.isMesh) {
-      obj.castShadow = this.castShadow
-      obj.receiveShadow = this.castShadow
+  updateShadows (obj) {
+    this.scene.traverse((obj) => {
+      if (obj.isLight) {
+        obj.shadow.camera.near = 0.001
+        obj.shadow.camera.far = 1000
+        obj.shadow.camera.updateProjectionMatrix()
 
-      if (obj.material.map) {
-        obj.material.map.anisotropy = 16
-      }
-    }
-
-    if (obj.isLight) {
-      if (this.showHelpers) {
-        this.addHelper(new DirectionalLightHelper(obj, 5, 0x000000))
-        if (obj.castShadow) {
-          this.addHelper(new CameraHelper(obj.shadow.camera))
+        if (obj.name === 'directional_shadow_Orientation') {
+          obj.castShadow = this.castShadow
         }
       }
-    }
+
+      if (obj.isMesh) {
+        obj.castShadow = this.castShadow
+        obj.receiveShadow = this.castShadow
+
+        if (obj.material.map) {
+          obj.material.map.anisotropy = 16
+        }
+      }
+    })
   }
 
   onCameraChange () {
@@ -274,25 +290,6 @@ export class ProjectScene {
       if (obj.isCamera) {
         this.useCamera(obj, true)
       }
-
-      if (obj.isLight) {
-        obj.shadow.camera.near = 0.001
-        obj.shadow.camera.updateProjectionMatrix()
-
-        if (this.showHelpers) {
-          this.addHelper(new DirectionalLightHelper(obj, 5, 0x000000))
-        }
-
-        if (obj.name === 'directional_shadow_Orientation') {
-          obj.castShadow = this.castShadow
-
-          if (this.showHelpers) {
-            this.addHelper(new CameraHelper(obj.shadow.camera))
-          }
-        }
-      }
-
-      this.checkObj(obj)
     })
 
     // Handle animations
@@ -305,5 +302,6 @@ export class ProjectScene {
     }
 
     this.scene.add(model)
+    this.updateScene()
   }
 }
