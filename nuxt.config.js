@@ -69,8 +69,16 @@ export default {
   },
 
   generate: {
-    routes () {
-      return getProjects().then(projects => projects.map(({ url }) => url))
+    async routes () {
+      const routes = []
+      const projects = await getProjects()
+
+      projects.forEach((item) => {
+        routes.push(`/projects/${item.id}`)
+        routes.push(`/projects/${item.id}/model`)
+      })
+
+      return routes
     }
   }
 }
