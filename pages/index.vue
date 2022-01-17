@@ -5,7 +5,7 @@
         ref="featuredSlides"
         :nav-buttons="false"
         :dots="false"
-        :autoplay="true"
+        :autoplay="false"
         :autoplay-speed="6000"
         :speed="600"
         :pause-on-hover="false"
@@ -15,8 +15,8 @@
         @after-change="event => currentSlideIndex = event.currentSlide"
       >
         <template #caption>
-          <div class="flex flex-col justify-center pl-[88px] pr-[36px] h-full">
-            <div class="mb-[98px] flex space-x-[40px]">
+          <div class="pt-[225px] pl-[88px] pr-[120px] h-full">
+            <div class="mb-[170px] flex space-x-[40px]">
               <button @click="previousSlide">
                 <ArrowLeft class="h-[20px]" />
               </button>
@@ -25,14 +25,12 @@
               </button>
             </div>
             <div class="flex items-center justify-between">
-              <h2 class="text-white text-[119px] tracking-[1.19px] font-extrabold">
-                Building<br> your legacy
-              </h2>
+              <h2 class="text-white text-[119px] tracking-[1.19px] font-extrabold w-[910px] leading-[1em]" v-html="currentSlide.text" />
               <div class="text-white text-right uppercase">
-                <div class="text-[20px] tracking-[12px] font-semibold mb-[21px]">
+                <div class="text-[16px] tracking-[12px] font-semibold mb-[21px]">
                   {{ currentSlide.project.name }}
                 </div>
-                <div class="text-[14px] tracking-[7px]">
+                <div class="text-[14px] tracking-[7px] mb-[11px]">
                   {{ currentSlide.project.location }}
                 </div>
                 <div class="text-[14px] tracking-[7px]">
@@ -74,6 +72,7 @@ export default {
       slides: [
         {
           image: '/projects/lake_house/lake_house.jpg',
+          text: 'Designs <br> with a timeless quality',
           project: {
             name: 'Lake House',
             location: 'New York',
@@ -82,6 +81,7 @@ export default {
         },
         {
           image: '/projects/brazil_restaurant/brazil_restaurant.jpg',
+          text: 'Crafting experiences',
           project: {
             name: 'Brazil Restaurant',
             location: 'New York',
@@ -90,6 +90,7 @@ export default {
         },
         {
           image: '/projects/cliff_house/cliff_house.jpg',
+          text: 'Building <br> your legacy',
           project: {
             name: 'Cliff House',
             location: 'New York',
