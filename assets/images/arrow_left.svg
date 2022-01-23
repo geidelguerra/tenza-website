@@ -1,6 +1,3 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 7.29 14.26" stroke="currentColor">
-    <style>.cls-1,.cls-3{fill:none;}.cls-2{clip-path:url(#clip-path);}.cls-3{stroke-linecap:round;}</style>
-    <polyline class="cls-3" points="6.79 0.5 0.68 7.13 6.79 13.76"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="11.356" height="21.463" viewBox="0 0 11.356 21.463" stroke="currentColor">
+    <path d="m0 0-8.583 9.319L0 18.637" transform="translate(9.943 1.413)" style="fill:none;stroke-linecap:round;stroke-width:2px"/>
 </svg>

@@ -1,37 +1,27 @@
 <template>
   <div>
-    <client-only>
-      <agile
-        :slides-to-show="3"
-        :center-mode="false"
-        :nav-buttons="false"
-        :dots="false"
-        :autoplay="false"
-        :pause-on-hover="false"
-        :infinite="false"
-      >
-        <template v-for="(project, index) in projects">
-          <div
-            :key="index"
-            class="px-4"
-          >
-            <div class="flex items-center h-screen">
-              <nuxt-link :to="`/projects/${project.id}`">
-                <img
-                  :src="project.thumbnail.url"
-                  class="w-full select-none block mb-8"
-                >
-                <div class="flex justify-between">
-                  <div class="text-black font-medium">
-                    {{ project.name }}
-                  </div>
+    <div>
+      <template v-for="(project, index) in projects">
+        <div
+          :key="index"
+          class="px-4"
+        >
+          <div class="flex items-center h-screen">
+            <nuxt-link :to="`/projects/${project.id}`">
+              <img
+                :src="project.thumbnail.url"
+                class="block w-full mb-8 select-none"
+              >
+              <div class="flex justify-between">
+                <div class="font-medium text-black">
+                  {{ project.name }}
                 </div>
-              </nuxt-link>
-            </div>
+              </div>
+            </nuxt-link>
           </div>
-        </template>
-      </agile>
-    </client-only>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
