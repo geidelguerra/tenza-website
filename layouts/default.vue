@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col h-screen text-black">
     <div class="fixed top-[45px] left-[45px] z-40">
-      <NuxtLink to="/" class="bg-transparent block">
+      <NuxtLink to="/" class="block bg-transparent">
         <Logo class="w-[42px] transition-colors duration-500" :class="lightMode ? 'text-black' : 'text-white'" />
       </NuxtLink>
     </div>
-    <TheNavbar />
+    <TheNavbar :light-mode="lightMode" />
     <Nuxt />
   </div>
 </template>
@@ -21,7 +21,13 @@ export default {
   },
   computed: {
     lightMode () {
-      return this.$route.path !== '/'
+      const { path, query } = this.$route
+
+      if (!path || path === '/') {
+        return query.l && query.l !== 'featured'
+      }
+
+      return false
     }
   }
 }

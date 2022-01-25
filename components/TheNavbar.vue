@@ -20,17 +20,15 @@
 
 <script>
 export default {
+  props: {
+    lightMode: Boolean
+  },
   data () {
     return {
       menu: [
         { text: 'Projects', url: '/projects' },
         { text: 'Studio', url: '/studio' }
       ]
-    }
-  },
-  computed: {
-    lightMode () {
-      return this.$route.path !== '/'
     }
   }
 }

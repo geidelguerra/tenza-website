@@ -1,6 +1,10 @@
 <template>
   <div class="h-screen overflow-hidden bg-black">
-    <transition :name="sectionTransitionName">
+    <transition
+      :name="sectionTransitionName"
+      @before-enter="transitioning = true"
+      @after-enter="transitioning = false"
+    >
       <!-- Featured Slider -->
       <section
         v-if="currentSectionIndex === 0"
@@ -101,9 +105,15 @@ export default {
   },
   data () {
     return {
-      currentSectionIndex: 0,
-      sectionTransitionName: 'section',
-      sections: [],
+      currentSectionIndex: -1,
+      sectionTransitionName: '',
+      transitioning: false,
+      sections: [
+        { id: 'featured' },
+        { id: 'about' },
+        { id: 'about-2' },
+        { id: 'about-3' }
+      ],
       currentSlideIndex: 0,
       slides: [
         {
@@ -138,7 +148,10 @@ export default {
   },
   computed: {
     numberOfSections () {
-      return 4
+      return this.sections.length
+    },
+    currentSection () {
+      return this.currentSectionIndex >= 0 ? this.sections[this.currentSectionIndex] : null
     },
     currentSlide () {
       return this.slides[this.currentSlideIndex]
@@ -146,6 +159,26 @@ export default {
     numberOfSlides () {
       return this.slides.length
     }
+  },
+  watch: {
+    currentSectionIndex (val, oldVal) {
+      if (!oldVal) {
+        this.sectionTransitionName = 'section'
+
+        return
+      }
+
+      // eslint-disable-next-line no-console
+      console.log('currentSectionIndex:', oldVal, '->', val)
+
+      this.sectionTransitionName = oldVal > val ? 'section-reverse' : 'section'
+    },
+    '$route.query' (query) {
+      this.onQueryChanged(query)
+    }
+  },
+  created () {
+    this.onQueryChanged(this.$route.query)
   },
   mounted () {
     document.addEventListener('wheel', this.onMouseWheel)
@@ -157,19 +190,25 @@ export default {
   },
   methods: {
     previousSection () {
+      if (this.transitioning) {
+        return
+      }
+
       const nextIndex = this.currentSectionIndex - 1
 
       if (nextIndex >= 0) {
-        this.sectionTransitionName = 'section-reverse'
-        this.currentSectionIndex = nextIndex
+        this.$router.push({ path: '/', query: { l: this.sections[nextIndex].id } })
       }
     },
     nextSection () {
+      if (this.transitioning) {
+        return
+      }
+
       const nextIndex = this.currentSectionIndex + 1
 
       if (nextIndex < this.numberOfSections) {
-        this.sectionTransitionName = 'section'
-        this.currentSectionIndex = nextIndex
+        this.$router.push({ path: '/', query: { l: this.sections[nextIndex].id } })
       }
     },
     previousSlide () {
@@ -200,8 +239,6 @@ export default {
       }
     },
     onKeyUp (event) {
-      // eslint-disable-next-line no-console
-      console.log(event)
       if (['ArrowDown', 'PageDown', ' '].includes(event.key)) {
         this.nextSection()
       }
@@ -209,6 +246,15 @@ export default {
       if (['ArrowUp', 'PageUp'].includes(event.key)) {
         this.previousSection()
       }
+    },
+    onQueryChanged (query) {
+      if (!query || !query.l) {
+        this.currentSectionIndex = 0
+
+        return
+      }
+
+      this.currentSectionIndex = this.sections.findIndex(section => section.id === query.l)
     }
   }
 }
