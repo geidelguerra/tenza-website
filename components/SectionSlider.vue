@@ -24,11 +24,15 @@ export default {
     }
   },
   computed: {
-    slides () {
-      return this.$slots.default.filter(node => node.tag !== undefined)
-    },
     numberOfSlides () {
-      return this.slides.length
+      return this.$refs.slider.numberOfSlides
+    }
+  },
+  watch: {
+    activeSlideIndex (val, oldVal) {
+      window.location = `#${val}`
+
+      this.$emit('slideChanged', val, oldVal, this.numberOfSlides)
     }
   },
   mounted () {
@@ -83,7 +87,8 @@ export default {
         transitionEnded () {
           self.transitioning = false
         }
-      }
+      },
+      ref: 'slider'
     }, this.$slots.default)
   }
 }

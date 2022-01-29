@@ -49,9 +49,6 @@ export default {
     const self = this
 
     const slides = this.slides.map((node, index) => {
-      node.key = index
-      node.class = 'absolute top-0 left-0 w-full h-full'
-
       return createElement('div', {
         key: index,
         class: 'absolute top-0 left-0 w-full h-full'

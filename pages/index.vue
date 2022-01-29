@@ -1,10 +1,11 @@
 <template>
   <div class="h-screen overflow-hidden bg-black">
-    <SectionSlider>
+    <SectionSlider @slideChanged="onSectionSlideChanged">
       <!-- Featured Slider -->
       <section class="relative w-screen h-screen overflow-hidden">
         <div class="absolute top-0 left-0 w-screen h-screen">
           <Slider
+            ref="featuredSlider"
             :active-slide-index="activeFeaturedSlideIndex"
             transition-name="slider"
             transition-mode="out-in"
@@ -20,7 +21,7 @@
             </template>
           </Slider>
         </div>
-        <div class="pt-[225px] pl-[88px] pr-[120px] absolute w-full">
+        <div :key="activeFeaturedSlideIndex" class="pt-[225px] pl-[88px] pr-[120px] absolute w-full">
           <div class="mb-[170px] flex space-x-[40px]">
             <button
               :class="{'pointer-events-none opacity-60': activeFeaturedSlideIndex <= 0}"
@@ -145,14 +146,12 @@ export default {
     this.onQueryChanged(this.$route.query)
   },
   methods: {
+    onSectionSlideChanged (val, oldVal, total) {
+      // eslint-disable-next-line no-console
+      console.log(val, oldVal, total)
+    },
     onQueryChanged (query) {
-      // if (!query || !query.l) {
-      //   this.currentSectionIndex = 0
-
-      //   return
-      // }
-
-      // this.currentSectionIndex = this.sections.findIndex(section => section.id === query.l)
+      //
     }
   }
 }

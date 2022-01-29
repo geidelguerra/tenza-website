@@ -21,10 +21,10 @@ export default {
   },
   computed: {
     lightMode () {
-      const { path, query } = this.$route
+      const { path, hash } = this.$route
 
-      if (!path || path === '/') {
-        return query.l && query.l !== 'featured'
+      if (path === '' || path === '/' || path === '/studio') {
+        return hash !== '' && hash !== '#0'
       }
 
       return false
