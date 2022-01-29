@@ -53,7 +53,7 @@ export default {
         key: index,
         class: 'absolute top-0 left-0 w-full h-full'
       }, [node])
-    }).filter((node, index) => index === this.activeSlideIndex)
+    }).filter((_, index) => index === this.activeSlideIndex)
 
     return createElement('transition', {
       props: {
