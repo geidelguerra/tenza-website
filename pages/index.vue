@@ -25,7 +25,7 @@
             </template>
           </Slider>
         </div>
-        <div class="pt-[225px] pl-[88px] pr-[120px] absolute w-full">
+        <div class="pt-[225px] pl-[88px] pr-[120px] pb-[105px] absolute w-full h-full flex flex-col">
           <div class="mb-[170px] flex space-x-[40px]">
             <button
               :class="{'pointer-events-none opacity-60 transition-opacity duration-200': activeFeaturedSlideIndex <= 0}"
@@ -42,9 +42,11 @@
               <ArrowRight class="h-[20px]" />
             </button>
           </div>
-          <div class="flex items-center justify-between">
-            <h2 class="text-white text-[119px] tracking-[1.19px] font-extrabold w-[910px] leading-[1em]" v-html="activeFeaturedSlide.text" />
-            <div class="text-right text-white uppercase">
+          <div class="flex justify-between flex-1">
+            <div>
+              <h2 class="text-white text-[119px] tracking-[1.19px] font-extrabold w-[910px] leading-[1em]" v-html="activeFeaturedSlide.text" />
+            </div>
+            <div class="flex flex-col pt-[50px] text-right text-white uppercase">
               <div class="text-[16px] tracking-[12px] font-semibold mb-[21px]">
                 {{ activeFeaturedSlide.project.name }}
               </div>
