@@ -35,6 +35,9 @@ export default {
       }
 
       return this.$slots.default.filter(node => node.tag !== undefined).map(node => node.elm)
+    },
+    numberOfElements () {
+      return this.elements.length
     }
   },
   watch: {
@@ -42,6 +45,8 @@ export default {
       if (this.syncToRoute) {
         window.location = `#${val.id}`
       }
+
+      this.$emit('activeElementChanged', val, this.activeElementIndex, this.numberOfElements)
     },
     '$route.hash': 'handleRouteChange'
   },
