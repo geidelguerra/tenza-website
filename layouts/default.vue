@@ -24,7 +24,7 @@ export default {
       const { path, hash } = this.$route
 
       if (path === '' || path === '/' || path === '/studio') {
-        return hash !== '' && hash !== '#0'
+        return !['#featured', '#intro'].includes(hash)
       }
 
       return false

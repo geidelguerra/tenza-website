@@ -13,7 +13,8 @@ export default {
     elementSelector: {
       type: [Function],
       default: null
-    }
+    },
+    syncToRoute: Boolean
   },
   data () {
     return {
@@ -36,10 +37,33 @@ export default {
       return this.$slots.default.filter(node => node.tag !== undefined).map(node => node.elm)
     }
   },
+  watch: {
+    activeElement (val) {
+      if (this.syncToRoute) {
+        window.location = `#${val.id}`
+      }
+    },
+    '$route.hash': 'handleRouteChange'
+  },
   mounted () {
     this.createObserver()
+    this.handleRouteChange()
   },
   methods: {
+    handleRouteChange () {
+      const { path, hash } = this.$route
+
+      if (path === '' || hash === '') {
+        return
+      }
+
+      const id = hash.trimStart('#')
+      const elm = this.elements.find(elm => elm.id === id)
+
+      if (elm) {
+        this.scrollToElement(elm)
+      }
+    },
     createObserver () {
       this.observer = new IntersectionObserver(this.onInterception, {
         root: this.$el,

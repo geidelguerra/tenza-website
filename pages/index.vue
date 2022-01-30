@@ -1,7 +1,7 @@
 <template>
-  <Scroller class="h-screen overflow-hidden bg-black">
+  <Scroller class="h-screen overflow-hidden bg-black" :sync-to-route="true">
     <!-- Featured Slider -->
-    <section class="relative w-screen h-screen overflow-hidden">
+    <section id="featured" class="relative w-screen h-screen overflow-hidden">
       <div class="absolute top-0 left-0 w-screen h-screen">
         <Slider
           ref="featuredSlider"
@@ -20,7 +20,7 @@
           </template>
         </Slider>
       </div>
-      <div :key="activeFeaturedSlideIndex" class="pt-[225px] pl-[88px] pr-[120px] absolute w-full">
+      <div class="pt-[225px] pl-[88px] pr-[120px] absolute w-full">
         <div class="mb-[170px] flex space-x-[40px]">
           <button
             :class="{'pointer-events-none opacity-60 transition-opacity duration-200': activeFeaturedSlideIndex <= 0}"
@@ -37,7 +37,7 @@
             <ArrowRight class="h-[20px]" />
           </button>
         </div>
-        <div key="12323" class="flex items-center justify-between">
+        <div class="flex items-center justify-between">
           <h2 class="text-white text-[119px] tracking-[1.19px] font-extrabold w-[910px] leading-[1em]" v-html="activeFeaturedSlide.text" />
           <div class="text-right text-white uppercase">
             <div class="text-[16px] tracking-[12px] font-semibold mb-[21px]">
@@ -55,21 +55,21 @@
       <GetInTouchButton class="absolute bottom-[45px] right-[45px]" />
     </section>
     <!-- About 1 -->
-    <section class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] overflow-hidden">
+    <section id="about-1" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] overflow-hidden">
       <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
         It all starts with an idea
       </h2>
       <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
     </section>
     <!-- About 2 -->
-    <section class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[69px]">
+    <section id="about-2" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[69px]">
       <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
         Idea becomes concept
       </h2>
       <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
     </section>
     <!-- About 3 -->
-    <section class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[35px]">
+    <section id="about-3" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[35px]">
       <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
         It all starts with an idea
       </h2>
@@ -98,8 +98,6 @@ export default {
   },
   data () {
     return {
-      activeSectionObserver: null,
-      activeSectionIndex: 0,
       activeFeaturedSlideIndex: 0,
       featuredSlides: [
         {

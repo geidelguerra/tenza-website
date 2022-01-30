@@ -1,10 +1,10 @@
 <template>
-  <Scroller class="relative h-screen overflow-hidden bg-white">
+  <Scroller class="relative h-screen overflow-hidden bg-white" :sync-to-route="true">
     <div>
       <!--  -->
     </div>
     <!-- Section 1 -->
-    <section class="w-full h-screen overflow-hidden text-white bg-black">
+    <section id="intro" class="w-full h-screen overflow-hidden text-white bg-black">
       <div
         class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-none"
         :style="{backgroundImage: `url(${require('~/assets/images/studio/studio_01.jpg')})`}"
@@ -22,12 +22,12 @@
         <GetInTouchButton class="absolute bottom-[45px] right-[45px]" />
       </div>
     </section>
-    <section title="" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="who-we-are-1" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div class="text-[30px]">
         <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="who-we-are-2" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase">
           Ernesto Anton
@@ -43,7 +43,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="who-we-are-3" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase">
           Jose Carlos Toral
@@ -59,7 +59,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="architecture" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Architecture
@@ -69,7 +69,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="interiors" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Interiors
@@ -79,7 +79,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="modeling-3d" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Specialist 3D modeling
@@ -89,7 +89,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="visualization" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Visualization
@@ -99,7 +99,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="modelmaking" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Modelmaking
@@ -109,7 +109,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="project-management" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Project Management
@@ -119,7 +119,7 @@
         </div>
       </div>
     </section>
-    <section class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
+    <section id="construction-overview" class="flex items-center w-full h-screen bg-white pl-[794px] pr-[434px]">
       <div>
         <h2 class="text-[28px] font-extrabold uppercase mb-[38px]">
           Construction Overview
