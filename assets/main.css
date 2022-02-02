@@ -1,15 +1,12 @@
-body {
-  /* overflow: hidden; */
-}
-
 .page-enter-active,
 .page-leave-active {
-  @apply transition-opacity duration-200;
+  transition: all 0.75s;
 }
 
 .page-enter,
 .page-leave-to {
-  @apply opacity-0;
+  opacity: 0;
+  transform: scale(0.99);
 }
 
 .slide-up-enter-active, .slide-up-leave-active {

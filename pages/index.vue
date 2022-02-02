@@ -78,7 +78,7 @@
       <!-- About 3 -->
       <section id="about-3" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[35px]">
         <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
-          It all starts with an idea
+          Concepts are developed
         </h2>
         <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
       </section>

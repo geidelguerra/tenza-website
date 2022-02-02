@@ -1,12 +1,6 @@
 <template>
-  <div
-    class="bg-[#ccc]"
-    :class="{
-      'w-[2px] h-full': !vertical,
-      'w-full h-[2px]': vertical
-    }"
-  >
-    <div class="bg-[#111]" :style="barStyle" />
+  <div class="w-[4px] bg-[#ccc] h-full">
+    <div class="bg-[#111] transition-all duration-100" :style="barStyle" />
   </div>
 </template>
 
@@ -16,14 +10,13 @@ export default {
     progress: {
       type: Number,
       default: 0
-    },
-    vertical: Boolean
+    }
   },
   computed: {
     barStyle () {
-      return {
-        //
-      }
+      const progress = this.progress > 100 ? 100 : this.progress
+
+      return { height: `${progress}%` }
     }
   }
 }

@@ -1,6 +1,9 @@
 <template>
-  <div class="overflow-hidden" @mousewheel="onMouseWheel">
-    <slot />
+  <div v-bind="$attrs" class="relative" @mousewheel="onMouseWheel">
+    <div ref="container" class="absolute top-0 bottom-0 left-0 right-0 overflow-hidden">
+      <slot />
+    </div>
+    <slot name="nav" v-bind="{activeElement, activeElementIndex, elements, numberOfElements, progress, scrollToElement}" />
   </div>
 </template>
 <script>
@@ -14,48 +17,55 @@ export default {
       type: [Function],
       default: null
     },
-    syncToRoute: Boolean
+    syncToRoute: Boolean,
+    disabled: Boolean
   },
   data () {
     return {
       observer: null,
       activeElement: null,
-      isScrolling: false
+      isScrolling: false,
+      elements: []
     }
   },
   computed: {
     activeElementIndex () {
       return this.elements.findIndex(elm => elm === this.activeElement)
     },
-    elements () {
-      const elementSelector = this.elementSelector
-
-      if (elementSelector instanceof Function) {
-        return this.$slots.default.filter(elementSelector)
-      }
-
-      return this.$slots.default.filter(node => node.tag !== undefined).map(node => node.elm)
-    },
     numberOfElements () {
       return this.elements.length
+    },
+    progress () {
+      return Math.round(this.activeElementIndex * 100 / (this.numberOfElements - 1))
     }
   },
   watch: {
     activeElement (val) {
-      if (this.syncToRoute) {
+      if (this.syncToRoute && val) {
         window.location = `#${val.id}`
       }
 
       this.$emit('activeElementChanged', val, this.activeElementIndex, this.numberOfElements)
     },
+    activeElementIndex (val, oldVal) {
+      this.$emit('activeIndexChanged', val, oldVal)
+    },
     '$route.hash': 'handleRouteChange'
   },
   mounted () {
+    this.updateElements()
     this.createObserver()
     this.handleRouteChange()
   },
   methods: {
+    updateElements () {
+      this.elements = Array.from(this.$refs.container.children)
+    },
     handleRouteChange () {
+      if (!this.syncToRoute) {
+        return
+      }
+
       const { path, hash } = this.$route
 
       if (path === '' || hash === '') {
@@ -92,7 +102,7 @@ export default {
     scrollToElement (element) {
       const self = this
 
-      this.$scroll(this.$el, {
+      this.$scroll(this.$refs.container, {
         scrollTop: element.offsetTop,
         begin () {
           self.isScrolling = true
@@ -103,17 +113,12 @@ export default {
       })
     },
     onInterception (entries) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.activeElement = entry.target
+      const activeElements = entries.filter(entry => entry.isIntersecting)
 
-          // eslint-disable-next-line no-useless-return
-          return
-        }
-      })
+      this.activeElement = activeElements.length > 0 ? activeElements[0].target : null
     },
     onMouseWheel (event) {
-      if (this.isScrolling) {
+      if (this.isScrolling || this.disabled) {
         return
       }
 
