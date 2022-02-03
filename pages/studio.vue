@@ -5,7 +5,7 @@
       class="relative h-screen overflow-hidden"
       :sync-to-route="true"
       :disabled="rootScrollerDisabled"
-      @activeElementChanged="onRootScrollerElementChanged"
+      @activeIndexChanged="onRootScrollerActiveIndexChanged"
     >
       <!-- Section 1 -->
       <section id="intro" class="w-full h-screen overflow-hidden text-white bg-black">
@@ -22,14 +22,12 @@
           <div class="w-[587px] text-[24px]">
             <span class="font-bold">Tenza</span> is a small architectural design firm who puts forward a modern, innovative and sustainable approach to residential and commercial buildings alike. We bring to our clients a tailored experience that hopefully will remain their families for generations
           </div>
-
-          <GetInTouchButton class="absolute bottom-[45px] right-[45px]" />
         </div>
       </section>
       <Scroller
         ref="nestedScroller"
         class="relative h-screen overflow-hidden bg-white"
-        @activeIndexChanged="idx => rootScrollerDisabled = idx > 0"
+        @activeIndexChanged="onNestedScrollerActiveIndexChanged"
       >
         <template #nav="{ elements, progress, activeElementIndex, scrollToElement }">
           <div class="absolute top-0 bottom-0 left-0 right-[1344px] flex items-center z-10">
@@ -198,11 +196,15 @@
         </section>
       </Scroller>
     </Scroller>
+    <GetInTouchButton
+      :light="lightMode"
+      class="absolute bottom-[45px] right-[45px]"
+    />
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
         class="fixed bottom-[45px] left-[45px]"
-        :light-mode="lightMode"
+        :light="lightMode"
       />
     </transition>
   </div>
@@ -237,7 +239,7 @@ export default {
       return this.activeScrolledIndex > 0
     },
     showScrollableIndicator () {
-      return this.activeScrolledIndex < this.numberOfSections - 1
+      return this.activeScrolledIndex < this.numberOfSections - 2
     },
     nestedScrollerProgress () {
       if (!this.$refs.nestedScroller) {
@@ -248,12 +250,13 @@ export default {
     }
   },
   methods: {
-    onRootScrollerElementChanged (elm, index, numberOfSections) {
-      this.rootScrollerIndex = index
-      this.numberOfSections = numberOfSections + this.$refs.nestedScroller.numberOfElements
+    onRootScrollerActiveIndexChanged (idx, numberOfSections) {
+      this.rootScrollerIndex = idx
+      this.numberOfSections = this.$refs.rootScroller.numberOfElements + this.$refs.nestedScroller.numberOfElements
     },
-    onNestedScrollerElementChanged (elm, index) {
-      this.nestedScrollerIndex = index
+    onNestedScrollerActiveIndexChanged (idx) {
+      this.nestedScrollerIndex = idx
+      this.rootScrollerDisabled = idx > 0
     }
   }
 }

@@ -87,7 +87,7 @@
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
         class="fixed bottom-[45px] left-[45px]"
-        :light-mode="lightMode"
+        :light="lightMode"
       />
     </transition>
   </div>

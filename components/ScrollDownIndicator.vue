@@ -2,7 +2,7 @@
   <div
     v-bind="$attrs"
     class="flex flex-col items-center text-white transition-colors duration-500"
-    :class="lightMode ? 'text-black' : 'text-white'"
+    :class="light ? 'text-black' : 'text-white'"
   >
     <Mouse />
     <ArrowDown class="mt-[11px]" />
@@ -16,7 +16,7 @@ import ArrowDown from '~/assets/images/arrow_down.svg?inline'
 export default {
   components: { Mouse, ArrowDown },
   props: {
-    lightMode: Boolean
+    light: Boolean
   }
 }
 </script>

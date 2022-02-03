@@ -23,9 +23,11 @@ export default {
   data () {
     return {
       observer: null,
+      targetElement: null,
       activeElement: null,
       isScrolling: false,
-      elements: []
+      elements: [],
+      interceptionEntries: []
     }
   },
   computed: {
@@ -60,6 +62,11 @@ export default {
   methods: {
     updateElements () {
       this.elements = Array.from(this.$refs.container.children)
+    },
+    checkActiveElement () {
+      const activeElements = this.interceptionEntries.filter(entry => entry.isIntersecting)
+
+      this.activeElement = activeElements.length > 0 ? activeElements[0].target : null
     },
     handleRouteChange () {
       if (!this.syncToRoute) {
@@ -105,17 +112,19 @@ export default {
       this.$scroll(this.$refs.container, {
         scrollTop: element.offsetTop,
         begin () {
-          self.isScrolling = true
+          self.onScrollStarted()
         },
         complete () {
-          self.isScrolling = false
+          self.onScrollEnded()
         }
       })
     },
     onInterception (entries) {
-      const activeElements = entries.filter(entry => entry.isIntersecting)
+      this.interceptionEntries = entries
 
-      this.activeElement = activeElements.length > 0 ? activeElements[0].target : null
+      if (!this.activeElement) {
+        this.checkActiveElement()
+      }
     },
     onMouseWheel (event) {
       if (this.isScrolling || this.disabled) {
@@ -135,6 +144,14 @@ export default {
         // eslint-disable-next-line no-useless-return
         return
       }
+    },
+    onScrollStarted () {
+      this.isScrolling = true
+    },
+    onScrollEnded () {
+      this.isScrolling = false
+
+      this.checkActiveElement()
     }
   }
 }

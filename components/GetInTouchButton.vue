@@ -2,7 +2,8 @@
   <button
     v-bind="$attrs"
     :class="{
-      'text-white': !active,
+      'text-white': !active && !light,
+      'text-black border-black': light,
       'text-black bg-white': active
     }"
     class="uppercase text-[11px] p-2 border-2 tracking-[0.5em] transition-colors duration-500 border-white"
@@ -10,7 +11,14 @@
     @blur="onBlur"
   >
     Get in touch
-    <div v-show="active" class="absolute right-[100%] mr-[25px] top-0 bottom-0 flex items-center space-x-[25px]">
+    <div
+      v-show="active"
+      class="absolute right-[100%] mr-[25px] top-0 bottom-0 flex items-center space-x-[25px]"
+      :class="{
+        'text-black': light,
+        'text-white': !light
+      }"
+    >
       <template v-for="(network, i) in networks">
         <a
           :key="i"
@@ -18,7 +26,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          <component :is="network.icon" class="text-white border-none" />
+          <component :is="network.icon" class="border-none" />
         </a>
       </template>
     </div>
