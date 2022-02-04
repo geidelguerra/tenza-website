@@ -8,7 +8,7 @@
       </div>
       <TheNavbar :light-mode="lightMode" />
     </div>
-    <Nuxt class="shadow-lg relative mx-auto w-full max-w-[1920px] h-screen overflow-hidden bg-white" />
+    <Nuxt class="shadow-2xl relative mx-auto w-full max-w-[1920px] h-screen overflow-hidden bg-white" />
   </div>
 </template>
 
