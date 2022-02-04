@@ -6,7 +6,7 @@
       'text-black border-black': light,
       'text-black bg-white': active
     }"
-    class="uppercase text-[11px] p-2 border-2 tracking-[0.5em] transition-colors duration-500 border-white"
+    class="uppercase text-[11px] p-2 border-2 tracking-[0.5em] transition-colors duration-500"
     @click="active = !active"
     @blur="onBlur"
   >

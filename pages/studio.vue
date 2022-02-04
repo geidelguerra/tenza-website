@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen overflow-hidden">
+  <div>
     <Scroller
       ref="rootScroller"
       class="relative h-screen overflow-hidden"
@@ -203,7 +203,7 @@
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
-        class="fixed bottom-[45px] left-[45px]"
+        class="absolute bottom-[45px] left-[45px]"
         :light="lightMode"
       />
     </transition>

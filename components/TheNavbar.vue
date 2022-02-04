@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed top-[45px] right-[45px] z-40">
+  <nav class="absolute top-[45px] right-[45px] z-40">
     <ul class="flex flex-col space-y-[18px]">
       <template v-for="(item, i) in menu">
         <li :key="i">

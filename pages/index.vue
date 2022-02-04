@@ -1,13 +1,13 @@
 <template>
-  <div class="w-screen h-screen overflow-hidden">
+  <div>
     <Scroller
       class="h-screen overflow-hidden bg-black"
       :sync-to-route="true"
       @activeElementChanged="onActiveSectionChanged"
     >
       <!-- Featured Slider -->
-      <section id="featured" class="relative w-screen h-screen overflow-hidden">
-        <div class="absolute top-0 left-0 w-screen h-screen">
+      <section id="featured" class="relative w-full h-full overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full">
           <Slider
             ref="featuredSlider"
             :active-slide-index="activeFeaturedSlideIndex"
@@ -62,22 +62,22 @@
         <GetInTouchButton class="absolute bottom-[45px] right-[45px]" />
       </section>
       <!-- About 1 -->
-      <section id="about-1" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] overflow-hidden">
-        <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
+      <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] overflow-hidden">
+        <h2 class="text-[#111111] font-extrabold text-[120px] w-[748px] tracking-[1.19px] leading-[1em]">
           It all starts with an idea
         </h2>
         <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
       </section>
       <!-- About 2 -->
-      <section id="about-2" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[69px]">
-        <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
+      <section id="about-2" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[69px]">
+        <h2 class="text-[#111111] font-extrabold text-[120px] w-[846px] tracking-[1.19px] leading-[1em]">
           Idea becomes concept
         </h2>
         <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
       </section>
       <!-- About 3 -->
-      <section id="about-3" class="flex items-center justify-between w-screen h-screen bg-white pl-[87px] pr-[35px]">
-        <h2 class="text-[#111111] font-extrabold text-[120px] w-[739px] tracking-[1.19px] leading-[1em]">
+      <section id="about-3" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[35px]">
+        <h2 class="text-[#111111] font-extrabold text-[120px] w-[804px] tracking-[1.19px] leading-[1em]">
           Concepts are developed
         </h2>
         <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
@@ -86,7 +86,7 @@
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
-        class="fixed bottom-[45px] left-[45px]"
+        class="absolute bottom-[45px] left-[45px]"
         :light="lightMode"
       />
     </transition>
