@@ -12,8 +12,9 @@
           </button>
         </div>
         <transition name="slider" mode="out-in" :duration="500">
-          <div
+          <nuxt-link
             :key="activeProjectIndex"
+            :to="`/projects/${activeProject.id}`"
             class="w-full max-w-[1190px] h-full bg-center bg-cover bg-none"
             :style="{backgroundImage: `url(${activeProject.thumbnail.url})`}"
           />
