@@ -42,12 +42,12 @@ body {
 
 .slider-enter-active, .slider-leave-active {
   transition: all 1s;
-  scale: 1;
+  opacity: 1;
 }
 
 .slider-enter, .slider-leave-to {
   opacity: 0;
-  transform: scale(0.99);
+  transform: scale(0.99) translateY(-1%);
 }
 
 .nuxt-link-exact-active {

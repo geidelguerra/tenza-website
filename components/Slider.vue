@@ -51,7 +51,7 @@ export default {
     const slides = this.slides.map((node, index) => {
       return createElement('div', {
         key: index,
-        class: 'absolute top-0 left-0 w-full h-full'
+        class: 'absolute top-0 left-0 w-full h-full overflow-hidden'
       }, [node])
     }).filter((_, index) => index === this.activeSlideIndex)
 

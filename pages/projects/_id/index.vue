@@ -1,35 +1,58 @@
 <template>
   <div class="flex-1 bg-white pt-[108px] flex flex-col">
-    <div class="ml-[270px] mr-[392px] mb-[42px] flex justify-between items-end">
+    <div class="ml-[270px] mr-[392px] mb-[93px] flex justify-between items-end">
       <h1
-        class=" font-extrabold text-[26px] tracking-[6px] uppercase mb-[93px]"
+        class=" font-extrabold text-[26px] tracking-[3.64px] uppercase"
         v-html="project.name.replace(' ', '<br>')"
       />
     </div>
-    <div class="flex pl-[174px] flex-1 pb-[41px]">
-      <div class="flex items-center justify-center flex-1">
-        <button class="block text-black" @click="previousSlide">
-          <ArrowLeft class="w-[13px] h-[27px]" />
-        </button>
-        <div class="flex-1 h-full px-[84px] overflow-hidden relative">
-          <template v-for="(image, index) in project.gallery">
-            <transition :key="index" name="slider">
-              <div
-                v-if="currentSlideIndex === index"
-                :key="index"
-                :style="{backgroundImage: `url(${image})`}"
-                class="absolute top-0 left-0 w-full h-full bg-center bg-no-repeat bg-contain"
-              />
-            </transition>
-          </template>
+    <div class="flex pl-[94px] pr-[111px] pb-[139px] w-full flex-1 overflow-hidden">
+      <!-- Gallery -->
+      <div
+        class="flex flex-1"
+        :class="{'bg-white fixed top-0 left-0 right-0 bottom-0 z-50': galleryFullScreen}"
+      >
+        <div class="flex items-center justify-center w-[176px] shrink-0">
+          <button
+            class="text-[#111] transition-opacity duration-200"
+            :class="{'pointer-events-none opacity-60': !hasPreviousSlides}"
+            @click="activeSlideIndex--"
+          >
+            <ArrowLeft class="w-[27px]" />
+          </button>
         </div>
-        <div>
-          <button @click="nextSlide">
-            <ArrowRight class="w-[13px] h-[27px]" />
+        <div class="relative flex-1 h-full cursor-pointer" @click="galleryFullScreen = !galleryFullScreen">
+          <Slider
+            :key="galleryFullScreen"
+            :active-slide-index="activeSlideIndex"
+            transition-mode="out-in"
+            transition-name="slider"
+          >
+            <template v-for="(image, i) in project.gallery">
+              <div
+                :key="i"
+                :style="{backgroundImage: `url(${image})`}"
+                class="absolute top-0 left-0 w-full h-full bg-center bg-no-repeat"
+                :class="{
+                  'bg-cover': !galleryFullScreen,
+                  'bg-contain': galleryFullScreen
+                }"
+              />
+            </template>
+          </Slider>
+        </div>
+        <div class="flex items-center justify-center w-[176px] shrink-0">
+          <button
+            class="text-[#111] transition-opacity duration-200"
+            :class="{'pointer-events-none opacity-60': !hasNextSlides}"
+            @click="activeSlideIndex++"
+          >
+            <ArrowRight class="w-[27px]" />
           </button>
         </div>
       </div>
-      <div class="pl-[125px] w-[392px] mr-[111px]">
+      <!-- Details -->
+      <div class="w-[264px] flex flex-col min-h-0 overflow-hidden">
         <div class="uppercase font-bold text-[20px]">
           {{ project.location }} ({{ project.year }})
         </div>
@@ -73,7 +96,7 @@
           </ul>
         </div>
 
-        <div v-html="project.description" />
+        <div class="flex-1 overflow-y-auto" v-html="project.description" />
       </div>
     </div>
   </div>
@@ -86,6 +109,7 @@ import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import Instagram from '~/assets/images/instagram.svg?inline'
 import Twitter from '~/assets/images/twitter.svg?inline'
+import Slider from '~/components/Slider.vue'
 
 export default {
   components: {
@@ -93,7 +117,8 @@ export default {
     ArrowLeft,
     ArrowRight,
     Instagram,
-    Twitter
+    Twitter,
+    Slider
   },
   async asyncData ({ params, payload }) {
     return {
@@ -103,7 +128,8 @@ export default {
   data () {
     return {
       project: null,
-      currentSlideIndex: 0
+      activeSlideIndex: 0,
+      galleryFullScreen: false
     }
   },
   computed: {
@@ -118,31 +144,27 @@ export default {
         { text: '3D Model', icon: 'ModelIcon', url: `/projects/${this.project.id}/model` }
       ]
     },
-    currentSlide () {
-      return this.project?.gallery[this.currentSlideIndex]
+    hasPreviousSlides () {
+      return this.activeSlideIndex > 0
+    },
+    hasNextSlides () {
+      return this.activeSlideIndex < this.numberOfSlides - 1
     },
     numberOfSlides () {
       return this.project ? this.project.gallery.length : 0
     }
   },
+  beforeMount () {
+    document.addEventListener('keyup', this.onKeyUp)
+  },
+  beforeDestroy () {
+    document.removeEventListener('keyup', this.onKeyUp)
+  },
   methods: {
-    previousSlide () {
-      let nextIndex = this.currentSlideIndex - 1
-
-      if (nextIndex <= 0) {
-        nextIndex = this.numberOfSlides - 1
+    onKeyUp (event) {
+      if (event.key === 'Escape') {
+        this.galleryFullScreen = false
       }
-
-      this.currentSlideIndex = nextIndex
-    },
-    nextSlide () {
-      let nextIndex = this.currentSlideIndex + 1
-
-      if (nextIndex >= this.numberOfSlides) {
-        nextIndex = 0
-      }
-
-      this.currentSlideIndex = nextIndex
     }
   }
 }
