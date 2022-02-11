@@ -1,40 +1,47 @@
 <template>
   <div class="relative">
-    <div class="absolute top-[224px] bottom-[157px] w-full overflow-hidden flex flex-col justify-center">
-      <div class="flex justify-center w-full h-full">
-        <div class="w-[187px] flex items-center justify-center">
+    <div class="absolute top-[224px] bottom-[133px] w-full overflow-hidden flex flex-col justify-center">
+      <div class="relative flex justify-center w-full h-full">
+        <div class="flex items-center justify-end pr-[64px] w-[201px] shrink-0">
           <button
             class="text-[#111] transition-opacity duration-200"
             :class="{'pointer-events-none opacity-60': !hasPrevProjects}"
-            @click="activeProjectIndex--"
+            @click="activeSlideIndex--"
           >
             <ArrowLeft class="w-[27px]" />
           </button>
         </div>
-        <transition name="slider" mode="out-in" :duration="500">
-          <nuxt-link
-            :key="activeProjectIndex"
-            :to="`/projects/${activeProject.id}`"
-            class="w-full max-w-[1190px] h-full bg-center bg-cover bg-none"
-            :style="{backgroundImage: `url(${activeProject.thumbnail.url})`}"
-          />
-        </transition>
-        <div class="w-[187px] flex items-center justify-center">
+        <div class="relative flex-1 h-full">
+          <Slider
+            :active-slide-index="activeSlideIndex"
+            transition-name="slider"
+          >
+            <template v-for="project in projects">
+              <nuxt-link
+                :key="project.id"
+                :to="`/projects/${project.id}`"
+                class="block w-full h-full bg-center bg-cover bg-none"
+                :style="{backgroundImage: `url(${project.thumbnail.url})`}"
+              />
+            </template>
+          </Slider>
+        </div>
+        <div class="flex items-center justify-start pl-[64px] w-[201px] shrink-0">
           <button
             class="text-[#111] transition-opacity duration-200"
             :class="{'pointer-events-none opacity-60': !hasNextProjects}"
-            @click="activeProjectIndex++"
+            @click="activeSlideIndex++"
           >
             <ArrowRight class="w-[27px]" />
           </button>
         </div>
       </div>
-      <div class="mt-[89px] w-full max-w-[1190px] mx-auto flex justify-between">
+      <div class="mt-[89px] px-[201px] w-full flex justify-between">
         <div class="text-[14px] font-semibold uppercase tracking-[7px]">
           {{ activeProject.name }}
         </div>
         <div class="text-[14px] font-semibold uppercase tracking-[7px]">
-          {{ (activeProjectIndex + 1).toString().padStart(2, '0') }}/{{ numberOfProjects.toString().padStart(2, '0') }}
+          {{ (activeSlideIndex + 1).toString().padStart(2, '0') }}/{{ numberOfProjects.toString().padStart(2, '0') }}
         </div>
       </div>
     </div>
@@ -45,11 +52,13 @@
 import { getProjects } from '@/api'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
+import Slider from '~/components/Slider.vue'
 
 export default {
   components: {
     ArrowLeft,
-    ArrowRight
+    ArrowRight,
+    Slider
   },
   async asyncData () {
     return {
@@ -58,20 +67,20 @@ export default {
   },
   data () {
     return {
-      activeProjectIndex: 0,
+      activeSlideIndex: 0,
       projects: []
     }
   },
   computed: {
     hasPrevProjects () {
-      return this.activeProjectIndex - 1 > -1
+      return this.activeSlideIndex - 1 > -1
     },
     hasNextProjects () {
-      return this.activeProjectIndex + 1 - this.numberOfProjects
+      return this.activeSlideIndex + 1 - this.numberOfProjects
     },
     activeProject () {
-      if (this.activeProjectIndex >= 0 && this.activeProjectIndex < this.numberOfProjects) {
-        return this.projects[this.activeProjectIndex]
+      if (this.activeSlideIndex >= 0 && this.activeSlideIndex < this.numberOfProjects) {
+        return this.projects[this.activeSlideIndex]
       }
 
       return null

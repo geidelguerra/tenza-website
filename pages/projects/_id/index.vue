@@ -82,7 +82,6 @@
 <script>
 import { getProject } from '@/api'
 import ModelIcon from '~/assets/images/3d_model_icon.svg?inline'
-import PlansIcon from '~/assets/images/plans_icon.svg?inline'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import Instagram from '~/assets/images/instagram.svg?inline'
@@ -91,7 +90,6 @@ import Twitter from '~/assets/images/twitter.svg?inline'
 export default {
   components: {
     ModelIcon,
-    PlansIcon,
     ArrowLeft,
     ArrowRight,
     Instagram,
@@ -117,8 +115,7 @@ export default {
     },
     pageLinks () {
       return [
-        { text: '3D Model', icon: 'ModelIcon', url: `/projects/${this.project.id}/model` },
-        { text: 'Plans', icon: 'PlansIcon', url: `/projects/${this.project.id}/plans` }
+        { text: '3D Model', icon: 'ModelIcon', url: `/projects/${this.project.id}/model` }
       ]
     },
     currentSlide () {
