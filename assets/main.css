@@ -10,7 +10,7 @@ body {
 .page-enter,
 .page-leave-to {
   opacity: 0;
-  transform: scale(0.99);
+  transform: scale(0.99) translateY(-1%);
 }
 
 .slide-up-enter-active, .slide-up-leave-active {

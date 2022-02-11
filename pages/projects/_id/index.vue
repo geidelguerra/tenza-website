@@ -25,7 +25,6 @@
           <Slider
             :key="galleryFullScreen"
             :active-slide-index="activeSlideIndex"
-            transition-mode="out-in"
             transition-name="slider"
           >
             <template v-for="(image, i) in project.gallery">

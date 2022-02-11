@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col h-screen text-black">
+  <div class="relative flex flex-col h-screen overflow-hidden text-black">
     <div class="relative w-full max-w-[1920px] mx-auto">
       <div class="absolute top-[45px] left-[45px] z-40">
         <NuxtLink to="/" class="block bg-transparent">

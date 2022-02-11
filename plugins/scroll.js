@@ -7,8 +7,8 @@ Vue.use({
         targets: target,
         scrollTop,
         scrollLeft,
-        easing: 'easeInOutExpo',
-        duration: 700,
+        easing: 'easeInOutCubic',
+        duration: 1000,
         ...options
       })
     }
