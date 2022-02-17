@@ -35,14 +35,12 @@
 
 <script>
 import TwitterIcon from '~/assets/images/twitter_alt.svg?inline'
-import FacebookIcon from '~/assets/images/facebook_alt.svg?inline'
 import InstagramIcon from '~/assets/images/instagram_alt.svg?inline'
 import LinkedInIcon from '~/assets/images/linkedin_alt.svg?inline'
 
 export default {
   components: {
     TwitterIcon,
-    FacebookIcon,
     InstagramIcon,
     LinkedInIcon
   },
@@ -53,8 +51,9 @@ export default {
     return {
       active: false,
       networks: [
-        { icon: 'InstagramIcon', url: 'https://www.instagram.com/tenza.inc' },
-        { icon: 'LinkedInIcon', url: 'https://www.linkedin.com/company/tenza-inc' }
+        { icon: 'TwitterIcon', url: 'https://twitter.com/tenzastudio' },
+        { icon: 'InstagramIcon', url: 'https://instagram.com/tenza.inc' },
+        { icon: 'LinkedInIcon', url: 'https://linkedin.com/company/tenza-inc' }
       ]
     }
   },
