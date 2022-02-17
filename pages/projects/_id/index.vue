@@ -106,7 +106,6 @@ import { getProject } from '@/api'
 import ModelIcon from '~/assets/images/3d_model_icon.svg?inline'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
-import Instagram from '~/assets/images/instagram.svg?inline'
 import Twitter from '~/assets/images/twitter.svg?inline'
 import Slider from '~/components/Slider.vue'
 
@@ -115,7 +114,6 @@ export default {
     ModelIcon,
     ArrowLeft,
     ArrowRight,
-    Instagram,
     Twitter,
     Slider
   },
@@ -134,8 +132,8 @@ export default {
   computed: {
     shareLinks () {
       return [
-        { icon: 'Twitter', url: 'https://twitter.com' },
-        { icon: 'Instagram', url: 'https://instagram.com' }
+        { icon: 'Twitter', url: `https://twitter.com/intent/tweet?text=${encodeURI(this.project.name)}&url=${encodeURI(window.location.href)}` }
+        // { icon: 'Instagram', url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURI(window.location.href)}` }
       ]
     },
     pageLinks () {
