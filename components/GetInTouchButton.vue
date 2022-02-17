@@ -53,8 +53,7 @@ export default {
     return {
       active: false,
       networks: [
-        { icon: 'TwitterIcon', url: 'https://twitter.com/tenzastudio' },
-        { icon: 'InstagramIcon', url: 'https://instagram.com/tenzastudio' },
+        { icon: 'InstagramIcon', url: 'https://www.instagram.com/tenza.inc' },
         { icon: 'LinkedInIcon', url: 'https://www.linkedin.com/company/tenza-inc' }
       ]
     }
