@@ -11,7 +11,8 @@ import {
   AxesHelper,
   MathUtils,
   DirectionalLightHelper,
-  CameraHelper
+  CameraHelper,
+  AmbientLight
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
@@ -27,10 +28,10 @@ const noop = () => { }
 
 const DEFAULT_MIN_DISTANCE = 40
 const DEFAULT_MAX_DISTANCE = 77
-// const DEFAULT_MIN_POLAR_ANGLE = MathUtils.degToRad(0)
-// const DEFAULT_MAX_POLAR_ANGLE = MathUtils.degToRad(90)
 const DEFAULT_DAMPING_FACTOR = 0.015
 const DEFAULT_AUTO_ROTATE_SPEED = 2.0
+const DEFAULT_SHADOW_MAP_SIZE = 2048
+const DEFAULT_SHADOW_CAMERA_SIZE = 100
 
 export class ProjectScene {
   constructor (canvas, options = {}) {
@@ -75,12 +76,11 @@ export class ProjectScene {
 
     this.scene = new Scene()
 
-    this.camera = new PerspectiveCamera(30, width / height, 0.1, 1000)
-    this.scene.add(this.camera)
-
     this.loader = new GLTFLoader()
     this.loader.setDRACOLoader(dracoLoader)
 
+    this.initLights()
+    this.initCamera()
     this.initControls()
 
     const tick = () => {
@@ -121,34 +121,34 @@ export class ProjectScene {
   }
 
   useCamera (camera, positionOnly = false) {
-    if (positionOnly) {
-      this.camera.position.set(
-        camera.parent.position.x,
-        camera.parent.position.y,
-        camera.parent.position.z
-      )
+    this.camera.position.set(
+      camera.parent.position.x,
+      camera.parent.position.y,
+      camera.parent.position.z
+    )
 
-      if (camera.userData.minDistance) {
-        this.controls.minDistance = camera.userData.minDistance * 2
-      }
-
-      if (camera.userData.maxDistance) {
-        this.controls.maxDistance = camera.userData.maxDistance * 2
-      }
-
-      this.controls.saveState()
-      this.controls.update()
-    } else {
-      if (this.camera) {
-        this.camera.removeFromParent()
-      }
-
-      this.camera = camera
-      this.camera.aspect = this.width / this.height
-      this.camera.updateProjectionMatrix()
-
-      this.initControls()
+    if (camera.userData.minDistance) {
+      this.controls.minDistance = camera.userData.minDistance * 2
     }
+
+    if (camera.userData.maxDistance) {
+      this.controls.maxDistance = camera.userData.maxDistance * 2
+    }
+
+    this.controls.saveState()
+    this.controls.update()
+
+    camera.visible = false
+  }
+
+  initLights () {
+    const ambient = new AmbientLight(0xFFFFFF, 0.2)
+    this.scene.add(ambient)
+  }
+
+  initCamera () {
+    this.camera = new PerspectiveCamera(30, this.width / this.height, 0.1, 1000)
+    this.scene.add(this.camera)
   }
 
   initControls () {
@@ -225,7 +225,7 @@ export class ProjectScene {
 
       this.scene.traverse((obj) => {
         if (obj.type === 'DirectionalLight') {
-          this.addHelper(new DirectionalLightHelper(obj, 5, 0x000000))
+          this.addHelper(new DirectionalLightHelper(obj, 10, 0x000000))
 
           if (obj.castShadow) {
             this.addHelper(new CameraHelper(obj.shadow.camera))
@@ -248,12 +248,17 @@ export class ProjectScene {
   updateShadows (obj) {
     this.scene.traverse((obj) => {
       if (obj.isLight) {
-        obj.shadow.camera.near = 0.001
-        obj.shadow.camera.far = 1000
-        obj.shadow.camera.updateProjectionMatrix()
-
         if (obj.name === 'directional_shadow_Orientation') {
           obj.castShadow = this.castShadow
+          obj.shadow.mapSize.width = DEFAULT_SHADOW_MAP_SIZE
+          obj.shadow.mapSize.height = DEFAULT_SHADOW_MAP_SIZE
+          obj.shadow.bias = 0.0001
+          obj.shadow.normalBias = 2
+          obj.shadow.camera.top = DEFAULT_SHADOW_CAMERA_SIZE
+          obj.shadow.camera.right = -DEFAULT_SHADOW_CAMERA_SIZE
+          obj.shadow.camera.bottom = -DEFAULT_SHADOW_CAMERA_SIZE
+          obj.shadow.camera.left = DEFAULT_SHADOW_CAMERA_SIZE
+          obj.shadow.camera.updateProjectionMatrix()
         }
       }
 

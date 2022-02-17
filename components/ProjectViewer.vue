@@ -6,10 +6,10 @@
       class="absolute top-[100px] right-[36px] z-40 flex justify-end flex-col space-y-4"
     >
       <div class="flex flex-col space-y-2">
-        <button class="block p-2 uppercase border-2 text-sm border-black" @click="toggleShadows">
+        <button class="block p-2 text-sm uppercase border-2 border-black" @click="toggleShadows">
           {{ projectScene.castShadow ? 'Disable shadows' : 'Enable shadows' }}
         </button>
-        <button class="block p-2 uppercase border-2 text-sm border-black" @click="toggleHelpers">
+        <button class="block p-2 text-sm uppercase border-2 border-black" @click="toggleHelpers">
           {{ projectScene.showHelpers ? 'Hide helpers' : 'Show helpers' }}
         </button>
       </div>
@@ -45,7 +45,7 @@ export default {
     const projectScene = this.projectScene = new ProjectScene(this.$refs.canvas, {
       onCameraChange: (stats) => { this.cameraStats = stats },
       castShadow: true,
-      showHelpers: process.env.debug,
+      showHelpers: false,
       showStats: process.env.debug
     })
 
