@@ -54,9 +54,8 @@ export default {
       active: false,
       networks: [
         { icon: 'TwitterIcon', url: 'https://twitter.com/tenzastudio' },
-        { icon: 'FacebookIcon', url: 'https://facebook.com/tenzastudio' },
         { icon: 'InstagramIcon', url: 'https://instagram.com/tenzastudio' },
-        { icon: 'LinkedInIcon', url: 'https://linkedin.com/in/tenzastudio' }
+        { icon: 'LinkedInIcon', url: 'https://www.linkedin.com/company/tenza-inc' }
       ]
     }
   },

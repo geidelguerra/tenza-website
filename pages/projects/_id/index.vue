@@ -106,7 +106,8 @@ import { getProject } from '@/api'
 import ModelIcon from '~/assets/images/3d_model_icon.svg?inline'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
-import Twitter from '~/assets/images/twitter.svg?inline'
+import TwitterIcon from '~/assets/images/twitter.svg?inline'
+import LinkedInIcon from '~/assets/images/linkedin_alt.svg?inline'
 import Slider from '~/components/Slider.vue'
 
 export default {
@@ -114,7 +115,8 @@ export default {
     ModelIcon,
     ArrowLeft,
     ArrowRight,
-    Twitter,
+    TwitterIcon,
+    LinkedInIcon,
     Slider
   },
   async asyncData ({ params, payload }) {
@@ -132,8 +134,8 @@ export default {
   computed: {
     shareLinks () {
       return [
-        { icon: 'Twitter', url: `https://twitter.com/intent/tweet?text=${encodeURI(this.project.name)}&url=${encodeURI(window.location.href)}` }
-        // { icon: 'Instagram', url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURI(window.location.href)}` }
+        { icon: 'TwitterIcon', url: `https://twitter.com/intent/tweet?text=${encodeURI(this.project.name)}&url=${encodeURI(window.location.href)}` },
+        { icon: 'LinkedInIcon', url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURI(window.location.href)}` }
       ]
     },
     pageLinks () {
