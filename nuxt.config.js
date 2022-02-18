@@ -2,7 +2,7 @@ import { getProjects } from './api'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'client',
+  target: 'static',
 
   ssr: false,
 
