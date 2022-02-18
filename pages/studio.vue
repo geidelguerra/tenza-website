@@ -39,7 +39,7 @@
                     :key="idx"
                   >
                     <a
-                      class="font-bold text-[14px] transition-all duration-200 block hover:text-[#111]"
+                      class="select-none font-bold text-[14px] transition-all duration-200 block hover:text-[#111]"
                       :class="activeElementIndex >= idx ? 'text-[#111]' : 'text-[#ccc]'"
                       :href="`#${elm.id}`"
                       @click.prevent="scrollToElement(elm)"
@@ -64,11 +64,11 @@
             <p class="text-[17px] font-semibold mb-[38px]">
               Executive Partner and Founder
             </p>
-            <div class="flex">
-              <div class="text-[20px]">
+            <div class="flex space-x-[33px]">
+              <div class="text-[20px] w-[341px]">
                 Ernesto founded the practice on 2020 after moving to Miami from New York City. With the believe that the quality of our surroundings affects the quality of our lives and driven by his passion for timeless design and innovation he has stablished a sustainable approach to the architecture exercise. Anton is also a passionate soccer and racquetball player who enjoys good storytelling in any shape or form
               </div>
-              <img class="w-[332px] h-auto" src="~/assets/images/studio/studio_02.jpg" alt="Ernesto Anton">
+              <img class="object-contain h-auto" src="~/assets/images/studio/studio_02.jpg" alt="Ernesto Anton">
             </div>
           </div>
         </section>
