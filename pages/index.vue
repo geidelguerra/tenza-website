@@ -41,7 +41,7 @@
           </div>
           <div class="flex justify-between flex-1">
             <div>
-              <h2 class="text-white text-[82px] tracking-[1.19px] font-extrabold w-[910px] leading-[98px]" v-html="activeFeaturedSlide.text" />
+              <h2 class="text-white font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]" v-html="activeFeaturedSlide.text" />
             </div>
             <div class="flex flex-col pt-[50px] text-right text-white uppercase">
               <div class="text-[16px] tracking-[12px] font-semibold mb-[21px]">
