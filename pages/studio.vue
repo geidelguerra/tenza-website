@@ -35,7 +35,7 @@
               <ul class="w-full text-right pr-[52px] flex flex-col justify-between">
                 <template v-for="(elm, idx) in elements">
                   <li
-                    v-if="elm.title"
+                    v-if="elm.dataset.title"
                     :key="idx"
                   >
                     <a
@@ -43,7 +43,7 @@
                       :class="activeElementIndex >= idx ? 'text-[#111]' : 'text-[#ccc]'"
                       :href="`#${elm.id}`"
                       @click.prevent="scrollToElement(elm)"
-                    >{{ elm.title }}</a>
+                    >{{ elm.dataset.title }}</a>
                   </li>
                 </template>
               </ul>
@@ -54,7 +54,7 @@
 
         <section
           id="who-we-are"
-          title="Who are we?"
+          data-title="Who are we?"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -74,7 +74,7 @@
         </section>
         <section
           id="architecture"
-          title="Architecture"
+          data-title="Architecture"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -89,7 +89,7 @@
         </section>
         <section
           id="interiors"
-          title="Interiors"
+          data-title="Interiors"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -104,7 +104,7 @@
         </section>
         <section
           id="modeling-3d"
-          title="Specialist 3D Modeling"
+          data-title="Specialist 3D Modeling"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -119,7 +119,7 @@
         </section>
         <section
           id="visualization"
-          title="Visualization"
+          data-title="Visualization"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -134,7 +134,7 @@
         </section>
         <section
           id="modelmaking"
-          title="Modelmaking"
+          data-title="Modelmaking"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -149,7 +149,7 @@
         </section>
         <section
           id="project-management"
-          title="Project Management"
+          data-title="Project Management"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
@@ -164,7 +164,7 @@
         </section>
         <section
           id="construction-overview"
-          title="Construction Overview"
+          data-title="Construction Overview"
           class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
         >
           <div class="flex flex-col h-[452px]">
