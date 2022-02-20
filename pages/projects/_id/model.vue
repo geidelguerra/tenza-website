@@ -7,7 +7,7 @@
       />
     </client-only>
     <div class="fixed bottom-[46px] left-[46px] pointer-events-none">
-      <div class="flex flex-col space-y-[58px] font-medium uppercase">
+      <div class="flex flex-col space-y-[48px] uppercase text-[11px]">
         <div class="flex space-x-[36px]">
           <div><PanIcon /></div> <div>Left click to Pan</div>
         </div>
@@ -22,9 +22,9 @@
     <div class="fixed bottom-[46px] right-[46px]">
       <NuxtLink
         :to="`/projects/${project.id}`"
-        class="flex align-middle items-center space-x-[10px] text-[16px] px-[13px] py-[8px] text-black border-2 border-black uppercase"
+        class="flex align-middle items-center space-x-[8px] text-[11px] px-[10px] py-[6px] text-black border-2 border-black uppercase"
       >
-        <ArrowLeft class="h-[16px]" />
+        <ArrowLeft class="h-[11px]" />
         <span>Back</span>
       </NuxtLink>
     </div>

@@ -3,7 +3,7 @@
     <canvas ref="canvas" />
     <div
       v-if="showDebugPane && projectScene !== null"
-      class="absolute top-[100px] right-[36px] z-40 flex justify-end flex-col space-y-4"
+      class="absolute top-[36px] right-[36px] z-40 flex justify-end flex-col space-y-4"
     >
       <div class="flex flex-col space-y-2">
         <button class="block p-2 text-sm uppercase border-2 border-black" @click="toggleShadows">
