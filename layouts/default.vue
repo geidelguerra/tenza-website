@@ -25,6 +25,10 @@ export default {
     lightMode () {
       const { path, hash } = this.$route
 
+      if ((path === '' || path === '/') && !hash) {
+        return false
+      }
+
       if (path === '' || path === '/' || path === '/studio' || path.startsWith('/projects')) {
         return !['#featured', '#intro'].includes(hash)
       }
