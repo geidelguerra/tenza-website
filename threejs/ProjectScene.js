@@ -164,7 +164,7 @@ export class ProjectScene {
     this.controls.target.set(0, 0, 0)
     this.controls.enablePan = true
     this.controls.screenSpacePanning = true
-    this.controls.enableDamping = true
+    this.controls.enableDamping = false
 
     this.controls.minDistance = DEFAULT_MIN_DISTANCE
     this.controls.maxDistance = DEFAULT_MAX_DISTANCE
