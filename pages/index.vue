@@ -25,15 +25,15 @@
         <div class="pt-[225px] pl-[88px] pr-[120px] pb-[105px] absolute w-full h-full flex flex-col">
           <div class="mb-[170px] flex space-x-[40px]">
             <button
-              :class="{'pointer-events-none opacity-60 transition-opacity duration-200': activeFeaturedSlideIndex <= 0}"
-              class="text-white"
+              :class="{'pointer-events-none opacity-0': activeFeaturedSlideIndex <= 0}"
+              class="text-white transition-opacity duration-200"
               @click="activeFeaturedSlideIndex--"
             >
               <ArrowLeft class="h-[20px]" />
             </button>
             <button
-              :class="{'pointer-events-none opacity-60 transition-opacity duration-200': activeFeaturedSlideIndex >= featuredSlides.length - 1}"
-              class="text-white"
+              :class="{'pointer-events-none opacity-0': activeFeaturedSlideIndex >= featuredSlides.length - 1}"
+              class="text-white transition-opacity duration-200"
               @click="activeFeaturedSlideIndex++"
             >
               <ArrowRight class="h-[20px]" />

@@ -15,7 +15,7 @@
         <div class="flex items-center justify-center w-[176px] shrink-0">
           <button
             class="text-[#111] transition-opacity duration-200"
-            :class="{'pointer-events-none opacity-60': !hasPreviousSlides}"
+            :class="{'pointer-events-none opacity-0': !hasPreviousSlides}"
             @click="activeSlideIndex--"
           >
             <ArrowLeft class="w-[27px]" />
@@ -43,7 +43,7 @@
         <div class="flex items-center justify-center w-[176px] shrink-0">
           <button
             class="text-[#111] transition-opacity duration-200"
-            :class="{'pointer-events-none opacity-60': !hasNextSlides}"
+            :class="{'pointer-events-none opacity-0': !hasNextSlides}"
             @click="activeSlideIndex++"
           >
             <ArrowRight class="w-[27px]" />
