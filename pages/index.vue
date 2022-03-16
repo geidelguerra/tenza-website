@@ -41,18 +41,28 @@
           </div>
           <div class="flex justify-between flex-1">
             <div>
-              <h2 class="text-white font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]" v-html="activeFeaturedSlide.text" />
+              <TextAnimator
+                tag="h2"
+                :text="activeFeaturedSlide.text"
+                class="text-white font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px] overflow-hidden"
+              />
             </div>
             <div class="flex flex-col pt-[50px] text-right text-white uppercase">
-              <div class="text-[16px] tracking-[12px] font-semibold mb-[21px]">
-                {{ activeFeaturedSlide.project.name }}
-              </div>
-              <div class="text-[14px] tracking-[7px] mb-[11px]">
-                {{ activeFeaturedSlide.project.location }}
-              </div>
-              <div class="text-[14px] tracking-[7px]">
-                {{ activeFeaturedSlide.project.year }}
-              </div>
+              <TextAnimator
+                :text="activeFeaturedSlide.project.name"
+                :delay="200"
+                class="text-[16px] tracking-[12px] font-semibold mb-[21px]"
+              />
+              <TextAnimator
+                :text="activeFeaturedSlide.project.location"
+                :delay="200"
+                class="text-[14px] tracking-[7px] mb-[11px]"
+              />
+              <TextAnimator
+                :text="activeFeaturedSlide.project.year"
+                :delay="200"
+                class="text-[14px] tracking-[7px]"
+              />
             </div>
           </div>
         </div>
@@ -61,39 +71,69 @@
       <!-- About 1 -->
       <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] overflow-hidden">
         <div class="w-full max-w-[615px]">
-          <h2 class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]">
-            It all starts <br> with an idea
-          </h2>
+          <TextAnimator
+            tag="h2"
+            text="It all starts <br> with an idea"
+            class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
+            :animate-on-mounted="false"
+            :animate-on-visibility="true"
+            :animate-once="true"
+          />
           <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
-          <div class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!
-          </div>
+          <TextAnimator
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!"
+            class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+            :delay="200"
+            :animate-on-mounted="false"
+            :animate-on-visibility="true"
+            :animate-once="true"
+          />
         </div>
         <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
       </section>
       <!-- About 2 -->
       <section id="about-2" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[69px]">
         <div class="w-full max-w-[615px]">
-          <h2 class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]">
-            Ideas become <br> concept
-          </h2>
+          <TextAnimator
+            tag="h2"
+            text="Ideas become <br> concept"
+            class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
+            :animate-on-mounted="false"
+            :animate-on-visibility="true"
+            :animate-once="true"
+          />
           <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
-          <div class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!
-          </div>
+          <TextAnimator
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!"
+            class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+            :delay="200"
+            :animate-on-mounted="false"
+            :animate-on-visibility="true"
+            :animate-once="true"
+          />
         </div>
         <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
       </section>
       <!-- About 3 -->
       <section id="about-3" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[35px]">
         <div class="w-full max-w-[615px]">
-          <h2 class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]">
-            Concept are <br> developed
-          </h2>
+          <TextAnimator
+            tag="h2"
+            text="Concept are <br> developed"
+            class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
+            :animate-on-mounted="false"
+            :animate-on-visibility="true"
+            :animate-once="true"
+          />
           <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
-          <div class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!
-          </div>
+          <TextAnimator
+            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!"
+            class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+            :delay="200"
+            :animate-on-mounted="false"
+            :animate-on-visibility="true"
+            :animate-once="true"
+          />
         </div>
         <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
       </section>
@@ -115,6 +155,7 @@ import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import GetInTouchButton from '~/components/GetInTouchButton.vue'
 import Scroller from '~/components/Scroller.vue'
 import Slider from '~/components/Slider.vue'
+import TextAnimator from '~/components/TextAnimator.vue'
 
 export default {
   components: {
@@ -123,7 +164,8 @@ export default {
     ScrollDownIndicator,
     ArrowLeft,
     ArrowRight,
-    GetInTouchButton
+    GetInTouchButton,
+    TextAnimator
   },
   data () {
     return {
@@ -133,7 +175,7 @@ export default {
       featuredSlides: [
         {
           image: '/projects/lake_house/lake_house.jpg',
-          text: 'Designs <br> with a timeless quality',
+          text: 'Designs <br> with a timeless <br> quality',
           project: {
             name: 'Lake House',
             location: 'New York',

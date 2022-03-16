@@ -54,6 +54,15 @@ body {
   transform: scale(0.99) translateY(-1%);
 }
 
+.text-enter-active, .text-leave-active {
+  transition: all 0.75s;
+}
+
+.text-enter, .text-leave-to {
+  transform: translateY(100%);
+  clip-path: margin-box;
+}
+
 .nuxt-link-exact-active {
   /*  */
 }
