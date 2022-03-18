@@ -168,7 +168,11 @@ export default {
           this.onModelLoaded(gltf)
           this.$emit('model:loadingFinished')
         }, (event) => {
-          this.$emit('model:loadingProgress', event)
+          this.$emit('model:loadingProgress', {
+            loaded: event.loaded,
+            total: event.total,
+            progress: (event.loaded / event.total) * 100
+          })
         }, (error) => {
           this.loadingModel = false
           this.$emit('model:loadingFailed', error)
