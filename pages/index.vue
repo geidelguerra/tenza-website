@@ -73,7 +73,7 @@
         <div class="w-full max-w-[615px]">
           <TextAnimator
             tag="h2"
-            text="It all starts <br> with an idea"
+            text="Inspiration comes from"
             class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
             :animate-on-mounted="false"
             :animate-on-visibility="true"
@@ -81,7 +81,7 @@
           />
           <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
           <TextAnimator
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!"
+            text="all around, but specially from our clients. They are obsessed with beauty as we are. They come from diverse backgrounds: medicine, finance, entertainment but we are united by the desire to create beauty and the disagreement with “normal.”  The design becomes then a common language we speak. A set of abstract symbols used to communicate our feelings and how we want to live."
             class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
             :delay="200"
             :animate-on-mounted="false"
@@ -96,7 +96,7 @@
         <div class="w-full max-w-[615px]">
           <TextAnimator
             tag="h2"
-            text="Ideas become <br> concept"
+            text="Every project begins with"
             class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
             :animate-on-mounted="false"
             :animate-on-visibility="true"
@@ -104,7 +104,7 @@
           />
           <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
           <TextAnimator
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!"
+            text="your story. As important as it is to know the extent of the scope - “how many rooms, the size of the kitchen, the position for the office...,” it is to know the why and the how we got to this first encounter. The concept is born from that interaction, and it is as personal and unique as the resulting space should be. The foundation of the project starts with our client’s foreseeable needs followed by the ones they did not even know they had."
             class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
             :delay="200"
             :animate-on-mounted="false"
@@ -119,7 +119,7 @@
         <div class="w-full max-w-[615px]">
           <TextAnimator
             tag="h2"
-            text="Concept are <br> developed"
+            text="Timeless quality"
             class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
             :animate-on-mounted="false"
             :animate-on-visibility="true"
@@ -127,7 +127,7 @@
           />
           <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
           <TextAnimator
-            text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, dolorem dolore. Quam repellendus aspernatur eos debitis iure laborum, veritatis corporis officiis autem consequuntur provident! Accusamus sapiente incidunt et dolor non!"
+            text="is more than a clever solution. It is more than the sum of beautiful shapes, good proportions, and quality materials. It is also the intangible: the light hitting on the curved wall in the morning accompanied by the smell of coffee or bread... or both. It is the afternoon shadows framing your dreamlike scene. We understand that timeless quality comes with crafting a space in which you can gather unique memories of your own. Only when the abstract meets reality, timeless design is born."
             class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
             :delay="200"
             :animate-on-mounted="false"
