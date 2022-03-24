@@ -9,6 +9,16 @@
       <TheNavbar :light-mode="lightMode" />
     </div>
     <Nuxt class="shadow-2xl relative mx-auto w-full max-w-[1920px] h-screen overflow-hidden bg-white" />
+    <transition name="page">
+      <div
+        v-if="loading"
+        class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white"
+      >
+        <div class="text-[100px] font-black text-black">
+          Loading...
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -34,6 +44,14 @@ export default {
       }
 
       return false
+    },
+    loading: {
+      get () {
+        return this.$store.state.loading
+      },
+      set (val) {
+        this.$store.commit('loading', val)
+      }
     }
   }
 }

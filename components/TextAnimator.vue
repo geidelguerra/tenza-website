@@ -18,7 +18,8 @@ export default {
     animateOnUpdate: { type: Boolean, default: true },
     animateOnVisibility: { type: Boolean, default: false },
     animateOnce: { type: Boolean, default: false },
-    visibilityRoot: { type: [Element, String], default: null }
+    visibilityRoot: { type: [Element, String], default: null },
+    disabled: { type: Boolean, default: false }
   },
   emits: ['started', 'ended'],
   data () {
@@ -28,13 +29,18 @@ export default {
   },
   watch: {
     text () {
-      if (this.animateOnUpdate) {
+      if (this.animateOnUpdate && !this.disabled) {
         this.$nextTick(() => this.animate())
+      }
+    },
+    disabled (val) {
+      if (val && !this.animated && this.animateOnMounted) {
+        this.animate()
       }
     }
   },
   mounted () {
-    if (this.animateOnMounted) {
+    if (this.animateOnMounted && !this.disabled) {
       this.animate()
     }
 
@@ -68,7 +74,7 @@ export default {
     handleInterception (entries) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          if (this.animateOnVisibility && !this.animated) {
+          if (this.animateOnVisibility && !this.animated && !this.disabled) {
             this.animate()
           }
         }

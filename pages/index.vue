@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!loading" id="home-page">
     <Scroller
       class="h-screen overflow-hidden bg-black"
       :sync-to-route="true"
@@ -15,9 +15,9 @@
           <template v-for="(slide, index) in featuredSlides">
             <div
               :key="index"
-              :style="{backgroundImage: `url(${slide.image})`}"
               class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-none"
             >
+              <img :src="slide.image" class="absolute top-0 left-0 object-cover w-full h-full">
               <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-radial from-white to-black mix-blend-multiply opacity-80" />
             </div>
           </template>
@@ -43,6 +43,7 @@
             <div>
               <TextAnimator
                 tag="h2"
+                :disabled="loading"
                 :text="activeFeaturedSlide.text"
                 class="text-white font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px] overflow-hidden"
               />
@@ -207,12 +208,34 @@ export default {
     lightMode () {
       return this.activeSectionIndex > 0
     },
+    loading: {
+      get () {
+        return this.$store.state.loading
+      },
+      set (val) {
+        this.$store.commit('loading', val)
+      }
+    },
     showScrollableIndicator () {
       return this.activeSectionIndex < this.numberOfSections - 1
     },
     activeFeaturedSlide () {
       return this.featuredSlides[this.activeFeaturedSlideIndex]
     }
+  },
+  created () {
+    this.loading = true
+  },
+  mounted () {
+    this.$images.listen('#home-page img', (count, total, event) => {
+      console.log('Image loaded', count, total, event)
+
+      if (count === total) {
+        setTimeout(() => {
+          this.loading = false
+        }, 500)
+      }
+    })
   },
   methods: {
     onActiveSectionChanged (elm, index, numberOfSections) {
