@@ -8,19 +8,18 @@
       @activeIndexChanged="onRootScrollerActiveIndexChanged"
     >
       <!-- Section 1 -->
-      <section id="intro" class="w-full h-screen overflow-hidden text-white bg-black">
-        <div
-          class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-none"
-          :style="{backgroundImage: `url(${require('~/assets/images/studio/studio_01.jpg')})`}"
-        >
-          <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-radial from-white to-black mix-blend-multiply opacity-80" />
-        </div>
-        <div class="pl-[88px] pr-[118px] absolute top-0 left-0 w-full flex justify-between h-full items-center">
-          <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
-            We design and  help you build  your legacy.
-          </h1>
-          <div class="w-[587px] text-[18px] leading-[22px]">
-            <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
+      <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
+        <div class="flex space-x-[275px]">
+          <div class="flex flex-col justify-between">
+            <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
+              We design and  help you build  your legacy.
+            </h1>
+            <div class="w-[587px] text-[18px] leading-[22px]">
+              <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
+            </div>
+          </div>
+          <div class="w-[547px] h-[547px] bg-black rounded-r-full rounded-bl-full">
+            <img src="" alt="">
           </div>
         </div>
       </section>
@@ -53,29 +52,9 @@
         </template>
 
         <section
-          id="who-we-are"
-          data-title="Who are we?"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
-        >
-          <div class="flex flex-col h-[452px]">
-            <h2 class="text-[28px] font-bold uppercase tracking-[3.64px]">
-              Ernesto Anton
-            </h2>
-            <p class="text-[17px] font-semibold mb-[38px]">
-              Executive Partner and Founder
-            </p>
-            <div class="flex space-x-[33px]">
-              <div class="text-[20px] w-[341px]">
-                Ernesto founded the practice on 2020 after moving to Miami from New York City. With the believe that the quality of our surroundings affects the quality of our lives and driven by his passion for timeless design and innovation he has stablished a sustainable approach to the architecture exercise. Anton is also a passionate soccer and racquetball player who enjoys good storytelling in any shape or form
-              </div>
-              <img class="object-contain h-auto" src="~/assets/images/studio/studio_02.jpg" alt="Ernesto Anton">
-            </div>
-          </div>
-        </section>
-        <section
           id="architecture"
           data-title="Architecture"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -90,7 +69,7 @@
         <section
           id="interiors"
           data-title="Interiors"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -105,7 +84,7 @@
         <section
           id="modeling-3d"
           data-title="Specialist 3D Modeling"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -120,7 +99,7 @@
         <section
           id="visualization"
           data-title="Visualization"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -135,7 +114,7 @@
         <section
           id="modelmaking"
           data-title="Modelmaking"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -150,7 +129,7 @@
         <section
           id="project-management"
           data-title="Project Management"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -165,7 +144,7 @@
         <section
           id="construction-overview"
           data-title="Construction Overview"
-          class="flex items-center w-full h-screen pl-[794px] pr-[434px]"
+          class="flex items-center w-full h-screen pl-[794px] pr-[703px]"
         >
           <div class="flex flex-col h-[452px]">
             <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px]">
@@ -219,7 +198,7 @@ export default {
       return this.rootScrollerIndex + this.nestedScrollerIndex
     },
     lightMode () {
-      return this.activeScrolledIndex > 0
+      return true
     },
     showScrollableIndicator () {
       return this.activeScrolledIndex < this.numberOfSections - 2

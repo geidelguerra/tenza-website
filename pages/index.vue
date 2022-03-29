@@ -228,8 +228,6 @@ export default {
   },
   mounted () {
     this.$images.listen('#home-page img', (count, total, event) => {
-      console.log('Image loaded', count, total, event)
-
       if (count === total) {
         setTimeout(() => {
           this.loading = false

@@ -39,8 +39,12 @@ export default {
         return false
       }
 
-      if (path === '' || path === '/' || path === '/studio' || path.startsWith('/projects')) {
+      if (path === '' || path === '/' || path.startsWith('/projects')) {
         return !['#featured', '#intro'].includes(hash)
+      }
+
+      if (path === '/studio') {
+        return true
       }
 
       return false
