@@ -11,50 +11,33 @@
     @blur="onBlur"
   >
     Get in touch
-    <div
+    <Networks
       v-show="active"
-      class="absolute right-[100%] mr-[25px] top-0 bottom-0 flex items-center space-x-[25px]"
-      :class="{
-        'text-black': light,
-        'text-white': !light
-      }"
-    >
-      <template v-for="(network, i) in networks">
-        <a
-          :key="i"
-          :href="network.url"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <component :is="network.icon" class="border-none" />
-        </a>
-      </template>
-    </div>
+      :networks="networks"
+      class="absolute right-[100%] mr-[25px] top-0 bottom-0"
+      :light-mode="light"
+    />
   </button>
 </template>
 
 <script>
-import TwitterIcon from '~/assets/images/twitter_alt.svg?inline'
-import InstagramIcon from '~/assets/images/instagram_alt.svg?inline'
-import LinkedInIcon from '~/assets/images/linkedin_alt.svg?inline'
+import Networks from '~/components/Networks.vue'
 
 export default {
   components: {
-    TwitterIcon,
-    InstagramIcon,
-    LinkedInIcon
+    Networks
   },
   props: {
     light: Boolean
   },
   data () {
     return {
-      active: false,
-      networks: [
-        { icon: 'TwitterIcon', url: 'https://twitter.com/tenzastudio' },
-        { icon: 'InstagramIcon', url: 'https://instagram.com/tenza.inc' },
-        { icon: 'LinkedInIcon', url: 'https://linkedin.com/company/tenza-inc' }
-      ]
+      active: false
+    }
+  },
+  computed: {
+    networks () {
+      return this.$store.state.networks
     }
   },
   methods: {
