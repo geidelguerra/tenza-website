@@ -11,12 +11,10 @@
     <Nuxt class="shadow-2xl relative mx-auto w-full max-w-[1920px] h-screen overflow-hidden bg-white" />
     <transition name="page">
       <div
-        v-if="loading"
+        v-if="showSplash"
         class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white"
       >
-        <div class="text-[100px] font-black text-black">
-          Loading...
-        </div>
+        <Splash />
       </div>
     </transition>
   </div>
@@ -25,11 +23,18 @@
 <script>
 import TheNavbar from '@/components/TheNavbar.vue'
 import Logo from '~/assets/images/logo.svg?inline'
+import Splash from '~/components/Splash.vue'
 
 export default {
   components: {
     Logo,
-    TheNavbar
+    TheNavbar,
+    Splash
+  },
+  data () {
+    return {
+      showSplash: true
+    }
   },
   computed: {
     lightMode () {
@@ -49,13 +54,21 @@ export default {
 
       return false
     },
-    loading: {
-      get () {
-        return this.$store.state.loading
-      },
-      set (val) {
-        this.$store.commit('loading', val)
+    loading () {
+      return this.$store.state.loading
+    }
+  },
+  watch: {
+    loading (val) {
+      if (val) {
+        this.showSplash = true
+
+        return
       }
+
+      setTimeout(() => {
+        this.showSplash = false
+      }, 1000)
     }
   }
 }
