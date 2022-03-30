@@ -17,6 +17,9 @@
         <Splash />
       </div>
     </transition>
+    <transition name="slide-up">
+      <Footer v-if="showFooter" class="fixed bottom-0 z-40" />
+    </transition>
   </div>
 </template>
 
@@ -24,12 +27,14 @@
 import TheNavbar from '@/components/TheNavbar.vue'
 import Logo from '~/assets/images/logo.svg?inline'
 import Splash from '~/components/Splash.vue'
+import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
     Logo,
     TheNavbar,
-    Splash
+    Splash,
+    Footer
   },
   data () {
     return {
@@ -56,6 +61,9 @@ export default {
     },
     loading () {
       return this.$store.state.loading
+    },
+    showFooter () {
+      return this.$store.state.showFooter
     }
   },
   watch: {

@@ -158,9 +158,6 @@
         </section>
       </Scroller>
     </Scroller>
-    <transition name="slide-up">
-      <Footer v-if="showFooter" class="fixed bottom-0 z-40" />
-    </transition>
     <GetInTouchButton
       :light="lightMode"
       class="absolute bottom-[45px] right-[45px]"
@@ -180,15 +177,13 @@ import Scroller from '~/components/Scroller.vue'
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
 import GetInTouchButton from '~/components/GetInTouchButton.vue'
 import ProgressBar from '~/components/ProgressBar.vue'
-import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
     Scroller,
     ScrollDownIndicator,
     GetInTouchButton,
-    ProgressBar,
-    Footer
+    ProgressBar
   },
   data () {
     return {
@@ -199,8 +194,13 @@ export default {
     }
   },
   computed: {
-    showFooter () {
-      return this.activeScrolledIndex >= 7
+    showFooter: {
+      get () {
+        return this.$store.state.showFooter
+      },
+      set (val) {
+        return this.$store.commit('showFooter', val)
+      }
     },
     activeScrolledIndex () {
       return this.rootScrollerIndex + this.nestedScrollerIndex
@@ -217,6 +217,11 @@ export default {
       }
 
       return this.nestedScrollerIndex * 100 / (this.$refs.nestedScroller.numberOfElements - 1)
+    }
+  },
+  watch: {
+    activeScrolledIndex (val) {
+      this.showFooter = val >= 7
     }
   },
   methods: {

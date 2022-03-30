@@ -71,6 +71,7 @@
       </section>
       <!-- About 1 -->
       <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] overflow-hidden">
+        <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
         <div class="w-full max-w-[615px]">
           <TextAnimator
             tag="h2"
@@ -90,10 +91,10 @@
             :animate-once="true"
           />
         </div>
-        <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
       </section>
       <!-- About 2 -->
       <section id="about-2" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[69px]">
+        <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
         <div class="w-full max-w-[615px]">
           <TextAnimator
             tag="h2"
@@ -113,10 +114,10 @@
             :animate-once="true"
           />
         </div>
-        <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
       </section>
       <!-- About 3 -->
       <section id="about-3" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[35px]">
+        <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
         <div class="w-full max-w-[615px]">
           <TextAnimator
             tag="h2"
@@ -136,7 +137,6 @@
             :animate-once="true"
           />
         </div>
-        <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
       </section>
     </Scroller>
     <transition name="slide-up">
@@ -221,6 +221,14 @@ export default {
     },
     activeFeaturedSlide () {
       return this.featuredSlides[this.activeFeaturedSlideIndex]
+    },
+    showFooter: {
+      get () {
+        return this.$store.state.showFooter
+      },
+      set (val) {
+        return this.$store.commit('showFooter', val)
+      }
     }
   },
   created () {
@@ -239,6 +247,7 @@ export default {
     onActiveSectionChanged (elm, index, numberOfSections) {
       this.activeSectionIndex = index
       this.numberOfSections = numberOfSections
+      this.showFooter = index >= 3
     }
   }
 }
