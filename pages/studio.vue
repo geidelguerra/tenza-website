@@ -18,8 +18,8 @@
               <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
             </div>
           </div>
-          <div class="w-[547px] h-[547px] bg-black rounded-r-full rounded-bl-full">
-            <img src="" alt="">
+          <div class="w-[547px] h-[547px] bg-black rounded-r-full rounded-bl-full overflow-hidden">
+            <img src="~assets/images/studio/studio_01.jpg" class="object-cover w-full h-full">
           </div>
         </div>
       </section>
