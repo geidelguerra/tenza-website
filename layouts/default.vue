@@ -62,11 +62,21 @@ export default {
     loading () {
       return this.$store.state.loading
     },
-    showFooter () {
-      return this.$store.state.showFooter
+    showFooter: {
+      get () {
+        return this.$store.state.showFooter
+      },
+      set (val) {
+        this.$store.commit('showFooter', val)
+      }
     }
   },
   watch: {
+    $route (route, oldRoute) {
+      if (route.path !== oldRoute.path) {
+        this.showFooter = false
+      }
+    },
     loading (val) {
       if (val) {
         this.showSplash = true
