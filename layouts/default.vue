@@ -38,7 +38,7 @@ export default {
   },
   data () {
     return {
-      showSplash: true
+      showSplash: false
     }
   },
   computed: {
@@ -53,7 +53,7 @@ export default {
         return !['#featured', '#intro'].includes(hash)
       }
 
-      if (path === '/studio') {
+      if (path === '/studio' || path === '/meet-our-team') {
         return true
       }
 
@@ -79,7 +79,7 @@ export default {
     },
     loading (val) {
       if (val) {
-        this.showSplash = true
+        // this.showSplash = true
 
         return
       }

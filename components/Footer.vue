@@ -3,7 +3,9 @@
     <Logo class="h-[30px]" />
     <div>Copyright &copy; Tenza {{ new Date().getFullYear() }}</div>
     <div>Privacy policy</div>
-    <div>Meet our team</div>
+    <nuxt-link to="meet-our-team" exact-active-class="border-b-[2px] border-white">
+      Meet our team
+    </nuxt-link>
     <Networks :networks="networks" />
   </div>
 </template>
