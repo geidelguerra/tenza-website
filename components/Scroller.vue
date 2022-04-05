@@ -122,6 +122,8 @@ export default {
     onInterception (entries) {
       this.interceptionEntries = entries
 
+      console.log(entries)
+
       if (!this.activeElement) {
         this.checkActiveElement()
       }
