@@ -25,16 +25,14 @@
         <div class="pt-[225px] pl-[88px] pr-[120px] pb-[105px] absolute w-full h-full flex flex-col">
           <div class="mb-[170px] flex space-x-[40px]">
             <button
-              :class="{'pointer-events-none opacity-0': activeFeaturedSlideIndex <= 0}"
               class="text-white transition-opacity duration-200"
-              @click="activeFeaturedSlideIndex--"
+              @click="previousFeaturedSlide"
             >
               <ArrowLeft class="h-[20px]" />
             </button>
             <button
-              :class="{'pointer-events-none opacity-0': activeFeaturedSlideIndex >= featuredSlides.length - 1}"
               class="text-white transition-opacity duration-200"
-              @click="activeFeaturedSlideIndex++"
+              @click="nextFeaturedSlide"
             >
               <ArrowRight class="h-[20px]" />
             </button>
@@ -244,6 +242,24 @@ export default {
     })
   },
   methods: {
+    previousFeaturedSlide () {
+      let index = this.activeFeaturedSlideIndex - 1
+
+      if (index < 0) {
+        index = this.featuredSlides.length - 1
+      }
+
+      this.activeFeaturedSlideIndex = index
+    },
+    nextFeaturedSlide () {
+      let index = this.activeFeaturedSlideIndex + 1
+
+      if (index >= this.featuredSlides.length) {
+        index = 0
+      }
+
+      this.activeFeaturedSlideIndex = index
+    },
     onActiveSectionChanged (elm, index, numberOfSections) {
       this.activeSectionIndex = index
       this.numberOfSections = numberOfSections
