@@ -158,10 +158,6 @@
         </section>
       </Scroller>
     </Scroller>
-    <GetInTouchButton
-      :light="lightMode"
-      class="absolute bottom-[45px] right-[45px]"
-    />
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
@@ -175,14 +171,12 @@
 <script>
 import Scroller from '~/components/Scroller.vue'
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
-import GetInTouchButton from '~/components/GetInTouchButton.vue'
 import ProgressBar from '~/components/ProgressBar.vue'
 
 export default {
   components: {
     Scroller,
     ScrollDownIndicator,
-    GetInTouchButton,
     ProgressBar
   },
   data () {

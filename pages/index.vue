@@ -65,7 +65,6 @@
             </div>
           </div>
         </div>
-        <GetInTouchButton class="absolute bottom-[45px] right-[45px]" />
       </section>
       <!-- About 1 -->
       <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] overflow-hidden">
@@ -151,7 +150,6 @@
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
-import GetInTouchButton from '~/components/GetInTouchButton.vue'
 import Scroller from '~/components/Scroller.vue'
 import Slider from '~/components/Slider.vue'
 import TextAnimator from '~/components/TextAnimator.vue'
@@ -163,7 +161,6 @@ export default {
     ScrollDownIndicator,
     ArrowLeft,
     ArrowRight,
-    GetInTouchButton,
     TextAnimator
   },
   data () {
