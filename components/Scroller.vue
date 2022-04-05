@@ -143,6 +143,10 @@ export default {
       if (event.deltaY > 0) {
         this.scrollToNextElement()
 
+        if (this.progress === 100) {
+          this.$emit('bottom')
+        }
+
         // eslint-disable-next-line no-useless-return
         return
       }

@@ -4,6 +4,7 @@
       class="h-screen overflow-hidden bg-black"
       :sync-to-route="true"
       @activeElementChanged="onActiveSectionChanged"
+      @bottom="showFooter = true"
     >
       <!-- Featured Slider -->
       <section id="featured" class="relative w-full h-full overflow-hidden">
@@ -260,7 +261,7 @@ export default {
     onActiveSectionChanged (elm, index, numberOfSections) {
       this.activeSectionIndex = index
       this.numberOfSections = numberOfSections
-      this.showFooter = index >= 3
+      this.showFooter = false
     }
   }
 }

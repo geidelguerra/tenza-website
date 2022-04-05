@@ -27,6 +27,7 @@
         ref="nestedScroller"
         class="relative h-screen overflow-hidden bg-white"
         @activeIndexChanged="onNestedScrollerActiveIndexChanged"
+        @bottom="showFooter = true"
       >
         <template #nav="{ elements, progress, activeElementIndex, scrollToElement }">
           <div class="absolute top-0 bottom-0 left-0 right-[1344px] flex items-center z-10">
@@ -213,11 +214,6 @@ export default {
       return this.nestedScrollerIndex * 100 / (this.$refs.nestedScroller.numberOfElements - 1)
     }
   },
-  watch: {
-    activeScrolledIndex (val) {
-      this.showFooter = val >= 7
-    }
-  },
   methods: {
     onRootScrollerActiveIndexChanged (idx, numberOfSections) {
       this.rootScrollerIndex = idx
@@ -226,6 +222,7 @@ export default {
     onNestedScrollerActiveIndexChanged (idx) {
       this.nestedScrollerIndex = idx
       this.rootScrollerDisabled = idx > 0
+      this.showFooter = false
     }
   }
 }
