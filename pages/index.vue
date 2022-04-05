@@ -47,23 +47,6 @@
                 class="text-white font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px] overflow-hidden"
               />
             </div>
-            <div class="flex flex-col pt-[50px] text-right text-white uppercase">
-              <TextAnimator
-                :text="activeFeaturedSlide.project.name"
-                :delay="200"
-                class="text-[16px] tracking-[12px] font-semibold mb-[21px]"
-              />
-              <TextAnimator
-                :text="activeFeaturedSlide.project.location"
-                :delay="200"
-                class="text-[14px] tracking-[7px] mb-[11px]"
-              />
-              <TextAnimator
-                :text="activeFeaturedSlide.project.year"
-                :delay="200"
-                class="text-[14px] tracking-[7px]"
-              />
-            </div>
           </div>
         </div>
       </section>
