@@ -94,8 +94,9 @@
             </li>
           </ul>
         </div>
-
-        <div class="flex-1 overflow-y-auto" v-html="project.description" />
+        <div class="flex-1 overflow-y-auto">
+          <LongArrow class="inline-block align-baseline" /> {{ project.description }}
+        </div>
       </div>
     </div>
   </div>
@@ -108,6 +109,7 @@ import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import TwitterIcon from '~/assets/images/twitter.svg?inline'
 import LinkedInIcon from '~/assets/images/linkedin_alt.svg?inline'
+import LongArrow from '~/assets/images/long_arrow.svg?inline'
 import Slider from '~/components/Slider.vue'
 
 export default {
@@ -117,6 +119,7 @@ export default {
     ArrowRight,
     TwitterIcon,
     LinkedInIcon,
+    LongArrow,
     Slider
   },
   async asyncData ({ params, payload }) {

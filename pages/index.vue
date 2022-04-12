@@ -44,7 +44,7 @@
                 tag="h2"
                 :disabled="loading"
                 :text="activeFeaturedSlide.text"
-                class="text-white font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px] overflow-hidden"
+                class="text-white font-bold text-[70px] tracking-[0.7px] leading-[70px] overflow-hidden"
               />
             </div>
           </div>
@@ -123,7 +123,7 @@
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
-        class="absolute bottom-[45px] left-[45px]"
+        class="absolute bottom-[45px] left-[50%] translate-x-[50%]"
         :light="lightMode"
       />
     </transition>
@@ -154,31 +154,16 @@ export default {
       activeFeaturedSlideIndex: 0,
       featuredSlides: [
         {
-          image: '/projects/lake_house/lake_house.jpg',
-          text: 'Designs <br> with a timeless <br> quality',
-          project: {
-            name: 'Lake House',
-            location: 'New York',
-            year: 2021
-          }
+          image: '/featured/01.jpg',
+          text: 'The art <br> of architectural <br> storytelling'
         },
         {
-          image: '/projects/brazil_restaurant/brazil_restaurant.jpg',
-          text: 'Crafting <br>experiences',
-          project: {
-            name: 'Brazil Restaurant',
-            location: 'New York',
-            year: 2021
-          }
+          image: '/featured/02.jpg',
+          text: 'Timeless design <br> in a modern setting'
         },
         {
-          image: '/projects/cliff_house/cliff_house.jpg',
-          text: 'Building <br> your legacy',
-          project: {
-            name: 'Cliff House',
-            location: 'New York',
-            year: 2021
-          }
+          image: '/featured/03.jpg',
+          text: 'Crafting a unique space <br> Building a legacy'
         }
       ]
     }
