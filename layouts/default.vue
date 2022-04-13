@@ -91,3 +91,23 @@ export default {
   }
 }
 </script>
+
+<style>
+@media (min-width: 1920px) {
+  html {
+    zoom: 1;
+  }
+}
+
+@media (min-width: 2048px) {
+  html {
+    zoom: 1.5;
+  }
+}
+
+@media (min-width: 3840px) {
+  html {
+    zoom: 2;
+  }
+}
+</style>
