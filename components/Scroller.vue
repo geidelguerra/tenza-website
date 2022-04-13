@@ -10,8 +10,8 @@
 export default {
   props: {
     threshold: {
-      type: Number,
-      default: 1
+      type: [Number, Array],
+      default: () => ([0, 0.5, 1])
     },
     elementSelector: {
       type: [Function],
@@ -64,7 +64,7 @@ export default {
       this.elements = Array.from(this.$refs.container.children)
     },
     checkActiveElement () {
-      const activeElements = this.interceptionEntries.filter(entry => entry.isIntersecting)
+      const activeElements = this.interceptionEntries.filter(entry => entry.intersectionRatio >= 0.5)
 
       this.activeElement = activeElements.length > 0 ? activeElements[0].target : null
     },
@@ -122,11 +122,9 @@ export default {
     onInterception (entries) {
       this.interceptionEntries = entries
 
-      console.log(entries)
+      console.log(`Entries (${entries.length}):`, entries)
 
-      if (!this.activeElement) {
-        this.checkActiveElement()
-      }
+      this.checkActiveElement()
     },
     onMouseWheel (event) {
       if (this.isScrolling || this.disabled) {
@@ -156,8 +154,6 @@ export default {
     },
     onScrollEnded () {
       this.isScrolling = false
-
-      this.checkActiveElement()
     }
   }
 }
