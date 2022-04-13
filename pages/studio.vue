@@ -162,8 +162,15 @@
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
-        class="absolute bottom-[45px] left-[45px]"
+        class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
         :light="lightMode"
+      />
+    </transition>
+    <transition name="slide-up">
+      <GetInTouchButton
+        v-if="!showFooter"
+        :light="true"
+        class="absolute bottom-[45px] right-[45px]"
       />
     </transition>
   </div>
@@ -173,12 +180,14 @@
 import Scroller from '~/components/Scroller.vue'
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
 import ProgressBar from '~/components/ProgressBar.vue'
+import GetInTouchButton from '~/components/GetInTouchButton.vue'
 
 export default {
   components: {
     Scroller,
     ScrollDownIndicator,
-    ProgressBar
+    ProgressBar,
+    GetInTouchButton
   },
   data () {
     return {

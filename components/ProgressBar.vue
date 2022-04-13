@@ -1,6 +1,6 @@
 <template>
   <div class="w-[4px] bg-[#ccc] h-full rounded-t-[4px] rounded-b-[4px]">
-    <div class="bg-[#111] transition-all duration-100 rounded-t-[4px] rounded-b-[4px]" :style="barStyle" />
+    <div class="bg-[#111] transition-all duration-200 rounded-t-[4px] rounded-b-[4px]" :style="barStyle" />
   </div>
 </template>
 

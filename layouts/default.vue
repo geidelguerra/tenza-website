@@ -53,7 +53,7 @@ export default {
         return !['#featured', '#intro'].includes(hash)
       }
 
-      if (path === '/studio' || path === '/meet-our-team') {
+      if (['/studio', '/meet-our-team', '/privacy'].includes(path)) {
         return true
       }
 

@@ -25,18 +25,13 @@
           <Slider
             :key="galleryFullScreen"
             :active-slide-index="activeSlideIndex"
-            transition-name="slider"
           >
             <template v-for="(image, i) in project.gallery">
-              <div
+              <img
                 :key="i"
-                :style="{backgroundImage: `url(${image})`}"
-                class="absolute top-0 left-0 w-full h-full bg-center bg-no-repeat"
-                :class="{
-                  'bg-cover': !galleryFullScreen,
-                  'bg-contain': galleryFullScreen
-                }"
-              />
+                :src="image"
+                class="absolute top-0 left-0 object-contain w-full h-full"
+              >
             </template>
           </Slider>
         </div>
@@ -94,7 +89,7 @@
             </li>
           </ul>
         </div>
-        <div class="flex-1 overflow-y-auto">
+        <div class="flex-1 overflow-y-auto scrollbars pr-[20px]">
           <LongArrow class="inline-block align-baseline" /> {{ project.description }}
         </div>
       </div>

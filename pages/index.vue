@@ -51,7 +51,7 @@
         </div>
       </section>
       <!-- About 1 -->
-      <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] overflow-hidden">
+      <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[180px] overflow-hidden">
         <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
         <div class="w-full max-w-[615px]">
           <TextAnimator
@@ -74,7 +74,7 @@
         </div>
       </section>
       <!-- About 2 -->
-      <section id="about-2" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[69px]">
+      <section id="about-2" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[180px]">
         <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
         <div class="w-full max-w-[615px]">
           <TextAnimator
@@ -97,7 +97,7 @@
         </div>
       </section>
       <!-- About 3 -->
-      <section id="about-3" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[35px]">
+      <section id="about-3" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[180px]">
         <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
         <div class="w-full max-w-[615px]">
           <TextAnimator
@@ -123,7 +123,7 @@
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollableIndicator"
-        class="absolute bottom-[45px] left-[50%] translate-x-[50%]"
+        class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
         :light="lightMode"
       />
     </transition>
@@ -165,7 +165,8 @@ export default {
           image: '/featured/03.jpg',
           text: 'Crafting a unique space <br> Building a legacy'
         }
-      ]
+      ],
+      showGetInTouch: true
     }
   },
   computed: {

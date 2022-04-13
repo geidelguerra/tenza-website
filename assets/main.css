@@ -66,3 +66,13 @@ body {
 .nuxt-link-exact-active {
   /*  */
 }
+
+.scrollbars::-webkit-scrollbar {
+  width: 2px;
+}
+.scrollbars::-webkit-scrollbar-track {
+  background-color: #cccccc;
+}
+.scrollbars::-webkit-scrollbar-thumb {
+  background-color: #111;
+}
