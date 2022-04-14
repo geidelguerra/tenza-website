@@ -1,6 +1,6 @@
 <template>
   <div class="relative flex flex-col h-screen overflow-hidden text-black">
-    <div class="relative w-full max-w-[1920px] mx-auto">
+    <div class="relative w-full mx-auto">
       <div class="absolute top-[45px] left-[45px] z-40">
         <NuxtLink to="/" class="block bg-transparent">
           <Logo class="w-[42px] transition-colors duration-500" :class="lightMode ? 'text-black' : 'text-white'" />
@@ -8,7 +8,7 @@
       </div>
       <TheNavbar :light-mode="lightMode" />
     </div>
-    <Nuxt class="shadow-2xl relative mx-auto w-full max-w-[1920px] h-screen overflow-hidden bg-white" />
+    <Nuxt class="relative w-full h-screen mx-auto overflow-hidden bg-white shadow-2xl" />
     <transition name="page">
       <div
         v-if="showSplash"
@@ -93,10 +93,8 @@ export default {
 </script>
 
 <style>
-@media (min-width: 1920px) {
-  html {
-    zoom: 1;
-  }
+html {
+  zoom: 1;
 }
 
 @media (min-width: 2048px) {
