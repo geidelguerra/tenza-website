@@ -61,8 +61,6 @@ export default {
     Slider
   },
   async asyncData ({ store }) {
-    store.commit('lightMode', true)
-
     return {
       projects: await getProjects()
     }
@@ -90,6 +88,9 @@ export default {
     numberOfProjects () {
       return this.projects.length
     }
+  },
+  mounted () {
+    this.$store.commit('lightMode', true)
   }
 }
 </script>

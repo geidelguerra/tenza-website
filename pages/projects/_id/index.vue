@@ -157,6 +157,9 @@ export default {
   beforeDestroy () {
     document.removeEventListener('keyup', this.onKeyUp)
   },
+  mounted () {
+    this.$store.commit('lightMode', true)
+  },
   methods: {
     onKeyUp (event) {
       if (event.key === 'Escape') {

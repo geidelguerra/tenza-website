@@ -23,6 +23,7 @@
 export default {
   mounted () {
     this.$store.commit('showFooter', true)
+    this.$store.commit('lightMode', true)
   }
 }
 </script>

@@ -165,11 +165,6 @@ export default {
     ArrowRight,
     TextAnimator
   },
-  asyncData ({ store }) {
-    store.commit('lightMode', true)
-
-    return {}
-  },
   data () {
     return {
       activeSectionIndex: 0,
@@ -228,6 +223,8 @@ export default {
     this.loading = true
   },
   mounted () {
+    this.$store.commit('lightMode', true)
+
     this.$images.listen('#home-page img', (count, total, event) => {
       if (count === total) {
         setTimeout(() => {
