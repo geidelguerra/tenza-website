@@ -60,7 +60,9 @@ export default {
     ArrowRight,
     Slider
   },
-  async asyncData () {
+  async asyncData ({ store }) {
+    store.commit('lightMode', true)
+
     return {
       projects: await getProjects()
     }

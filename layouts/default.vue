@@ -43,21 +43,21 @@ export default {
   },
   computed: {
     lightMode () {
-      const { path, hash } = this.$route
+      // const { path, hash } = this.$route
 
-      if ((path === '' || path === '/') && !hash) {
-        return false
-      }
+      // if ((path === '' || path === '/') && !hash) {
+      //   return false
+      // }
 
-      if (path === '' || path === '/' || path.startsWith('/projects')) {
-        return !['#featured', '#intro'].includes(hash)
-      }
+      // if (path === '' || path === '/' || path.startsWith('/projects')) {
+      //   return !['#featured', '#intro'].includes(hash)
+      // }
 
-      if (['/studio', '/meet-our-team', '/privacy'].includes(path)) {
-        return true
-      }
+      // if (['/studio', '/meet-our-team', '/privacy'].includes(path)) {
+      //   return true
+      // }
 
-      return false
+      return this.$store.state.lightMode
     },
     loading () {
       return this.$store.state.loading
@@ -75,6 +75,7 @@ export default {
     $route (route, oldRoute) {
       if (route.path !== oldRoute.path) {
         this.showFooter = false
+        this.lightMode = false
       }
     },
     loading (val) {

@@ -5,6 +5,7 @@
       :sync-to-route="true"
       :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
       @activeElementChanged="onActiveSectionChanged"
+      @activeIndexChanged="(index) => lightMode = index > 0"
     >
       <!-- Featured Slider -->
       <section id="featured" class="relative w-full h-full overflow-hidden">
@@ -164,6 +165,11 @@ export default {
     ArrowRight,
     TextAnimator
   },
+  asyncData ({ store }) {
+    store.commit('lightMode', true)
+
+    return {}
+  },
   data () {
     return {
       activeSectionIndex: 0,
@@ -187,8 +193,13 @@ export default {
     }
   },
   computed: {
-    lightMode () {
-      return this.activeSectionIndex > 0
+    lightMode: {
+      get () {
+        return this.$store.state.lightMode
+      },
+      set (val) {
+        this.$store.commit('lightMode', val)
+      }
     },
     loading: {
       get () {

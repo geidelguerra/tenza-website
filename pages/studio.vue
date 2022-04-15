@@ -189,6 +189,11 @@ export default {
     ProgressBar,
     GetInTouchButton
   },
+  asyncData ({ store }) {
+    store.commit('lightMode', true)
+
+    return {}
+  },
   data () {
     return {
       rootScrollerIndex: 0,
