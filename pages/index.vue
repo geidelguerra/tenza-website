@@ -3,8 +3,8 @@
     <Scroller
       class="h-screen overflow-hidden bg-black"
       :sync-to-route="true"
+      :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
       @activeElementChanged="onActiveSectionChanged"
-      @bottom="showFooter = true"
     >
       <!-- Featured Slider -->
       <section id="featured" class="relative w-full h-full overflow-hidden">
@@ -50,75 +50,92 @@
           </div>
         </div>
       </section>
-      <!-- About 1 -->
-      <section id="about-1" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[180px] overflow-hidden">
-        <img src="~/assets/images/about/about_01.jpg" alt="" srcset="">
-        <div class="w-full max-w-[615px]">
-          <TextAnimator
-            tag="h2"
-            text="Inspiration comes from"
-            class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
-            :animate-on-mounted="false"
-            :animate-on-visibility="true"
-            :animate-once="true"
-          />
-          <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
-          <TextAnimator
-            text="all around, but specially from our clients. They are obsessed with beauty as we are. They come from diverse backgrounds: medicine, finance, entertainment but we are united by the desire to create beauty and the disagreement with “normal.”  The design becomes then a common language we speak. A set of abstract symbols used to communicate our feelings and how we want to live."
-            class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
-            :delay="200"
-            :animate-on-mounted="false"
-            :animate-on-visibility="true"
-            :animate-once="true"
-          />
-        </div>
-      </section>
-      <!-- About 2 -->
-      <section id="about-2" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[180px]">
-        <img src="~/assets/images/about/about_02.jpg" alt="" srcset="">
-        <div class="w-full max-w-[615px]">
-          <TextAnimator
-            tag="h2"
-            text="Every project begins with"
-            class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
-            :animate-on-mounted="false"
-            :animate-on-visibility="true"
-            :animate-once="true"
-          />
-          <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
-          <TextAnimator
-            text="your story. As important as it is to know the extent of the scope - “how many rooms, the size of the kitchen, the position for the office...,” it is to know the why and the how we got to this first encounter. The concept is born from that interaction, and it is as personal and unique as the resulting space should be. The foundation of the project starts with our client’s foreseeable needs followed by the ones they did not even know they had."
-            class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
-            :delay="200"
-            :animate-on-mounted="false"
-            :animate-on-visibility="true"
-            :animate-once="true"
-          />
-        </div>
-      </section>
-      <!-- About 3 -->
-      <section id="about-3" class="flex items-center justify-between w-full h-full bg-white pl-[87px] pr-[180px]">
-        <img src="~/assets/images/about/about_03.jpg" alt="" srcset="">
-        <div class="w-full max-w-[615px]">
-          <TextAnimator
-            tag="h2"
-            text="Timeless quality"
-            class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
-            :animate-on-mounted="false"
-            :animate-on-visibility="true"
-            :animate-once="true"
-          />
-          <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
-          <TextAnimator
-            text="is more than a clever solution. It is more than the sum of beautiful shapes, good proportions, and quality materials. It is also the intangible: the light hitting on the curved wall in the morning accompanied by the smell of coffee or bread... or both. It is the afternoon shadows framing your dreamlike scene. We understand that timeless quality comes with crafting a space in which you can gather unique memories of your own. Only when the abstract meets reality, timeless design is born."
-            class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
-            :delay="200"
-            :animate-on-mounted="false"
-            :animate-on-visibility="true"
-            :animate-once="true"
-          />
-        </div>
-      </section>
+      <Scroller
+        ref="scroller2"
+        class="h-screen"
+        @activeIndexChanged="showFooter = false"
+        @bottom="showFooter = true"
+        @progress="updatePlayer"
+      >
+        <template #nav>
+          <div class="absolute left-[209px] top-[112px] w-[805px] h-[805px]">
+            <lottie-vue-player
+              id="player"
+              ref="player"
+              src="https://assets5.lottiefiles.com/packages/lf20_FISfBK.json"
+              :player-controls="false"
+              :autoplay="false"
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </template>
+        <!-- About 1 -->
+        <section id="about-1" class="flex items-center justify-end w-full h-full bg-white pl-[87px] pr-[180px] overflow-hidden">
+          <div class="w-full max-w-[615px]">
+            <TextAnimator
+              tag="h2"
+              text="Inspiration comes from"
+              class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
+              :animate-on-mounted="false"
+              :animate-on-visibility="true"
+              :animate-once="true"
+            />
+            <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
+            <TextAnimator
+              text="all around, but specially from our clients. They are obsessed with beauty as we are. They come from diverse backgrounds: medicine, finance, entertainment but we are united by the desire to create beauty and the disagreement with “normal.”  The design becomes then a common language we speak. A set of abstract symbols used to communicate our feelings and how we want to live."
+              class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+              :delay="200"
+              :animate-on-mounted="false"
+              :animate-on-visibility="true"
+              :animate-once="true"
+            />
+          </div>
+        </section>
+        <!-- About 2 -->
+        <section id="about-2" class="flex items-center justify-end w-full h-full bg-white pl-[87px] pr-[180px]">
+          <div class="w-full max-w-[615px]">
+            <TextAnimator
+              tag="h2"
+              text="Every project begins with"
+              class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
+              :animate-on-mounted="false"
+              :animate-on-visibility="true"
+              :animate-once="true"
+            />
+            <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
+            <TextAnimator
+              text="your story. As important as it is to know the extent of the scope - “how many rooms, the size of the kitchen, the position for the office...,” it is to know the why and the how we got to this first encounter. The concept is born from that interaction, and it is as personal and unique as the resulting space should be. The foundation of the project starts with our client’s foreseeable needs followed by the ones they did not even know they had."
+              class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+              :delay="200"
+              :animate-on-mounted="false"
+              :animate-on-visibility="true"
+              :animate-once="true"
+            />
+          </div>
+        </section>
+        <!-- About 3 -->
+        <section id="about-3" class="flex items-center justify-end w-full h-full bg-white pl-[87px] pr-[180px]">
+          <div class="w-full max-w-[615px]">
+            <TextAnimator
+              tag="h2"
+              text="Timeless quality"
+              class="text-[#111111] font-extrabold text-[82px] tracking-[0.82px] leading-[98px]"
+              :animate-on-mounted="false"
+              :animate-on-visibility="true"
+              :animate-once="true"
+            />
+            <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
+            <TextAnimator
+              text="is more than a clever solution. It is more than the sum of beautiful shapes, good proportions, and quality materials. It is also the intangible: the light hitting on the curved wall in the morning accompanied by the smell of coffee or bread... or both. It is the afternoon shadows framing your dreamlike scene. We understand that timeless quality comes with crafting a space in which you can gather unique memories of your own. Only when the abstract meets reality, timeless design is born."
+              class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+              :delay="200"
+              :animate-on-mounted="false"
+              :animate-on-visibility="true"
+              :animate-once="true"
+            />
+          </div>
+        </section>
+      </Scroller>
     </Scroller>
     <transition name="slide-up">
       <ScrollDownIndicator
@@ -209,6 +226,13 @@ export default {
     })
   },
   methods: {
+    updatePlayer (progress) {
+      const player = this.$refs.player.$refs.player.getLottie()
+      const totalFrames = player.totalFrames
+      const frame = Math.round(progress * totalFrames)
+
+      player.goToAndStop(frame, true)
+    },
     previousFeaturedSlide () {
       let index = this.activeFeaturedSlideIndex - 1
 

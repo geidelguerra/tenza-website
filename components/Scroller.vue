@@ -1,6 +1,9 @@
 <template>
   <div v-bind="$attrs" class="relative" @mousewheel="onMouseWheel">
-    <div ref="container" class="absolute top-0 bottom-0 left-0 right-0 overflow-hidden">
+    <div
+      ref="container"
+      class="absolute top-0 bottom-0 left-0 right-0 overflow-hidden"
+    >
       <slot />
     </div>
     <slot name="nav" v-bind="{activeElement, activeElementIndex, elements, numberOfElements, progress, scrollToElement}" />
@@ -27,7 +30,8 @@ export default {
       activeElement: null,
       isScrolling: false,
       elements: [],
-      interceptionEntries: []
+      interceptionEntries: [],
+      scrollProgress: 0
     }
   },
   computed: {
@@ -52,7 +56,10 @@ export default {
     activeElementIndex (val, oldVal) {
       this.$emit('activeIndexChanged', val, oldVal)
     },
-    '$route.hash': 'handleRouteChange'
+    '$route.hash': 'handleRouteChange',
+    progress (val) {
+      this.$emit('block-progress', val)
+    }
   },
   mounted () {
     this.updateElements()
@@ -60,6 +67,10 @@ export default {
     this.handleRouteChange()
   },
   methods: {
+    updateScrollProgress () {
+      this.scrollProgress = this.$refs.container.scrollTop / (this.$refs.container.scrollHeight - this.$refs.container.clientHeight)
+      this.$emit('progress', this.scrollProgress)
+    },
     updateElements () {
       this.elements = Array.from(this.$refs.container.children)
     },
@@ -114,6 +125,9 @@ export default {
         begin () {
           self.onScrollStarted()
         },
+        update (anim) {
+          self.updateScrollProgress()
+        },
         complete () {
           self.onScrollEnded()
         }
@@ -122,7 +136,7 @@ export default {
     onInterception (entries) {
       this.interceptionEntries = entries
 
-      console.log(`Entries (${entries.length}):`, entries)
+      // console.log(`Entries (${entries.length}):`, entries)
 
       this.checkActiveElement()
     },
