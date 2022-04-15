@@ -2,7 +2,6 @@
   <div v-show="!loading" id="home-page">
     <Scroller
       class="h-screen overflow-hidden bg-black"
-      :sync-to-route="true"
       :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
       @activeElementChanged="onActiveSectionChanged"
       @activeIndexChanged="(index) => lightMode = index > 0"

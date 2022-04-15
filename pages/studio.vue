@@ -189,11 +189,6 @@ export default {
     ProgressBar,
     GetInTouchButton
   },
-  asyncData ({ store }) {
-    store.commit('lightMode', true)
-
-    return {}
-  },
   data () {
     return {
       rootScrollerIndex: 0,
@@ -215,7 +210,7 @@ export default {
       return this.rootScrollerIndex + this.nestedScrollerIndex
     },
     lightMode () {
-      return true
+      return this.$store.state.lightMode
     },
     showScrollableIndicator () {
       return this.activeScrolledIndex < this.numberOfSections - 2
@@ -227,6 +222,9 @@ export default {
 
       return this.nestedScrollerIndex * 100 / (this.$refs.nestedScroller.numberOfElements - 1)
     }
+  },
+  mounted () {
+    this.$store.commit('lightMode', true)
   },
   methods: {
     onRootScrollerActiveIndexChanged (idx, numberOfSections) {
