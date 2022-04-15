@@ -128,6 +128,12 @@ export default {
         this.$emit('bottom')
       }
     },
+    scrollToFirst () {
+      this.scrollToElement(this.elements[0])
+    },
+    scrollToLast () {
+      this.scrollToElement(this.elements[this.elements.length - 1])
+    },
     scrollToElement (element) {
       const self = this
 
@@ -179,6 +185,12 @@ export default {
 
       if (['ArrowDown', 'PageDown', ' '].includes(event.key)) {
         this.scrollToNextElement()
+
+        return
+      }
+
+      if (['Home'].includes(event.key)) {
+        this.scrollToFirst()
       }
     },
     onScrollStarted () {
