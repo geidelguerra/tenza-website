@@ -1,10 +1,9 @@
 <template>
   <div>
     <Scroller
-      ref="rootScroller"
+      ref="scroller"
       class="relative h-screen overflow-hidden"
-      :sync-to-route="true"
-      :disabled="rootScrollerDisabled"
+      :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
       @activeIndexChanged="onRootScrollerActiveIndexChanged"
     >
       <!-- Section 1 -->
@@ -24,8 +23,9 @@
         </div>
       </section>
       <Scroller
-        ref="nestedScroller"
+        ref="scroller2"
         class="relative h-screen overflow-hidden bg-white"
+        :disabled="$refs.scroller && $refs.scroller.activeElementIndex === 0"
         @activeIndexChanged="onNestedScrollerActiveIndexChanged"
         @bottom="showFooter = true"
       >
@@ -191,10 +191,10 @@ export default {
   },
   data () {
     return {
-      rootScrollerIndex: 0,
-      nestedScrollerIndex: 0,
+      scrollerIndex: 0,
+      scroller2Index: 0,
       numberOfSections: 0,
-      rootScrollerDisabled: false
+      scrollerDisabled: false
     }
   },
   computed: {
@@ -207,20 +207,13 @@ export default {
       }
     },
     activeScrolledIndex () {
-      return this.rootScrollerIndex + this.nestedScrollerIndex
+      return this.scrollerIndex + this.scroller2Index
     },
     lightMode () {
       return this.$store.state.lightMode
     },
     showScrollableIndicator () {
       return this.activeScrolledIndex < this.numberOfSections - 2
-    },
-    nestedScrollerProgress () {
-      if (!this.$refs.nestedScroller) {
-        return 0
-      }
-
-      return this.nestedScrollerIndex * 100 / (this.$refs.nestedScroller.numberOfElements - 1)
     }
   },
   mounted () {
@@ -228,12 +221,12 @@ export default {
   },
   methods: {
     onRootScrollerActiveIndexChanged (idx, numberOfSections) {
-      this.rootScrollerIndex = idx
-      this.numberOfSections = this.$refs.rootScroller.numberOfElements + this.$refs.nestedScroller.numberOfElements
+      this.scrollerIndex = idx
+      this.numberOfSections = this.$refs.scroller.numberOfElements + this.$refs.scroller2.numberOfElements
     },
     onNestedScrollerActiveIndexChanged (idx) {
-      this.nestedScrollerIndex = idx
-      this.rootScrollerDisabled = idx > 0
+      this.scroller2Index = idx
+      this.scrollerDisabled = idx > 0
       this.showFooter = false
     }
   }

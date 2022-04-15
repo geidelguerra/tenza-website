@@ -1,6 +1,7 @@
 <template>
   <div v-show="!loading" id="home-page">
     <Scroller
+      ref="scroller"
       class="h-screen overflow-hidden bg-black"
       :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
       @activeElementChanged="onActiveSectionChanged"
@@ -53,6 +54,7 @@
       <Scroller
         ref="scroller2"
         class="h-screen"
+        :disabled="$refs.scroller && $refs.scroller.activeElementIndex === 0"
         @activeIndexChanged="showFooter = false"
         @bottom="showFooter = true"
         @progress="updatePlayer"

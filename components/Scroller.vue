@@ -65,6 +65,11 @@ export default {
     this.updateElements()
     this.createObserver()
     this.handleRouteChange()
+
+    document.addEventListener('keyup', this.onKeyUp)
+  },
+  beforeDestroy () {
+    document.removeEventListener('keyup', this.onKeyUp)
   },
   methods: {
     updateScrollProgress () {
@@ -115,6 +120,12 @@ export default {
       if (this.activeElementIndex + 1 < this.elements.length) {
         const nextElement = this.elements[this.activeElementIndex + 1]
         this.scrollToElement(nextElement)
+
+        return
+      }
+
+      if (this.progress === 100) {
+        this.$emit('bottom')
       }
     },
     scrollToElement (element) {
@@ -148,19 +159,26 @@ export default {
       if (event.deltaY < 0) {
         this.scrollToPreviousElement()
 
-        // eslint-disable-next-line no-useless-return
         return
       }
 
       if (event.deltaY > 0) {
         this.scrollToNextElement()
-
-        if (this.progress === 100) {
-          this.$emit('bottom')
-        }
-
-        // eslint-disable-next-line no-useless-return
+      }
+    },
+    onKeyUp (event) {
+      if (this.isScrolling || this.disabled) {
         return
+      }
+
+      if (['ArrowUp', 'PageUp'].includes(event.key)) {
+        this.scrollToPreviousElement()
+
+        return
+      }
+
+      if (['ArrowDown', 'PageDown', ' '].includes(event.key)) {
+        this.scrollToNextElement()
       }
     },
     onScrollStarted () {
