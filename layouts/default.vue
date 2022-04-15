@@ -3,7 +3,10 @@
     <div class="relative w-full mx-auto">
       <div class="absolute top-[45px] left-[45px] z-40">
         <NuxtLink to="/" class="block bg-transparent">
-          <Logo class="w-[42px] transition-colors duration-500" :class="lightMode ? 'text-black' : 'text-white'" />
+          <Logo
+            class="w-[42px] transition-colors duration-500"
+            :class="lightMode ? 'text-black' : 'text-white'"
+          />
         </NuxtLink>
       </div>
       <TheNavbar :light-mode="lightMode" />
@@ -43,41 +46,16 @@ export default {
   },
   computed: {
     lightMode () {
-      // const { path, hash } = this.$route
-
-      // if ((path === '' || path === '/') && !hash) {
-      //   return false
-      // }
-
-      // if (path === '' || path === '/' || path.startsWith('/projects')) {
-      //   return !['#featured', '#intro'].includes(hash)
-      // }
-
-      // if (['/studio', '/meet-our-team', '/privacy'].includes(path)) {
-      //   return true
-      // }
-
       return this.$store.state.lightMode
     },
     loading () {
       return this.$store.state.loading
     },
-    showFooter: {
-      get () {
-        return this.$store.state.showFooter
-      },
-      set (val) {
-        this.$store.commit('showFooter', val)
-      }
+    showFooter () {
+      return this.$store.state.showFooter
     }
   },
   watch: {
-    $route (route, oldRoute) {
-      if (route.path !== oldRoute.path) {
-        this.showFooter = false
-        this.lightMode = false
-      }
-    },
     loading (val) {
       if (val) {
         // this.showSplash = true

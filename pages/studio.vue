@@ -1,10 +1,9 @@
 <template>
-  <div>
+  <div class="bg-white">
     <Scroller
       ref="scroller"
-      class="relative h-screen overflow-hidden"
-      :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
-      @activeIndexChanged="onRootScrollerActiveIndexChanged"
+      class="h-screen overflow-hidden"
+      :disabled="$refs.scroller2 && $refs.scroller2.progress > 0"
     >
       <!-- Section 1 -->
       <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
@@ -24,9 +23,8 @@
       </section>
       <Scroller
         ref="scroller2"
-        class="relative h-screen overflow-hidden bg-white"
-        :disabled="$refs.scroller && $refs.scroller.activeElementIndex === 0"
-        @activeIndexChanged="onNestedScrollerActiveIndexChanged"
+        class="h-screen"
+        :disabled="$refs.scroller && $refs.scroller.progress === 0"
         @bottom="showFooter = true"
       >
         <template #nav="{ elements, progress, activeElementIndex, scrollToElement }">
@@ -161,9 +159,9 @@
     </Scroller>
     <transition name="slide-up">
       <ScrollDownIndicator
-        v-if="showScrollableIndicator"
+        v-if="$refs.scroller2 && $refs.scroller2.progress < 100"
         class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
-        :light="lightMode"
+        :light="true"
       />
     </transition>
     <transition name="slide-up">
@@ -206,29 +204,14 @@ export default {
         return this.$store.commit('showFooter', val)
       }
     },
-    activeScrolledIndex () {
-      return this.scrollerIndex + this.scroller2Index
-    },
     lightMode () {
       return this.$store.state.lightMode
-    },
-    showScrollableIndicator () {
-      return this.activeScrolledIndex < this.numberOfSections - 2
     }
   },
   mounted () {
     this.$store.commit('lightMode', true)
-  },
-  methods: {
-    onRootScrollerActiveIndexChanged (idx, numberOfSections) {
-      this.scrollerIndex = idx
-      this.numberOfSections = this.$refs.scroller.numberOfElements + this.$refs.scroller2.numberOfElements
-    },
-    onNestedScrollerActiveIndexChanged (idx) {
-      this.scroller2Index = idx
-      this.scrollerDisabled = idx > 0
-      this.showFooter = false
-    }
+
+    console.log(this.$refs.scroller2 && this.$refs.scroller2.activeElementIndex > 0)
   }
 }
 </script>

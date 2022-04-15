@@ -4,7 +4,6 @@
       ref="scroller"
       class="h-screen overflow-hidden bg-black"
       :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
-      @activeElementChanged="onActiveSectionChanged"
       @activeIndexChanged="(index) => lightMode = index > 0"
     >
       <!-- Featured Slider -->
@@ -141,9 +140,9 @@
     </Scroller>
     <transition name="slide-up">
       <ScrollDownIndicator
-        v-if="showScrollableIndicator"
+        v-if="$refs.scroller2 && $refs.scroller2.progress < 100"
         class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
-        :light="lightMode"
+        :light="$refs.scroller && $refs.scroller.activeElementIndex > 0"
       />
     </transition>
   </div>
@@ -168,8 +167,6 @@ export default {
   },
   data () {
     return {
-      activeSectionIndex: 0,
-      numberOfSections: 0,
       activeFeaturedSlideIndex: 0,
       featuredSlides: [
         {
@@ -204,9 +201,6 @@ export default {
       set (val) {
         this.$store.commit('loading', val)
       }
-    },
-    showScrollableIndicator () {
-      return this.activeSectionIndex < this.numberOfSections - 1
     },
     activeFeaturedSlide () {
       return this.featuredSlides[this.activeFeaturedSlideIndex]
@@ -259,11 +253,6 @@ export default {
       }
 
       this.activeFeaturedSlideIndex = index
-    },
-    onActiveSectionChanged (elm, index, numberOfSections) {
-      this.activeSectionIndex = index
-      this.numberOfSections = numberOfSections
-      this.showFooter = false
     }
   }
 }

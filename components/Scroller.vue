@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs" class="relative" @mousewheel="onMouseWheel">
+  <div v-bind="$attrs" class="relative">
     <div
       ref="container"
       class="absolute top-0 bottom-0 left-0 right-0 overflow-hidden"
@@ -56,7 +56,6 @@ export default {
     activeElementIndex (val, oldVal) {
       this.$emit('activeIndexChanged', val, oldVal)
     },
-    '$route.hash': 'handleRouteChange',
     progress (val) {
       this.$emit('block-progress', val)
     }
@@ -64,12 +63,11 @@ export default {
   mounted () {
     this.updateElements()
     this.createObserver()
-    this.handleRouteChange()
 
-    document.addEventListener('keyup', this.onKeyUp)
+    this.registerListeners()
   },
   beforeDestroy () {
-    document.removeEventListener('keyup', this.onKeyUp)
+    this.removeListeners()
   },
   methods: {
     updateScrollProgress () {
@@ -84,24 +82,6 @@ export default {
 
       this.activeElement = activeElements.length > 0 ? activeElements[0].target : null
     },
-    handleRouteChange () {
-      if (!this.syncToRoute) {
-        return
-      }
-
-      const { path, hash } = this.$route
-
-      if (path === '' || hash === '') {
-        return
-      }
-
-      const id = hash.trimStart('#')
-      const elm = this.elements.find(elm => elm.id === id)
-
-      if (elm) {
-        this.scrollToElement(elm)
-      }
-    },
     createObserver () {
       this.observer = new IntersectionObserver(this.onInterception, {
         root: this.$el,
@@ -112,14 +92,12 @@ export default {
     },
     scrollToPreviousElement () {
       if (this.activeElementIndex - 1 > -1) {
-        const nextElement = this.elements[this.activeElementIndex - 1]
-        this.scrollToElement(nextElement)
+        this.scrollToElement(this.elements[this.activeElementIndex - 1])
       }
     },
     scrollToNextElement () {
       if (this.activeElementIndex + 1 < this.elements.length) {
-        const nextElement = this.elements[this.activeElementIndex + 1]
-        this.scrollToElement(nextElement)
+        this.scrollToElement(this.elements[this.activeElementIndex + 1])
 
         return
       }
@@ -135,6 +113,12 @@ export default {
       this.scrollToElement(this.elements[this.elements.length - 1])
     },
     scrollToElement (element) {
+      if (this.isScrolling || this.disabled) {
+        return
+      }
+
+      this.isScrolling = true
+
       const self = this
 
       this.$scroll(this.$refs.container, {
@@ -146,6 +130,7 @@ export default {
           self.updateScrollProgress()
         },
         complete () {
+          self.isScrolling = false
           self.onScrollEnded()
         }
       })
@@ -153,15 +138,17 @@ export default {
     onInterception (entries) {
       this.interceptionEntries = entries
 
-      // console.log(`Entries (${entries.length}):`, entries)
-
       this.checkActiveElement()
     },
+    registerListeners () {
+      this.$el.addEventListener('mousewheel', this.onMouseWheel, true)
+      document.addEventListener('keyup', this.onKeyUp)
+    },
+    removeListeners () {
+      document.removeEventListener('keyup', this.onKeyUp)
+      this.$el.removeEventListener('mousewheel', this.onMouseWheel)
+    },
     onMouseWheel (event) {
-      if (this.isScrolling || this.disabled) {
-        return
-      }
-
       if (event.deltaY < 0) {
         this.scrollToPreviousElement()
 
@@ -173,10 +160,6 @@ export default {
       }
     },
     onKeyUp (event) {
-      if (this.isScrolling || this.disabled) {
-        return
-      }
-
       if (['ArrowUp', 'PageUp'].includes(event.key)) {
         this.scrollToPreviousElement()
 
@@ -194,10 +177,10 @@ export default {
       }
     },
     onScrollStarted () {
-      this.isScrolling = true
+      //
     },
     onScrollEnded () {
-      this.isScrolling = false
+      //
     }
   }
 }
