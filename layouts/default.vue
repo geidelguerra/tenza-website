@@ -70,21 +70,3 @@ export default {
   }
 }
 </script>
-
-<style>
-html {
-  zoom: 1;
-}
-
-@media (min-width: 2048px) {
-  html {
-    zoom: 1.5;
-  }
-}
-
-@media (min-width: 3840px) {
-  html {
-    zoom: 2;
-  }
-}
-</style>
