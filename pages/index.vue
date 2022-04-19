@@ -52,7 +52,7 @@
       </section>
       <Scroller
         ref="scroller2"
-        class="h-screen"
+        class="h-screen bg-[#f5f5f5]"
         :disabled="$refs.scroller && $refs.scroller.activeElementIndex === 0"
         @activeIndexChanged="showFooter = false"
         @bottom="showFooter = true"
@@ -63,15 +63,15 @@
             <lottie-vue-player
               id="player"
               ref="player"
-              src="https://assets5.lottiefiles.com/packages/lf20_FISfBK.json"
+              src="/home_animation.json"
               :player-controls="false"
               :autoplay="false"
-              style="width: 100%; height: 100%"
+              style="width: 100%; height: 100%; background: transparent"
             />
           </div>
         </template>
         <!-- About 1 -->
-        <section id="about-1" class="flex items-center justify-end w-full h-full bg-white pl-[87px] pr-[180px] overflow-hidden">
+        <section id="about-1" class="flex items-center justify-end w-full h-full pl-[87px] pr-[180px] overflow-hidden">
           <div class="w-full max-w-[615px]">
             <TextAnimator
               tag="h2"
@@ -93,7 +93,7 @@
           </div>
         </section>
         <!-- About 2 -->
-        <section id="about-2" class="flex items-center justify-end w-full h-full bg-white pl-[87px] pr-[180px]">
+        <section id="about-2" class="flex items-center justify-end w-full h-full pl-[87px] pr-[180px]">
           <div class="w-full max-w-[615px]">
             <TextAnimator
               tag="h2"
@@ -115,7 +115,7 @@
           </div>
         </section>
         <!-- About 3 -->
-        <section id="about-3" class="flex items-center justify-end w-full h-full bg-white pl-[87px] pr-[180px]">
+        <section id="about-3" class="flex items-center justify-end w-full h-full pl-[87px] pr-[180px]">
           <div class="w-full max-w-[615px]">
             <TextAnimator
               tag="h2"
