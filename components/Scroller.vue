@@ -102,7 +102,7 @@ export default {
         return
       }
 
-      if (this.progress === 100) {
+      if (this.progress === 100 && !this.disabled) {
         this.$emit('bottom')
       }
     },

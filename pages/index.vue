@@ -3,7 +3,7 @@
     <Scroller
       ref="scroller"
       class="h-screen overflow-hidden bg-black"
-      :disabled="$refs.scroller2 && $refs.scroller2.activeElementIndex > 0"
+      :disabled="scrollerDisabled"
       @activeIndexChanged="(index) => lightMode = index > 0"
     >
       <!-- Featured Slider -->
@@ -53,10 +53,9 @@
       <Scroller
         ref="scroller2"
         class="h-screen bg-[#f5f5f5]"
-        :disabled="$refs.scroller && $refs.scroller.activeElementIndex === 0"
+        :disabled="scroller2Disabled"
         @activeIndexChanged="showFooter = false"
         @bottom="showFooter = true"
-        @progress="updatePlayer"
       >
         <template #nav>
           <div class="absolute left-[209px] top-[112px] w-[805px] h-[805px]">
@@ -182,10 +181,20 @@ export default {
           text: 'Crafting a unique space <br> Building a legacy'
         }
       ],
-      showGetInTouch: true
+      showGetInTouch: true,
+      scrollProgress: 0,
+      animationCurrentFrame: 0,
+      animationTotalFrames: 0
     }
   },
   computed: {
+    progress () {
+      if (this.$refs.scroller !== undefined && this.$refs.scroller2 !== undefined) {
+        return (this.$refs.scroller.scrollProgress * 0.25) + (this.$refs.scroller2.scrollProgress * 0.75)
+      }
+
+      return 0
+    },
     lightMode: {
       get () {
         return this.$store.state.lightMode
@@ -212,6 +221,36 @@ export default {
       set (val) {
         return this.$store.commit('showFooter', val)
       }
+    },
+    scrollerDisabled () {
+      if (this.$refs.scroller2 !== undefined && this.$refs.scroller2.activeElementIndex > 0) {
+        return true
+      }
+
+      if (this.animationCurrentFrame > 0) {
+        return true
+      }
+
+      return false
+    },
+    scroller2Disabled () {
+      if (this.$refs.scroller !== undefined && this.$refs.scroller.activeElementIndex === 0) {
+        return true
+      }
+
+      if (this.animationCurrentFrame < 163) {
+        return true
+      }
+
+      if (this.animationCurrentFrame > 163 && this.animationCurrentFrame < 226) {
+        return true
+      }
+
+      if (this.animationCurrentFrame > 226 && this.animationCurrentFrame < this.animationTotalFrames - 1) {
+        return true
+      }
+
+      return false
     }
   },
   created () {
@@ -220,6 +259,14 @@ export default {
   mounted () {
     this.$store.commit('lightMode', true)
 
+    this.$refs.player.$refs.player.addEventListener('ready', () => {
+      this.animationTotalFrames = this.$refs.player.$refs.player.getLottie().totalFrames
+    })
+
+    this.$refs.player.$refs.player.addEventListener('frame', this.onPlayerFrame)
+
+    document.addEventListener('mousewheel', this.onMouseWheel)
+
     this.$images.listen('#home-page img', (count, total, event) => {
       if (count === total) {
         setTimeout(() => {
@@ -227,6 +274,11 @@ export default {
         }, 500)
       }
     })
+  },
+  beforeDestroy () {
+    document.removeEventListener('mousewheel', this.onMouseWheel)
+
+    this.$refs.player.$refs.player.removeEventListener('frame', this.onPlayerFrame)
   },
   methods: {
     updatePlayer (progress) {
@@ -253,6 +305,27 @@ export default {
       }
 
       this.activeFeaturedSlideIndex = index
+    },
+    onPlayerFrame (event) {
+      this.animationCurrentFrame = event.detail.frame
+    },
+    onMouseWheel (event) {
+      if (this.$refs.scroller.activeElementIndex === 0) {
+        return
+      }
+
+      const player = this.$refs.player.$refs.player.getLottie()
+      const totalFrames = player.totalFrames
+
+      let frame = player.currentFrame + (event.deltaY > 0 ? 1 : -1)
+
+      if (frame >= totalFrames) {
+        frame = totalFrames - 1
+      } else if (frame < 0) {
+        frame = 0
+      }
+
+      player.goToAndStop(frame, true)
     }
   }
 }
