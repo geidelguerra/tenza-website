@@ -4,7 +4,8 @@
       ref="scroller"
       class="h-screen overflow-hidden bg-black"
       :disabled="scrollerDisabled"
-      @activeIndexChanged="(index) => lightMode = index > 0"
+      @activeIndexChanged="idx => lightMode = idx > 0"
+      @scroll-ended="onScrollerScrollEnded"
     >
       <!-- Featured Slider -->
       <section id="featured" class="relative w-full h-full overflow-hidden">
@@ -59,13 +60,10 @@
       >
         <template #nav>
           <div class="absolute left-[209px] top-[112px] w-[805px] h-[805px]">
-            <lottie-vue-player
-              id="player"
-              ref="player"
-              src="/home_animation.json"
-              :player-controls="false"
-              :autoplay="false"
-              style="width: 100%; height: 100%; background: transparent"
+            <home-animation
+              ref="animation"
+              :disabled="$refs.scroller === undefined || $refs.scroller.activeElementIndex === 0"
+              @frame="val => animationCurrentFrame = val"
             />
           </div>
         </template>
@@ -154,6 +152,7 @@ import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import Scroller from '~/components/Scroller.vue'
 import Slider from '~/components/Slider.vue'
 import TextAnimator from '~/components/TextAnimator.vue'
+import HomeAnimation from '~/components/HomeAnimation.vue'
 
 export default {
   components: {
@@ -162,10 +161,12 @@ export default {
     ScrollDownIndicator,
     ArrowLeft,
     ArrowRight,
-    TextAnimator
+    TextAnimator,
+    HomeAnimation
   },
   data () {
     return {
+      scrollerActiveElementIndex: 0,
       activeFeaturedSlideIndex: 0,
       featuredSlides: [
         {
@@ -183,8 +184,7 @@ export default {
       ],
       showGetInTouch: true,
       scrollProgress: 0,
-      animationCurrentFrame: 0,
-      animationTotalFrames: 0
+      animationCurrentFrame: 0
     }
   },
   computed: {
@@ -246,7 +246,7 @@ export default {
         return true
       }
 
-      if (this.animationCurrentFrame > 226 && this.animationCurrentFrame < this.animationTotalFrames - 1) {
+      if (this.animationCurrentFrame > 226 && this.animationCurrentFrame < 417) {
         return true
       }
 
@@ -255,18 +255,9 @@ export default {
   },
   created () {
     this.loading = true
+    this.$store.commit('lightMode', true)
   },
   mounted () {
-    this.$store.commit('lightMode', true)
-
-    this.$refs.player.$refs.player.addEventListener('ready', () => {
-      this.animationTotalFrames = this.$refs.player.$refs.player.getLottie().totalFrames
-    })
-
-    this.$refs.player.$refs.player.addEventListener('frame', this.onPlayerFrame)
-
-    document.addEventListener('mousewheel', this.onMouseWheel)
-
     this.$images.listen('#home-page img', (count, total, event) => {
       if (count === total) {
         setTimeout(() => {
@@ -275,19 +266,7 @@ export default {
       }
     })
   },
-  beforeDestroy () {
-    document.removeEventListener('mousewheel', this.onMouseWheel)
-
-    this.$refs.player.$refs.player.removeEventListener('frame', this.onPlayerFrame)
-  },
   methods: {
-    updatePlayer (progress) {
-      const player = this.$refs.player.$refs.player.getLottie()
-      const totalFrames = player.totalFrames
-      const frame = Math.round(progress * totalFrames)
-
-      player.goToAndStop(frame, true)
-    },
     previousFeaturedSlide () {
       let index = this.activeFeaturedSlideIndex - 1
 
@@ -306,26 +285,10 @@ export default {
 
       this.activeFeaturedSlideIndex = index
     },
-    onPlayerFrame (event) {
-      this.animationCurrentFrame = event.detail.frame
-    },
-    onMouseWheel (event) {
-      if (this.$refs.scroller.activeElementIndex === 0) {
-        return
+    onScrollerScrollEnded () {
+      if (this.$refs.scroller.activeElementIndex === 1) {
+        this.$refs.animation.playNext()
       }
-
-      const player = this.$refs.player.$refs.player.getLottie()
-      const totalFrames = player.totalFrames
-
-      let frame = player.currentFrame + (event.deltaY > 0 ? 1 : -1)
-
-      if (frame >= totalFrames) {
-        frame = totalFrames - 1
-      } else if (frame < 0) {
-        frame = 0
-      }
-
-      player.goToAndStop(frame, true)
     }
   }
 }

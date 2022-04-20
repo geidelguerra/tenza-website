@@ -180,7 +180,7 @@ export default {
       //
     },
     onScrollEnded () {
-      //
+      this.$emit('scroll-ended')
     }
   }
 }
