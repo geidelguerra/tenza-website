@@ -78,7 +78,7 @@
               :animate-on-visibility="true"
               :animate-once="true"
             />
-            <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
+
             <TextAnimator
               text="all around, but specially from our clients. They are obsessed with beauty as we are. They come from diverse backgrounds: medicine, finance, entertainment but we are united by the desire to create beauty and the disagreement with “normal.”  The design becomes then a common language we speak. A set of abstract symbols used to communicate our feelings and how we want to live."
               class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
@@ -100,7 +100,7 @@
               :animate-on-visibility="true"
               :animate-once="true"
             />
-            <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
+
             <TextAnimator
               text="your story. As important as it is to know the extent of the scope - “how many rooms, the size of the kitchen, the position for the office...,” it is to know the why and the how we got to this first encounter. The concept is born from that interaction, and it is as personal and unique as the resulting space should be. The foundation of the project starts with our client’s foreseeable needs followed by the ones they did not even know they had."
               class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
@@ -122,7 +122,7 @@
               :animate-on-visibility="true"
               :animate-once="true"
             />
-            <div class="border-t-[1px] border-[#707070] mt-[20px] mb-[36px]" />
+
             <TextAnimator
               text="is more than a clever solution. It is more than the sum of beautiful shapes, good proportions, and quality materials. It is also the intangible: the light hitting on the curved wall in the morning accompanied by the smell of coffee or bread... or both. It is the afternoon shadows framing your dreamlike scene. We understand that timeless quality comes with crafting a space in which you can gather unique memories of your own. Only when the abstract meets reality, timeless design is born."
               class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
@@ -238,11 +238,11 @@ export default {
         return true
       }
 
-      if (this.animationCurrentFrame < 163) {
+      if (this.animationCurrentFrame < 185) {
         return true
       }
 
-      if (this.animationCurrentFrame > 163 && this.animationCurrentFrame < 226) {
+      if (this.animationCurrentFrame > 185 && this.animationCurrentFrame < 226) {
         return true
       }
 
