@@ -7,7 +7,7 @@
       <div class="font-semibold text-[17px] mb-[69px] tracking-[0.17px]">
         Executive Partner and Founder
       </div>
-      <div class="flex space-x-[124px]">
+      <div class="flex space-x-[7.75rem]">
         <div class="w-[412px] text-[20px] tracking-[0.2px] leading-[27px]">
           Ernesto founded the practice on 2020 after moving to Miami from New York City. With the believe that the quality of our surroundings affects the quality of our lives and driven by his passion for timeless design and innovation he has stablished a sustainable approach to the architecture exercise. Anton is also a passionate soccer and racquetball player who enjoys good storytelling in any shape or form.
         </div>

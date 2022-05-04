@@ -51,7 +51,7 @@
           {{ project.location }} ({{ project.year }})
         </div>
         <div class="border-t-2 border-black mt-[30px] pb-[30px] w-[20px]" />
-        <div class="space-y-[40px] mb-[42px]">
+        <div class="space-y-[2.5rem] mb-[42px]">
           <div>
             <div class="font-bold text-[14px] uppercase">
               Area
@@ -61,7 +61,7 @@
             </div>
           </div>
         </div>
-        <div class="flex space-x-[62px] mb-[32px]">
+        <div class="flex space-x-[3.875rem] mb-[32px]">
           <NuxtLink
             v-for="link in pageLinks"
             :key="link.url"
@@ -75,9 +75,9 @@
           </NuxtLink>
         </div>
 
-        <div class="flex space-x-[30px] items-center mb-[32px]">
+        <div class="flex space-x-[1.875rem] items-center mb-[32px]">
           <span class="uppercase font-medium text-[14px] text-[#ccc]">Share</span>
-          <ul class="flex items-center space-x-[30px]">
+          <ul class="flex items-center space-x-[1.875rem]">
             <li v-for="link in shareLinks" :key="link.url">
               <a
                 :href="link.url"

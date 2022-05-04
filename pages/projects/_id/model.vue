@@ -5,14 +5,14 @@
     </div>
     <template v-else>
       <div class="fixed bottom-[46px] left-[46px] pointer-events-none z-30">
-        <div class="flex flex-col space-y-[48px] uppercase text-[11px]">
-          <div class="flex space-x-[36px]">
+        <div class="flex flex-col space-y-[3rem] uppercase text-[11px]">
+          <div class="flex space-x-[2.25rem]">
             <div><PanIcon /></div> <div>Left click to Pan</div>
           </div>
-          <div class="flex space-x-[36px]">
+          <div class="flex space-x-[2.25rem]">
             <div><RotateIcon /></div> <div>Middle click to Rotate</div>
           </div>
-          <div class="flex space-x-[36px]">
+          <div class="flex space-x-[2.25rem]">
             <div><ZoomIcon /></div> <div>Scroll to Zoom</div>
           </div>
         </div>
@@ -20,7 +20,7 @@
       <div class="fixed bottom-[46px] right-[46px] z-30">
         <NuxtLink
           :to="`/projects/${project.id}`"
-          class="flex align-middle items-center space-x-[8px] text-[11px] px-[10px] py-[6px] text-black border-2 border-black uppercase"
+          class="flex align-middle items-center space-x-[0.5rem] text-[11px] px-[10px] py-[6px] text-black border-2 border-black uppercase"
         >
           <ArrowLeft class="h-[11px]" />
           <span>Back</span>

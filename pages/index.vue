@@ -25,7 +25,7 @@
           </template>
         </Slider>
         <div class="pt-[225px] pl-[88px] pr-[120px] pb-[105px] absolute w-full h-full flex flex-col">
-          <div class="mb-[170px] flex space-x-[40px]">
+          <div class="mb-[170px] flex space-x-[2.5rem]">
             <button
               class="text-white transition-opacity duration-200"
               @click="previousFeaturedSlide"

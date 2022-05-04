@@ -1,6 +1,6 @@
 <template>
   <div class="h-[222px] bg-[#efefef] w-full flex items-center justify-between pl-[88px] pr-[194px]">
-    <div class="text-[14px] text-[#111111] font-bold flex flex-col space-y-[26px]">
+    <div class="text-[14px] text-[#111111] font-bold flex flex-col space-y-[1.625rem]">
       <div>Copyright &copy; Tenza {{ new Date().getFullYear() }}</div>
       <nuxt-link to="privacy">
         Privacy policy

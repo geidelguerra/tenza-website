@@ -1,7 +1,7 @@
 <template>
   <div
     v-bind="$attrs"
-    class="flex items-center space-x-[25px]"
+    class="flex items-center space-x-[1.5625rem]"
     :class="{
       'text-black': lightMode,
       'text-white': !lightMode

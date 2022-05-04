@@ -7,7 +7,7 @@
     >
       <!-- Section 1 -->
       <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
-        <div class="flex space-x-[275px]">
+        <div class="flex space-x-[17.1875rem]">
           <div class="flex flex-col justify-between">
             <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
               We design and  help you build  your legacy.
