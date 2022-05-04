@@ -20,7 +20,7 @@ export default {
       breakpoints: [
         0,
         21,
-        66,
+        68,
         185,
         226,
         341,
