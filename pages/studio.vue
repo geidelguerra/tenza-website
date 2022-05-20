@@ -25,6 +25,7 @@
         ref="scroller2"
         class="h-screen"
         :disabled="$refs.scroller && $refs.scroller.progress === 0"
+        @progress="onScrollProgress"
         @bottom="showFooter = true"
       >
         <template #nav="{ elements, progress, activeElementIndex, scrollToElement }">
@@ -210,8 +211,14 @@ export default {
   },
   mounted () {
     this.$store.commit('lightMode', true)
-
-    console.log(this.$refs.scroller2 && this.$refs.scroller2.activeElementIndex > 0)
+    this.$store.commit('showFooter', false)
+  },
+  methods: {
+    onScrollProgress (progress) {
+      if (progress < 1) {
+        this.showFooter = false
+      }
+    }
   }
 }
 </script>

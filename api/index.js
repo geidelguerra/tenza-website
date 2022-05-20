@@ -13,7 +13,41 @@ const projects = [
       path: '/projects/lake_house/lake_house.glb'
     },
     gallery: [
-      '/projects/lake_house/gallery/01.jpg'
+      '/projects/lake_house/gallery/exteriors/01.jpg',
+      '/projects/lake_house/gallery/exteriors/02.jpg',
+      '/projects/lake_house/gallery/exteriors/03.jpg',
+      '/projects/lake_house/gallery/exteriors/04.jpg',
+      '/projects/lake_house/gallery/exteriors/05.jpg',
+      '/projects/lake_house/gallery/exteriors/06.jpg',
+      '/projects/lake_house/gallery/exteriors/07.jpg',
+      '/projects/lake_house/gallery/exteriors/08.jpg',
+      '/projects/lake_house/gallery/exteriors/09.jpg',
+      '/projects/lake_house/gallery/exteriors/10.jpg',
+      '/projects/lake_house/gallery/exteriors/11.jpg',
+      '/projects/lake_house/gallery/exteriors/12.jpg',
+
+      '/projects/lake_house/gallery/interiors/01.jpg',
+      '/projects/lake_house/gallery/interiors/02.jpg',
+      '/projects/lake_house/gallery/interiors/03.jpg',
+      '/projects/lake_house/gallery/interiors/04.jpg',
+      '/projects/lake_house/gallery/interiors/05.jpg',
+      '/projects/lake_house/gallery/interiors/06.jpg',
+      '/projects/lake_house/gallery/interiors/07.jpg',
+      '/projects/lake_house/gallery/interiors/08.jpg',
+      '/projects/lake_house/gallery/interiors/09.jpg',
+      '/projects/lake_house/gallery/interiors/10.jpg',
+      '/projects/lake_house/gallery/interiors/11.jpg',
+      '/projects/lake_house/gallery/interiors/12.jpg',
+      '/projects/lake_house/gallery/interiors/13.jpg',
+      '/projects/lake_house/gallery/interiors/14.jpg',
+      '/projects/lake_house/gallery/interiors/15.jpg',
+      '/projects/lake_house/gallery/interiors/16.jpg',
+      '/projects/lake_house/gallery/interiors/17.jpg',
+      '/projects/lake_house/gallery/interiors/18.jpg',
+      '/projects/lake_house/gallery/interiors/19.jpg',
+      '/projects/lake_house/gallery/interiors/20.jpg',
+      '/projects/lake_house/gallery/interiors/21.jpg',
+      '/projects/lake_house/gallery/interiors/22.jpg'
     ]
   },
   {
@@ -30,7 +64,13 @@ const projects = [
       path: '/projects/brazil_restaurant/brazil_restaurant.glb'
     },
     gallery: [
-      '/projects/brazil_restaurant/gallery/01.jpg'
+      '/projects/brazil_restaurant/gallery/01.jpg',
+      '/projects/brazil_restaurant/gallery/02.jpg',
+      '/projects/brazil_restaurant/gallery/03.jpg',
+      '/projects/brazil_restaurant/gallery/04.jpg',
+      '/projects/brazil_restaurant/gallery/05.jpg',
+      '/projects/brazil_restaurant/gallery/06.jpg',
+      '/projects/brazil_restaurant/gallery/07.jpg'
     ]
   },
   {
@@ -47,7 +87,10 @@ const projects = [
       path: '/projects/rooftop_bar_addition/rooftop_bar_addition.glb'
     },
     gallery: [
-      '/projects/rooftop_bar_addition/gallery/01.jpg'
+      '/projects/rooftop_bar_addition/gallery/01.jpg',
+      '/projects/rooftop_bar_addition/gallery/02.jpg',
+      '/projects/rooftop_bar_addition/gallery/03.jpg',
+      '/projects/rooftop_bar_addition/gallery/04.jpg'
     ]
   },
   {
@@ -64,7 +107,11 @@ const projects = [
       path: '/projects/cliff_house/cliff_house.glb'
     },
     gallery: [
-      '/projects/cliff_house/gallery/01.jpg'
+      '/projects/cliff_house/gallery/01.jpg',
+      '/projects/cliff_house/gallery/02.jpg',
+      '/projects/cliff_house/gallery/03.jpg',
+      '/projects/cliff_house/gallery/04.jpg',
+      '/projects/cliff_house/gallery/05.jpg'
     ]
   },
   // {
@@ -98,7 +145,11 @@ const projects = [
       path: '/projects/penthouse_duplex/penthouse_duplex.glb'
     },
     gallery: [
-      '/projects/penthouse_duplex/gallery/01.jpg'
+      '/projects/penthouse_duplex/gallery/01.jpg',
+      '/projects/penthouse_duplex/gallery/02.jpg',
+      '/projects/penthouse_duplex/gallery/03.jpg',
+      '/projects/penthouse_duplex/gallery/04.jpg',
+      '/projects/penthouse_duplex/gallery/05.jpg'
     ]
   }
   // {

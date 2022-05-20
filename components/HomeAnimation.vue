@@ -19,10 +19,10 @@ export default {
       currentBreakpointIndex: 0,
       breakpoints: [
         0,
-        21,
-        68,
+        // 21,
+        // 68,
         185,
-        226,
+        // 226,
         341,
         418
       ]
