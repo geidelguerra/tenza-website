@@ -19,14 +19,9 @@ export default {
     Logo,
     Home
   },
-  asyncData ({ env }) {
-    console.log(env)
-
-    return { underConstruction: env.underConstruction }
-  },
   data () {
     return {
-      underConstruction: false
+      underConstruction: process.env.underConstruction
     }
   }
 }
