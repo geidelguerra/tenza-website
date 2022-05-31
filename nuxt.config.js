@@ -1,5 +1,7 @@
 import { getProjects } from './api'
 
+console.log(process.env)
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -7,7 +9,8 @@ export default {
   ssr: false,
 
   env: {
-    debug: process.env.DEBUG === 'true' || process.env.NODE_ENV !== 'production'
+    debug: process.env.DEBUG === 'true' || process.env.NODE_ENV !== 'production',
+    underConstruction: process.env.UNDER_CONSTRUCTION === 'true'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
