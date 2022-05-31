@@ -8,7 +8,7 @@ export default {
 
   env: {
     debug: process.env.DEBUG === 'true' || process.env.NODE_ENV !== 'production',
-    underConstruction: process.env.UNDER_CONSTRUCTION === 'true'
+    underConstruction: false
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
