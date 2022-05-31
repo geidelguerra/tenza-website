@@ -20,6 +20,8 @@ export default {
     Home
   },
   asyncData ({ env }) {
+    console.log(env)
+
     return { underConstruction: env.underConstruction }
   },
   data () {
