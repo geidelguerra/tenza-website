@@ -140,6 +140,7 @@
         v-if="$refs.scroller2 && $refs.scroller2.progress < 100"
         class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
         :light="$refs.scroller && $refs.scroller.activeElementIndex > 0"
+        @click="scrollToNextView"
       />
     </transition>
   </div>
@@ -267,6 +268,15 @@ export default {
     })
   },
   methods: {
+    scrollToNextView () {
+      if (this.$refs.scroller.activeElementIndex === 0) {
+        this.$refs.scroller.scrollToNextElement()
+
+        return
+      }
+
+      this.$refs.scroller2.scrollToNextElement()
+    },
     previousFeaturedSlide () {
       let index = this.activeFeaturedSlideIndex - 1
 
