@@ -10,7 +10,7 @@ const projects = [
       url: '/projects/lake_house/lake_house.jpg'
     },
     scene: {
-      path: '/projects/lake_house/lake_house.glb'
+      path: null
     },
     gallery: [
       '/projects/lake_house/gallery/exteriors/01.jpg',

@@ -137,9 +137,13 @@ export default {
       ]
     },
     pageLinks () {
-      return [
-        { text: '3D Model', icon: 'ModelIcon', url: `/projects/${this.project.id}/model` }
-      ]
+      const links = []
+
+      if (this.project.scene.path) {
+        links.push({ text: '3D Model', icon: 'ModelIcon', url: `/projects/${this.project.id}/model` })
+      }
+
+      return links
     },
     hasPreviousSlides () {
       return this.activeSlideIndex > 0
