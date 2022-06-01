@@ -37,6 +37,7 @@ export default {
     currentBreakpoint (val, oldVal) {
       const player = this.$refs.player.$refs.player.getLottie()
 
+      player.setSpeed(2)
       player.setDirection(val > oldVal ? 1 : -1)
       player.play()
     }
