@@ -239,11 +239,11 @@ export default {
         return true
       }
 
-      if (this.animationCurrentFrame < 185) {
+      if (this.animationCurrentFrame < 160) {
         return true
       }
 
-      if (this.animationCurrentFrame > 185 && this.animationCurrentFrame < 341) {
+      if (this.animationCurrentFrame > 160 && this.animationCurrentFrame < 341) {
         return true
       }
 
