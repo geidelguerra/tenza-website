@@ -134,6 +134,7 @@
           </div>
         </section>
       </Scroller>
+      <!-- <Footer class="relative" /> -->
     </Scroller>
     <transition name="slide-up">
       <ScrollDownIndicator
@@ -154,6 +155,7 @@ import Scroller from '~/components/Scroller.vue'
 import Slider from '~/components/Slider.vue'
 import TextAnimator from '~/components/TextAnimator.vue'
 import HomeAnimation from '~/components/HomeAnimation.vue'
+// import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
@@ -164,6 +166,7 @@ export default {
     ArrowRight,
     TextAnimator,
     HomeAnimation
+    // Footer
   },
   data () {
     return {

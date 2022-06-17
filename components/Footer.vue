@@ -1,14 +1,17 @@
 <template>
-  <div class="h-[222px] bg-[#efefef] w-full flex items-center justify-between pl-[88px] pr-[194px]">
-    <div class="text-[14px] text-[#111111] font-bold flex flex-col space-y-[1.625rem]">
-      <div>Copyright &copy; Tenza {{ new Date().getFullYear() }}</div>
-      <div>
-        <nuxt-link to="our-team" class="border-b-[2px] hover:border-black" exact-active-class="border-black">
-          Our team
-        </nuxt-link>
+  <div class="w-screen h-screen bg-[#f5f5f5]">
+    <img src="/footer_bg.jpg" class="absolute top-0 bottom-0 left-0 right-0 object-contain bg-[#f5f5f5] opacity-40">
+    <div class="absolute top-0 bottom-0 left-0 right-0 flex flex-col w-full h-full">
+      <div class="flex-1">
+        <!--  -->
+      </div>
+      <div class="flex justify-between items-center h-[207px] mx-[43px] border-t border-black">
+        <div class="text-[14px] text-[#111111] font-bold">
+          Copyright &copy; Tenza {{ new Date().getFullYear() }}
+        </div>
+        <Networks :networks="networks" :light-mode="true" />
       </div>
     </div>
-    <Networks :networks="networks" :light-mode="true" />
   </div>
 </template>
 
