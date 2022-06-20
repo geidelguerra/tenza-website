@@ -39,7 +39,8 @@ export default {
     '~/plugins/scroll.client.js',
     '~/plugins/images.client.js',
     '~/plugins/lottiePlayer.client.js',
-    '~/plugins/sticky.client.js'
+    '~/plugins/sticky.client.js',
+    '~/plugins/observer.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

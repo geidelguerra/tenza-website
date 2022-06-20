@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" v-scroll="{ onScroll }">
+  <component v-bind="$attrs" :is="tag" v-scroll="{ onScroll }">
     <slot v-bind="{ scrollTop, scrollHeight, progress }" />
   </component>
 </template>

@@ -1,87 +1,76 @@
 <template>
   <div class="bg-white">
-    <Scroller
-      ref="scroller"
-      class="h-screen overflow-hidden"
-      :disabled="$refs.scroller2 && $refs.scroller2.progress > 0"
-    >
-      <!-- Section 1 -->
-      <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
-        <div class="flex space-x-[17.1875rem]">
-          <div class="flex flex-col justify-between">
-            <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
-              We design and  help you build  your legacy.
-            </h1>
-            <div class="w-[587px] text-[18px] leading-[22px]">
-              <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
-            </div>
-          </div>
-          <div class="w-[547px] h-[547px] bg-black rounded-r-full rounded-bl-full overflow-hidden">
-            <img src="~assets/images/studio/studio_01.jpg" class="object-cover w-full h-full">
+    <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
+      <div class="flex space-x-[17.1875rem]">
+        <div class="flex flex-col justify-between">
+          <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
+            We design and  help you build  your legacy.
+          </h1>
+          <div class="w-[587px] text-[18px] leading-[22px]">
+            <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
           </div>
         </div>
-      </section>
-      <Scroller
-        ref="scroller2"
-        class="h-screen"
-        :disabled="$refs.scroller && $refs.scroller.progress === 0"
-        @progress="onScrollProgress"
+        <div class="w-[547px] h-[547px] bg-black rounded-r-full rounded-bl-full overflow-hidden">
+          <img src="~assets/images/studio/studio_01.jpg" class="object-cover w-full h-full">
+        </div>
+      </div>
+    </section>
+
+    <div ref="sections" class="relative">
+      <div v-sticky class="absolute top-0 left-[430px] z-10 flex items-center h-screen">
+        <studio-sections-navigator :items="sections" />
+      </div>
+
+      <studio-section
+        id="architecture"
+        title="Architecture"
       >
-        <template #nav="{ elements, progress, activeElementIndex, scrollToElement }">
-          <studio-sections-navigator v-bind="{ elements, progress, activeElementIndex, scrollToElement, }" />
-        </template>
+        It is our believe that the best architecture comes from the symbiotic interaction of all the elements that form a building: the envelope that gives the shape, the structure that holds it up, the function that brings it to live, the quality of natural light and shades, the symbolism, the relationship of the building to its surroundings; the way you move through or around it; and finally its ability to lift the spirits and inspire. By working together with our clients from the start of a project we devise integrated and sustainable design solutions.
+      </studio-section>
 
-        <studio-section
-          id="architecture"
-          title="Architecture"
-        >
-          It is our believe that the best architecture comes from the symbiotic interaction of all the elements that form a building: the envelope that gives the shape, the structure that holds it up, the function that brings it to live, the quality of natural light and shades, the symbolism, the relationship of the building to its surroundings; the way you move through or around it; and finally its ability to lift the spirits and inspire. By working together with our clients from the start of a project we devise integrated and sustainable design solutions.
-        </studio-section>
+      <studio-section
+        id="interiors"
+        title="Interiors"
+      >
+        We design every building from the inside-out as much as from the outside-in. Crafting a sense of continuity to their surroundings. The starting point is to gain an understanding of our client’s needs and the way in which the space will be used. But our architecture is not a machine. The goal is to design interiors that are both functional and elegant, simple while still evoking a sense of uniqueness that complements the building’s outward concept.
+      </studio-section>
 
-        <studio-section
-          id="interiors"
-          title="Interiors"
-        >
-          We design every building from the inside-out as much as from the outside-in. Crafting a sense of continuity to their surroundings. The starting point is to gain an understanding of our client’s needs and the way in which the space will be used. But our architecture is not a machine. The goal is to design interiors that are both functional and elegant, simple while still evoking a sense of uniqueness that complements the building’s outward concept.
-        </studio-section>
+      <studio-section
+        id="modeling-3d"
+        title="Specialist 3D Modeling"
+      >
+        Tenza while not looking expressly on crafting complex shapes it is often, we found that the building, the environment or program requires it. We are capable of complex geometrical modeling. Our team looks at the movement of natural light, air and sound, while focusing on maximizing the occupant's comfort. These innovative projects require collaboration with vendors, contractors and other industry partners.
+      </studio-section>
 
-        <studio-section
-          id="modeling-3d"
-          title="Specialist 3D Modeling"
-        >
-          Tenza while not looking expressly on crafting complex shapes it is often, we found that the building, the environment or program requires it. We are capable of complex geometrical modeling. Our team looks at the movement of natural light, air and sound, while focusing on maximizing the occupant's comfort. These innovative projects require collaboration with vendors, contractors and other industry partners.
-        </studio-section>
+      <studio-section
+        id="visualization"
+        title="Visualization"
+      >
+        When required, we offer high quality architectural visualizations: renderings, animations, and or motion graphics for all our projects at various stages including concept, construction, marketing and final presentations.
+      </studio-section>
 
-        <studio-section
-          id="visualization"
-          title="Visualization"
-        >
-          When required, we offer high quality architectural visualizations: renderings, animations, and or motion graphics for all our projects at various stages including concept, construction, marketing and final presentations.
-        </studio-section>
+      <studio-section
+        id="modelmaking"
+        title="Modelmaking"
+      >
+        Our workshop is equipped with an array of digital and traditional machinery for the construction of presentation models, sketch models and mock-ups of all styles, sizes and scales. Parallel to our traditional handcraft skills we maintain an up-to-date knowledge of all modelmaking skills, from techniques and styles, to innovative new technologies .
+      </studio-section>
 
-        <studio-section
-          id="modelmaking"
-          title="Modelmaking"
-        >
-          Our workshop is equipped with an array of digital and traditional machinery for the construction of presentation models, sketch models and mock-ups of all styles, sizes and scales. Parallel to our traditional handcraft skills we maintain an up-to-date knowledge of all modelmaking skills, from techniques and styles, to innovative new technologies .
-        </studio-section>
+      <studio-section
+        id="project-management"
+        title="Project Management"
+      >
+        We work closely with the client and other design professionals to identify project objectives at the earliest stages. We support and empower teams to deliver their design objectives, while helping to maintain positive, long-lasting client relationships.
+      </studio-section>
 
-        <studio-section
-          id="project-management"
-          title="Project Management"
-        >
-          We work closely with the client and other design professionals to identify project objectives at the earliest stages. We support and empower teams to deliver their design objectives, while helping to maintain positive, long-lasting client relationships.
-        </studio-section>
+      <studio-section
+        id="construction-overview"
+        title="Construction Overview"
+      >
+        Tenza is fully committed to ensure that the construction quality and technical detailing are present in all the stages of the project. We carry out technical reviews of the projects at regular intervals, from schematic design until completion. This ensures that high standards of technical quality are maintained in every project.
+      </studio-section>
+    </div>
 
-        <studio-section
-          id="construction-overview"
-          title="Construction Overview"
-        >
-          Tenza is fully committed to ensure that the construction quality and technical detailing are present in all the stages of the project. We carry out technical reviews of the projects at regular intervals, from schematic design until completion. This ensures that high standards of technical quality are maintained in every project.
-        </studio-section>
-      </Scroller>
-      <!-- <Footer class="relative" /> -->
-    </Scroller>
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="$refs.scroller2 && $refs.scroller2.progress < 100"
@@ -90,17 +79,12 @@
       />
     </transition>
     <transition name="slide-up">
-      <GetInTouchButton
-        v-if="!showFooter"
-        :light="true"
-        class="absolute bottom-[45px] right-[45px]"
-      />
+      <GetInTouchButton :light="true" class="absolute bottom-[45px] right-[45px]" />
     </transition>
   </div>
 </template>
 
 <script>
-import Scroller from '~/components/Scroller.vue'
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
 import GetInTouchButton from '~/components/GetInTouchButton.vue'
 import StudioSection from '~/components/StudioSection.vue'
@@ -109,7 +93,6 @@ import StudioSectionsNavigator from '~/components/StudioSectionsNavigator.vue'
 
 export default {
   components: {
-    Scroller,
     ScrollDownIndicator,
     GetInTouchButton,
     StudioSection,
@@ -118,10 +101,7 @@ export default {
   },
   data () {
     return {
-      scrollerIndex: 0,
-      scroller2Index: 0,
-      numberOfSections: 0,
-      scrollerDisabled: false
+      sections: []
     }
   },
   computed: {
@@ -130,6 +110,8 @@ export default {
     }
   },
   mounted () {
+    this.sections = Array.from(this.$refs.sections.querySelectorAll('section'))
+
     this.$store.commit('lightMode', true)
   },
   methods: {

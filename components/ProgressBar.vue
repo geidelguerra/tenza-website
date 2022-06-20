@@ -7,14 +7,11 @@
 <script>
 export default {
   props: {
-    progress: {
-      type: Number,
-      default: 0
-    }
+    progress: { type: Number, default: 0 }
   },
   computed: {
     barStyle () {
-      const progress = this.progress > 100 ? 100 : this.progress
+      const progress = (this.progress > 1 ? 1 : this.progress) * 100
 
       return { height: `${progress}%` }
     }
