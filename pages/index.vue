@@ -1,5 +1,5 @@
 <template>
-  <div v-if="underConstruction" class="flex items-center justify-center w-screen h-screen bg-white">
+  <div v-if="underConstruction" class="flex items-center justify-center w-screen h-screen">
     <div class="flex flex-col items-center">
       <Logo class="text-black w-[100px] mb-[100px]" />
       <div class="text-lg">

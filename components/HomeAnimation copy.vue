@@ -5,14 +5,15 @@
     :player-controls="false"
     :autoplay="false"
     :loop="false"
-    style="width: 100%; height: 100%; background: transparent"
+    style="width: 100%; height: 100%; background: transparent; overflow: hidden"
   />
 </template>
 
 <script>
 export default {
   props: {
-    disabled: Boolean
+    disabled: Boolean,
+    progress: { type: Number, default: 0 }
   },
   data () {
     return {

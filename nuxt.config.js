@@ -38,7 +38,8 @@ export default {
   plugins: [
     '~/plugins/scroll.client.js',
     '~/plugins/images.client.js',
-    '~/plugins/lottiePlayer.client.js'
+    '~/plugins/lottiePlayer.client.js',
+    '~/plugins/sticky.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
