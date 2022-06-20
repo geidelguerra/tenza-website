@@ -1,14 +1,12 @@
 <template>
   <div class="relative flex flex-col min-h-screen text-black bg-[#F5F5F5]">
-    <div class="fixed w-full mx-auto">
-      <div class="absolute top-[45px] left-[45px] z-40">
-        <NuxtLink to="/" class="block bg-transparent">
-          <Logo
-            class="w-[42px] transition-colors duration-500"
-            :class="lightMode ? 'text-black' : 'text-white'"
-          />
-        </NuxtLink>
-      </div>
+    <div class="fixed top-0 z-40 flex justify-between w-full">
+      <NuxtLink to="/" class="block bg-transparent absolute top-[45px] left-[45px]">
+        <Logo
+          class="w-[42px] transition-colors duration-500"
+          :class="lightMode ? 'text-black' : 'text-white'"
+        />
+      </NuxtLink>
       <TheNavbar :light-mode="lightMode" />
     </div>
 
