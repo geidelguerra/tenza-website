@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div v-scroll="{ onScroll }">
     <!-- Featured Slider -->
     <section id="featured" class="relative w-screen h-screen overflow-hidden">
       <home-slider />
     </section>
 
-    <scroll-tracker class="relative">
+    <scroll-tracker class="relative" @scroll-progress="progress => lightMode = progress > 0">
       <template #default="{ progress }">
         <div v-sticky class="absolute top-0 z-10 flex items-center h-screen">
           <div class="ml-[209px] w-[800px] h-[805px]">
@@ -38,7 +38,9 @@
     <!-- <Footer class="relative" /> -->
     <transition name="slide-up">
       <ScrollDownIndicator
-        class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
+        v-if="showScrollIndicator"
+        class="fixed bottom-[45px] left-[50%] translate-x-[-50%]"
+        :light-mode="lightMode"
       />
     </transition>
   </div>
@@ -63,8 +65,7 @@ export default {
   },
   data () {
     return {
-      scrollTop: 0,
-      aboutScrollProgress: 0
+      showScrollIndicator: true
     }
   },
   computed: {
@@ -76,47 +77,14 @@ export default {
         this.$store.commit('lightMode', val)
       }
     }
-    // scrollerDisabled () {
-    //   if (this.$refs.scroller2 !== undefined && this.$refs.scroller2.activeElementIndex > 0) {
-    //     return true
-    //   }
-
-    //   if (this.animationCurrentFrame > 0) {
-    //     return true
-    //   }
-
-    //   return false
-    // },
-    // scroller2Disabled () {
-    //   if (this.$refs.scroller !== undefined && this.$refs.scroller.activeElementIndex === 0) {
-    //     return true
-    //   }
-
-    //   if (this.animationCurrentFrame < 160) {
-    //     return true
-    //   }
-
-    //   if (this.animationCurrentFrame > 160 && this.animationCurrentFrame < 341) {
-    //     return true
-    //   }
-
-    //   if (this.animationCurrentFrame > 341 && this.animationCurrentFrame < 417) {
-    //     return true
-    //   }
-
-    //   return false
-    // }
+  },
+  mounted () {
+    this.lightMode = false
   },
   methods: {
     onScroll (scrollTop, scrollHeight, progress) {
-      console.log(scrollTop, scrollHeight, progress)
+      this.showScrollIndicator = progress < 0.75
     }
-    // onScroll: debounce(function () {
-    //   this.scrollTop = document.scrollingElement.scrollTop
-    //   // this.aboutScrollProgress = this.scrollTop
-
-    //   // console.log(this.scrollTop, document.scrollingElement.scrollHeight, this.$refs.aboutSection.offsetTop, this.$refs.aboutSection.offsetHeight)
-    // }, 100)
   }
 }
 </script>

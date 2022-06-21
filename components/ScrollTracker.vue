@@ -21,6 +21,8 @@ export default {
       this.scrollTop = scrollTop
       this.scrollHeight = scrollHeight
       this.progress = progress
+
+      this.$emit('scroll-progress', progress)
     }
   }
 }

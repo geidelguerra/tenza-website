@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div v-scroll="{ onScroll }" class="bg-white">
     <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
       <div class="flex space-x-[17.1875rem]">
         <div class="flex flex-col justify-between">
@@ -73,13 +73,13 @@
 
     <transition name="slide-up">
       <ScrollDownIndicator
-        v-if="$refs.scroller2 && $refs.scroller2.progress < 100"
-        class="absolute bottom-[45px] left-[50%] translate-x-[-50%]"
-        :light="true"
+        v-if="showScrollIndicator"
+        class="fixed bottom-[45px] left-[50%] translate-x-[-50%]"
+        :light-mode="true"
       />
     </transition>
     <transition name="slide-up">
-      <GetInTouchButton :light="true" class="absolute bottom-[45px] right-[45px]" />
+      <GetInTouchButton :light-mode="true" class="absolute bottom-[45px] right-[45px]" />
     </transition>
   </div>
 </template>
@@ -101,12 +101,8 @@ export default {
   },
   data () {
     return {
-      sections: []
-    }
-  },
-  computed: {
-    lightMode () {
-      return this.$store.state.lightMode
+      sections: [],
+      showScrollIndicator: true
     }
   },
   mounted () {
@@ -115,8 +111,8 @@ export default {
     this.$store.commit('lightMode', true)
   },
   methods: {
-    onScrollProgress (progress) {
-      //
+    onScroll (scrollTop, scrollHeight, progress) {
+      this.showScrollIndicator = progress < 0.875
     }
   }
 }

@@ -1,14 +1,6 @@
 <template>
   <div class="relative flex flex-col min-h-screen text-black bg-[#F5F5F5]">
-    <div class="fixed top-0 z-40 flex justify-between w-full">
-      <NuxtLink to="/" class="block bg-transparent absolute top-[45px] left-[45px]">
-        <Logo
-          class="w-[42px] transition-colors duration-500"
-          :class="lightMode ? 'text-black' : 'text-white'"
-        />
-      </NuxtLink>
-      <TheNavbar :light-mode="lightMode" />
-    </div>
+    <Header :light-mode="lightMode" />
 
     <Nuxt />
 
@@ -24,14 +16,12 @@
 </template>
 
 <script>
-import TheNavbar from '@/components/TheNavbar.vue'
-import Logo from '~/assets/images/logo.svg?inline'
+import Header from '~/components/Header.vue'
 import Splash from '~/components/Splash.vue'
 
 export default {
   components: {
-    Logo,
-    TheNavbar,
+    Header,
     Splash
   },
   data () {

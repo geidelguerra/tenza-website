@@ -3,12 +3,13 @@ import debounce from 'lodash/debounce'
 
 const CUSTOM_PROPERTY_NAME = '__VUE_SCROLL__'
 
+const noop = function () {}
+
 Vue.use({
   install (Vue) {
     Vue.directive('scroll', {
       bind (el, binding) {
-        const target = window
-        const cb = binding?.value?.onScroll || function () {}
+        const cb = binding?.value?.onScroll || noop
 
         const listener = debounce(() => {
           const scrollTop = document.scrollingElement.scrollTop
@@ -26,10 +27,12 @@ Vue.use({
           cb(scrollTop, scrollHeight, progress)
         }, 10)
 
-        target.addEventListener('scroll', listener, true)
+        listener()
+
+        window.addEventListener('scroll', listener, true)
 
         const cleanup = () => {
-          target.removeEventListener('scroll', listener, true)
+          window.removeEventListener('scroll', listener, true)
         }
 
         el[CUSTOM_PROPERTY_NAME] = { cleanup }

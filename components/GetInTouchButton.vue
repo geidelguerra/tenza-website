@@ -2,8 +2,8 @@
   <button
     v-bind="$attrs"
     :class="{
-      'text-white': !active && !light,
-      'text-black border-black': light,
+      'text-white': !active && !lightMode,
+      'text-black border-black': lightMode,
       'text-black bg-white': active
     }"
     class="uppercase text-[11px] p-2 border-2 tracking-[0.5em] transition-colors duration-500"
@@ -15,7 +15,7 @@
       v-show="active"
       :networks="networks"
       class="absolute right-[100%] mr-[25px] top-0 bottom-0"
-      :light-mode="light"
+      :light-mode="lightMode"
     />
   </button>
 </template>
@@ -28,7 +28,7 @@ export default {
     Networks
   },
   props: {
-    light: Boolean
+    lightMode: Boolean
   },
   data () {
     return {

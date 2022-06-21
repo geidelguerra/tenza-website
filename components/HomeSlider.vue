@@ -16,8 +16,8 @@
       </template>
     </Slider>
 
-    <div class="pt-[225px] pl-[88px] pr-[120px] pb-[105px] absolute top-0 left-0 right-0 bottom-0 flex flex-col">
-      <div class="mb-[170px] flex space-x-[2.5rem]">
+    <div class="absolute top-0 bottom-0 left-0 right-0 flex flex-col">
+      <div class="absolute top-[225px] left-[88px] flex space-x-[2.5rem]">
         <button
           class="text-white transition-opacity duration-200"
           @click="prevSlide"
@@ -31,7 +31,7 @@
           <ArrowRight class="h-[20px]" />
         </button>
       </div>
-      <div class="flex justify-between flex-1">
+      <div class="flex-1 ml-[88px] flex items-center">
         <div>
           <TextAnimator
             tag="h2"
