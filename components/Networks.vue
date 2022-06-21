@@ -13,6 +13,7 @@
         :href="network.url"
         target="_blank"
         rel="noopener noreferrer"
+        @click="$emit('click')"
       >
         <component :is="network.icon" class="border-none" />
       </a>

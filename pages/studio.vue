@@ -79,7 +79,9 @@
       />
     </transition>
     <transition name="slide-up">
-      <GetInTouchButton :light-mode="true" class="absolute bottom-[45px] right-[45px]" />
+      <div class="absolute bottom-[45px] right-[45px]">
+        <GetInTouchButton :light-mode="true" />
+      </div>
     </transition>
   </div>
 </template>

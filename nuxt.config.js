@@ -40,7 +40,8 @@ export default {
     '~/plugins/images.client.js',
     '~/plugins/lottiePlayer.client.js',
     '~/plugins/sticky.client.js',
-    '~/plugins/observer.client.js'
+    '~/plugins/observer.client.js',
+    '~/plugins/click-outside.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
