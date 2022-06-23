@@ -117,6 +117,7 @@ export default {
     LongArrow,
     Slider
   },
+  layout: 'noFooter',
   async asyncData ({ params, payload }) {
     return {
       project: payload || await getProject(params.id)

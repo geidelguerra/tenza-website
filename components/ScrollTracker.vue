@@ -1,14 +1,11 @@
 <template>
-  <component v-bind="$attrs" :is="tag" v-scroll="{ onScroll }">
+  <div v-scroll="{ onScroll }" v-bind="$attrs">
     <slot v-bind="{ scrollTop, scrollHeight, progress }" />
-  </component>
+  </div>
 </template>
 
 <script>
 export default {
-  props: {
-    tag: { type: String, default: 'div' }
-  },
   data () {
     return {
       scrollTop: 0,
@@ -22,7 +19,7 @@ export default {
       this.scrollHeight = scrollHeight
       this.progress = progress
 
-      this.$emit('scroll-progress', progress)
+      this.$emit('scroll-progress', { scrollTop, scrollHeight, progress })
     }
   }
 }

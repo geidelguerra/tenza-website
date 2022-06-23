@@ -16,59 +16,61 @@
       </div>
     </section>
 
-    <div ref="sections" class="relative">
-      <div v-sticky class="absolute top-0 left-[430px] z-10 flex items-center h-screen">
+    <div ref="sections" class="relative flex">
+      <div class="sticky top-0 left-0 ml-[430px] z-10 flex items-center h-screen">
         <studio-sections-navigator :items="sections" />
       </div>
 
-      <studio-section
-        id="architecture"
-        title="Architecture"
-      >
-        It is our believe that the best architecture comes from the symbiotic interaction of all the elements that form a building: the envelope that gives the shape, the structure that holds it up, the function that brings it to live, the quality of natural light and shades, the symbolism, the relationship of the building to its surroundings; the way you move through or around it; and finally its ability to lift the spirits and inspire. By working together with our clients from the start of a project we devise integrated and sustainable design solutions.
-      </studio-section>
+      <div class="ml-[218px] max-w-[450px]">
+        <studio-section
+          id="architecture"
+          title="Architecture"
+        >
+          It is our believe that the best architecture comes from the symbiotic interaction of all the elements that form a building: the envelope that gives the shape, the structure that holds it up, the function that brings it to live, the quality of natural light and shades, the symbolism, the relationship of the building to its surroundings; the way you move through or around it; and finally its ability to lift the spirits and inspire. By working together with our clients from the start of a project we devise integrated and sustainable design solutions.
+        </studio-section>
 
-      <studio-section
-        id="interiors"
-        title="Interiors"
-      >
-        We design every building from the inside-out as much as from the outside-in. Crafting a sense of continuity to their surroundings. The starting point is to gain an understanding of our client’s needs and the way in which the space will be used. But our architecture is not a machine. The goal is to design interiors that are both functional and elegant, simple while still evoking a sense of uniqueness that complements the building’s outward concept.
-      </studio-section>
+        <studio-section
+          id="interiors"
+          title="Interiors"
+        >
+          We design every building from the inside-out as much as from the outside-in. Crafting a sense of continuity to their surroundings. The starting point is to gain an understanding of our client’s needs and the way in which the space will be used. But our architecture is not a machine. The goal is to design interiors that are both functional and elegant, simple while still evoking a sense of uniqueness that complements the building’s outward concept.
+        </studio-section>
 
-      <studio-section
-        id="modeling-3d"
-        title="Specialist 3D Modeling"
-      >
-        Tenza while not looking expressly on crafting complex shapes it is often, we found that the building, the environment or program requires it. We are capable of complex geometrical modeling. Our team looks at the movement of natural light, air and sound, while focusing on maximizing the occupant's comfort. These innovative projects require collaboration with vendors, contractors and other industry partners.
-      </studio-section>
+        <studio-section
+          id="modeling-3d"
+          title="Specialist 3D Modeling"
+        >
+          Tenza while not looking expressly on crafting complex shapes it is often, we found that the building, the environment or program requires it. We are capable of complex geometrical modeling. Our team looks at the movement of natural light, air and sound, while focusing on maximizing the occupant's comfort. These innovative projects require collaboration with vendors, contractors and other industry partners.
+        </studio-section>
 
-      <studio-section
-        id="visualization"
-        title="Visualization"
-      >
-        When required, we offer high quality architectural visualizations: renderings, animations, and or motion graphics for all our projects at various stages including concept, construction, marketing and final presentations.
-      </studio-section>
+        <studio-section
+          id="visualization"
+          title="Visualization"
+        >
+          When required, we offer high quality architectural visualizations: renderings, animations, and or motion graphics for all our projects at various stages including concept, construction, marketing and final presentations.
+        </studio-section>
 
-      <studio-section
-        id="modelmaking"
-        title="Modelmaking"
-      >
-        Our workshop is equipped with an array of digital and traditional machinery for the construction of presentation models, sketch models and mock-ups of all styles, sizes and scales. Parallel to our traditional handcraft skills we maintain an up-to-date knowledge of all modelmaking skills, from techniques and styles, to innovative new technologies .
-      </studio-section>
+        <studio-section
+          id="modelmaking"
+          title="Modelmaking"
+        >
+          Our workshop is equipped with an array of digital and traditional machinery for the construction of presentation models, sketch models and mock-ups of all styles, sizes and scales. Parallel to our traditional handcraft skills we maintain an up-to-date knowledge of all modelmaking skills, from techniques and styles, to innovative new technologies .
+        </studio-section>
 
-      <studio-section
-        id="project-management"
-        title="Project Management"
-      >
-        We work closely with the client and other design professionals to identify project objectives at the earliest stages. We support and empower teams to deliver their design objectives, while helping to maintain positive, long-lasting client relationships.
-      </studio-section>
+        <studio-section
+          id="project-management"
+          title="Project Management"
+        >
+          We work closely with the client and other design professionals to identify project objectives at the earliest stages. We support and empower teams to deliver their design objectives, while helping to maintain positive, long-lasting client relationships.
+        </studio-section>
 
-      <studio-section
-        id="construction-overview"
-        title="Construction Overview"
-      >
-        Tenza is fully committed to ensure that the construction quality and technical detailing are present in all the stages of the project. We carry out technical reviews of the projects at regular intervals, from schematic design until completion. This ensures that high standards of technical quality are maintained in every project.
-      </studio-section>
+        <studio-section
+          id="construction-overview"
+          title="Construction Overview"
+        >
+          Tenza is fully committed to ensure that the construction quality and technical detailing are present in all the stages of the project. We carry out technical reviews of the projects at regular intervals, from schematic design until completion. This ensures that high standards of technical quality are maintained in every project.
+        </studio-section>
+      </div>
     </div>
 
     <transition name="slide-up">
@@ -78,33 +80,34 @@
         :light-mode="true"
       />
     </transition>
-    <transition name="slide-up">
-      <div class="absolute bottom-[45px] right-[45px]">
-        <GetInTouchButton :light-mode="true" />
-      </div>
-    </transition>
   </div>
 </template>
 
 <script>
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
-import GetInTouchButton from '~/components/GetInTouchButton.vue'
 import StudioSection from '~/components/StudioSection.vue'
 import StudioSectionsNavigator from '~/components/StudioSectionsNavigator.vue'
-// import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
     ScrollDownIndicator,
-    GetInTouchButton,
     StudioSection,
     StudioSectionsNavigator
-    // Footer
   },
   data () {
     return {
       sections: [],
       showScrollIndicator: true
+    }
+  },
+  computed: {
+    lightMode: {
+      get () {
+        return this.$store.state.lightMode
+      },
+      set (val) {
+        this.$store.commit('lightMode', val)
+      }
     }
   },
   mounted () {
@@ -115,6 +118,8 @@ export default {
   methods: {
     onScroll (scrollTop, scrollHeight, progress) {
       this.showScrollIndicator = progress < 0.875
+      console.log(scrollTop, this.$el.scrollHeight)
+      this.lightMode = scrollTop < this.$el.scrollHeight
     }
   }
 }

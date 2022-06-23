@@ -7,25 +7,24 @@ Vue.use({
   install (Vue) {
     Vue.directive('sticky', {
       bind (el) {
-        const target = window
-
         const defaultStylePositionValue = el.style.position
 
         const listener = debounce(() => {
           const scrollTop = document.scrollingElement.scrollTop
+          console.log(scrollTop, el.parentElement.scrollHeight)
 
-          if (scrollTop >= el.offsetHeight) {
+          if (scrollTop >= el.offsetHeight && scrollTop <= el.parentElement.scrollHeight) {
             el.style.position = 'fixed'
           } else {
             el.style.position = defaultStylePositionValue
           }
         }, 1)
 
-        target.addEventListener('scroll', listener, true)
+        window.addEventListener('scroll', listener, true)
 
         const cleanup = () => {
           el.style.position = defaultStylePositionValue
-          target.removeEventListener('scroll', listener, true)
+          window.removeEventListener('scroll', listener, true)
         }
 
         el[CUSTOM_PROPERTY_NAME] = { cleanup }

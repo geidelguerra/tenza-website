@@ -1,8 +1,12 @@
 <template>
-  <div class="relative flex flex-col min-h-screen text-black bg-[#F5F5F5]">
+  <div class="text-black bg-[#F5F5F5] min-h-screen">
     <Header :light-mode="lightMode" />
 
-    <Nuxt />
+    <main>
+      <Nuxt />
+    </main>
+
+    <Footer />
 
     <transition name="page">
       <div
@@ -17,11 +21,13 @@
 
 <script>
 import Header from '~/components/Header.vue'
+import Footer from '~/components/Footer.vue'
 import Splash from '~/components/Splash.vue'
 
 export default {
   components: {
     Header,
+    Footer,
     Splash
   },
   data () {

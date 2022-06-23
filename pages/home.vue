@@ -5,14 +5,14 @@
       <home-slider />
     </section>
 
-    <scroll-tracker class="relative" @scroll-progress="progress => lightMode = progress > 0">
+    <scroll-tracker ref="about" class="relative">
       <template #default="{ progress }">
-        <div v-sticky class="absolute top-0 z-10 flex items-center h-screen">
+        <div class="sticky top-0 z-10 flex items-center h-screen">
           <div class="ml-[209px] w-[800px] h-[805px]">
             <animation src="/home_animation.json" :progress="progress" />
           </div>
         </div>
-        <div class="absolute top-0 w-full overflow-x-hidden">
+        <div>
           <!-- About 1 -->
           <about-section
             id="about-1"
@@ -35,7 +35,6 @@
       </template>
     </scroll-tracker>
 
-    <!-- <Footer class="relative" /> -->
     <transition name="slide-up">
       <ScrollDownIndicator
         v-if="showScrollIndicator"
@@ -78,12 +77,10 @@ export default {
       }
     }
   },
-  mounted () {
-    this.lightMode = false
-  },
   methods: {
     onScroll (scrollTop, scrollHeight, progress) {
       this.showScrollIndicator = progress < 0.75
+      this.lightMode = scrollTop > this.$refs.about.$el.offsetTop && scrollTop < this.$refs.about.$el.scrollHeight + this.$refs.about.$el.offsetTop
     }
   }
 }
