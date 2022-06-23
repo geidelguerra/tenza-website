@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-1 bg-white pt-[108px] flex flex-col">
+  <div class="bg-white pt-[108px] flex flex-col h-screen">
     <div class="ml-[270px] mr-[392px] mb-[93px] flex justify-between items-end">
       <h1
         class=" font-extrabold text-[26px] tracking-[3.64px] uppercase"
