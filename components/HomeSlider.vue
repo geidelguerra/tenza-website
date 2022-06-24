@@ -1,9 +1,8 @@
 <template>
-  <div class="w-screen h-screen bg-black">
+  <div class="relative w-screen h-screen bg-black">
     <Slider
-      :active-slide-index="slideIndex"
-      transition-name="slider"
-      transition-mode="out-in"
+      :active-index="slideIndex"
+      class="w-full h-full"
     >
       <template v-for="(slide, index) in slides">
         <div
@@ -16,7 +15,7 @@
       </template>
     </Slider>
 
-    <div class="absolute top-0 bottom-0 left-0 right-0 flex flex-col">
+    <div class="absolute top-0 bottom-0 left-0 right-0 z-20 flex flex-col">
       <div class="absolute top-[225px] left-[88px] flex space-x-[2.5rem]">
         <button
           class="text-white transition-opacity duration-200"

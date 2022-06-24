@@ -1,9 +1,13 @@
 <template>
   <div class="relative w-screen h-screen">
-    <nuxt-link :to="`/projects/${activeProject.id}`" class="absolute top-0 left-0 block w-full h-full">
-      <img :src="activeProject.thumbnail.url" class="absolute top-0 left-0 object-cover w-full h-full">
-      <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-radial from-white to-black mix-blend-multiply opacity-80" />
-    </nuxt-link>
+    <Slider class="w-full h-full" :active-index="activeProjectIndex">
+      <template v-for="(project, index) in projects">
+        <nuxt-link :key="index" :to="`/projects/${project.id}`" class="absolute top-0 left-0 block w-full h-full">
+          <img :src="project.thumbnail.url" class="absolute top-0 left-0 object-cover w-full h-full">
+          <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-radial from-white to-black mix-blend-multiply opacity-80" />
+        </nuxt-link>
+      </template>
+    </Slider>
 
     <div class="absolute top-0 bottom-0 left-[124px] z-30 flex items-center">
       <button
@@ -42,12 +46,13 @@
 import { getProjects } from '@/api'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
+import Slider from '~/components/Slider.vue'
 
 export default {
   components: {
     ArrowLeft,
-    ArrowRight
-    // Slider
+    ArrowRight,
+    Slider
   },
   layout: 'noFooter',
   async asyncData ({ store }) {
@@ -58,7 +63,6 @@ export default {
   data () {
     return {
       activeProjectIndex: 0,
-      activeSlideIndex: 0,
       projects: []
     }
   },

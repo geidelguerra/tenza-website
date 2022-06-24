@@ -1,74 +1,31 @@
 <script>
 export default {
   props: {
-    activeSlideIndex: {
-      type: Number,
-      default: 0
-    },
-    transitionName: {
-      type: String,
-      required: true
-    },
-    reverseTransitionName: {
-      type: String,
-      default: null
-    },
-    transitionMode: {
-      type: String,
-      default: 'in-out'
-    }
-  },
-  data () {
-    return {
-      internalTransitionName: this.transitionName
-    }
+    activeIndex: { type: Number, default: 0 }
   },
   computed: {
-    activeSlide () {
-      return this.activeSlideIndex >= 0 && this.activeSlideIndex < this.numberOfSlides ? this.slides[this.activeSlideIndex] : null
-    },
-    slides () {
+    children () {
       if (!this.$slots.default) {
         return []
       }
 
       return this.$slots.default.filter(node => node.tag !== undefined)
-    },
-    numberOfSlides () {
-      return this.slides.length
-    }
-  },
-  watch: {
-    activeSlideIndex (val, oldVal) {
-      if (this.reverseTransitionName) {
-        this.internalTransitionName = val > oldVal ? this.transitionName : this.reverseTransitionName
-      }
     }
   },
   render (createElement) {
-    const self = this
-
-    const slides = this.slides.map((node, index) => {
+    const children = this.children.map((node, index) => {
       return createElement('div', {
-        key: index,
-        class: 'absolute top-0 left-0 w-full h-full overflow-hidden'
-      }, [node])
-    }).filter((_, index) => index === this.activeSlideIndex)
-
-    return createElement('transition', {
-      props: {
-        name: this.internalTransitionName,
-        mode: this.transitionMode
-      },
-      on: {
-        beforeEnter (event) {
-          self.$emit('transitionStarted')
-        },
-        afterEnter (event) {
-          self.$emit('transitionEnded')
+        class: {
+          'absolute top-0 left-0 bottom-0 right-0 transition-all duration-[750ms]': true,
+          'opacity-0 scale-[0.99]': index !== this.activeIndex,
+          'z-10 opacity-100 scale-100': index === this.activeIndex
         }
-      }
-    }, slides)
+      }, [node])
+    })
+
+    return createElement('div', {
+      class: 'relative overflow-hidden'
+    }, children)
   }
 }
 </script>

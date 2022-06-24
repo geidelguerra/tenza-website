@@ -24,7 +24,8 @@
         <div class="relative flex-1 h-full cursor-pointer" @click="galleryFullScreen = !galleryFullScreen">
           <Slider
             :key="galleryFullScreen"
-            :active-slide-index="activeSlideIndex"
+            :active-index="activeSlideIndex"
+            class="w-full h-full"
           >
             <template v-for="(image, i) in project.gallery">
               <img
