@@ -2,14 +2,14 @@
   <div v-scroll="{ onScroll }">
     <!-- Featured Slider -->
     <section id="featured" class="relative w-screen h-screen overflow-hidden">
-      <home-slider />
+      <home-slider id="featured-slider" />
     </section>
 
     <scroll-tracker ref="about" class="relative">
       <template #default="{ progress }">
         <div class="sticky top-0 z-10 flex items-center h-screen">
           <div class="ml-[209px] w-[800px] h-[805px]">
-            <animation src="/home_animation.json" :progress="progress" />
+            <animation src="/home_animation.json" :progress="progress" @load="animationLoaded = true" />
           </div>
         </div>
         <div>
@@ -50,7 +50,6 @@ import HomeSlider from '~/components/HomeSlider.vue'
 import Animation from '~/components/Animation.vue'
 import AboutSection from '~/components/AboutSection.vue'
 import ScrollDownIndicator from '~/components/ScrollDownIndicator.vue'
-// import Footer from '~/components/Footer.vue'
 import ScrollTracker from '~/components/ScrollTracker.vue'
 
 export default {
@@ -60,11 +59,12 @@ export default {
     AboutSection,
     ScrollTracker,
     ScrollDownIndicator
-    // Footer,
   },
   data () {
     return {
-      showScrollIndicator: true
+      showScrollIndicator: true,
+      animationLoaded: false,
+      imagesLoaded: false
     }
   },
   computed: {
@@ -77,7 +77,21 @@ export default {
       }
     }
   },
+  watch: {
+    animationLoaded: 'updateLoading',
+    imagesLoaded: 'updateLoading'
+  },
+  mounted () {
+    this.$events.listenAll('#featured-slider img', 'load', (count, total) => {
+      if (count === total) {
+        this.imagesLoaded = true
+      }
+    })
+  },
   methods: {
+    updateLoading () {
+      this.$store.commit('loading', this.animationLoaded && this.imagesLoaded)
+    },
     onScroll (scrollTop, scrollHeight, progress) {
       this.showScrollIndicator = progress < 0.75
       this.lightMode = scrollTop > this.$refs.about.$el.offsetTop && scrollTop < this.$refs.about.$el.scrollHeight + this.$refs.about.$el.offsetTop

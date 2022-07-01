@@ -31,9 +31,11 @@ export default {
   mounted () {
     this.player = this.$refs.player.$refs.player
     this.$refs.player.$refs.player.addEventListener('ready', this.onReady)
+    this.$refs.player.$refs.player.addEventListener('load', this.onLoad)
   },
   beforeDestroy () {
     this.$refs.player.$refs.player.removeEventListener('ready', this.onReady)
+    this.$refs.player.$refs.player.removeEventListener('ready', this.onLoad)
   },
   methods: {
     updatePlayer () {
@@ -48,6 +50,9 @@ export default {
       this.player = this.$refs.player.$refs.player.getLottie()
 
       this.updatePlayer()
+    },
+    onLoad () {
+      this.$emit('load')
     }
   }
 }

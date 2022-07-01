@@ -37,10 +37,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/scroll.client.js',
-    '~/plugins/images.client.js',
+    '~/plugins/events.client.js',
     '~/plugins/lottiePlayer.client.js',
-    '~/plugins/sticky.client.js',
-    '~/plugins/observer.client.js',
     '~/plugins/click-outside.client.js'
   ],
 

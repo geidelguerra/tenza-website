@@ -8,14 +8,12 @@
 
     <Footer />
 
-    <transition name="page">
-      <div
-        v-if="showSplash"
-        class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center"
-      >
-        <Splash />
-      </div>
-    </transition>
+    <div
+      v-show="showSplash"
+      class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white"
+    >
+      <Splash class="w-[200px]" />
+    </div>
   </div>
 </template>
 
@@ -32,7 +30,8 @@ export default {
   },
   data () {
     return {
-      showSplash: false
+      showSplash: false,
+      intervalId: null
     }
   },
   computed: {
@@ -48,15 +47,17 @@ export default {
   },
   watch: {
     loading (val) {
+      clearTimeout(this.intervalId)
+
       if (val) {
-        // this.showSplash = true
+        this.intervalId = setTimeout(() => {
+          this.showSplash = true
+        }, 1)
 
         return
       }
 
-      setTimeout(() => {
-        this.showSplash = false
-      }, 1000)
+      this.showSplash = false
     }
   }
 }
