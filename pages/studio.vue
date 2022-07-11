@@ -1,27 +1,27 @@
 <template>
   <div v-scroll="{ onScroll }" class="bg-white">
-    <section id="intro" class="flex items-center justify-center w-full h-screen px-[240px]">
-      <div class="flex space-x-[17.1875rem]">
+    <section id="intro" class="flex items-center justify-center w-full h-screen lg:px-[240px]">
+      <div class="flex justify-between w-full">
         <div class="flex flex-col justify-between">
           <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
             We design and  help you build  your legacy.
           </h1>
-          <div class="w-[587px] text-[18px] leading-[22px]">
+          <div class="lg:w-[587px] text-[18px] leading-[22px]">
             <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
           </div>
         </div>
-        <div class="w-[547px] h-[547px] bg-black rounded-r-full rounded-bl-full overflow-hidden">
+        <div class="lg:w-[547px] lg:h-[547px] bg-black rounded-r-full rounded-bl-full overflow-hidden">
           <img src="~assets/images/studio/studio_01.jpg" class="object-cover w-full h-full">
         </div>
       </div>
     </section>
 
     <div ref="sections" class="relative flex">
-      <div class="sticky top-0 left-0 ml-[430px] z-10 flex items-center h-screen">
+      <div class="sticky top-0 left-0 lg:ml-[430px] z-10 flex items-center h-screen">
         <studio-sections-navigator :items="sections" />
       </div>
 
-      <div class="ml-[218px] max-w-[450px]">
+      <div class="lg:ml-[218px] lg:max-w-[450px]">
         <studio-section
           id="architecture"
           title="Architecture"
@@ -118,7 +118,6 @@ export default {
   methods: {
     onScroll (scrollTop, scrollHeight, progress) {
       this.showScrollIndicator = progress < 0.875
-      console.log(scrollTop, this.$el.scrollHeight)
       this.lightMode = scrollTop < this.$el.scrollHeight
     }
   }

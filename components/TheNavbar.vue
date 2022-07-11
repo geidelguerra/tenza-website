@@ -1,8 +1,8 @@
 <template>
-  <nav class="absolute top-[45px] right-[45px] z-40">
-    <ul class="flex flex-col space-y-[1.125rem]">
+  <nav>
+    <ul class="flex flex-col">
       <template v-for="(item, i) in menu">
-        <li :key="i">
+        <li :key="i" :class="{'mt-[18px]': i > 0}">
           <NuxtLink
             :to="item.url"
             active-class="font-bold"

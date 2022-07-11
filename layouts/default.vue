@@ -1,5 +1,5 @@
 <template>
-  <div class="text-black bg-[#F5F5F5] min-h-screen">
+  <div class="text-black bg-[#F5F5F5] min-h-screen w-full">
     <Header :light-mode="lightMode" />
 
     <main>
@@ -8,25 +8,25 @@
 
     <Footer />
 
-    <div
+    <!-- <div
       v-show="showSplash"
       class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white"
     >
       <Splash class="w-[200px]" />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
-import Splash from '~/components/Splash.vue'
+// import Splash from '~/components/Splash.vue'
 
 export default {
   components: {
     Header,
-    Footer,
-    Splash
+    Footer
+    // Splash
   },
   data () {
     return {

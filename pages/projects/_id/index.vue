@@ -1,18 +1,18 @@
 <template>
-  <div class="bg-white pt-[108px] flex flex-col h-screen">
-    <div class="ml-[270px] mr-[392px] mb-[93px] flex justify-between items-end">
+  <div class="bg-white lg:pt-[108px] flex flex-col h-screen">
+    <div class="lg:ml-[270px] lg:mr-[392px] lg:mb-[93px] flex justify-between items-end">
       <h1
-        class=" font-extrabold text-[26px] tracking-[3.64px] uppercase"
+        class="font-extrabold text-[26px] tracking-[3.64px] uppercase"
         v-html="project.name.replace(' ', '<br>')"
       />
     </div>
-    <div class="flex pl-[94px] pr-[111px] pb-[139px] w-full flex-1 overflow-hidden">
+    <div class="flex lg:pl-[94px] lg:pr-[111px] lg:pb-[139px] w-full flex-1 overflow-hidden">
       <!-- Gallery -->
       <div
         class="flex flex-1"
         :class="{'bg-white fixed top-0 left-0 right-0 bottom-0 z-50': galleryFullScreen}"
       >
-        <div class="flex items-center justify-center w-[176px] shrink-0">
+        <div class="flex items-center justify-center lg:w-[176px] shrink-0">
           <button
             class="text-[#111] transition-opacity duration-200"
             :class="{'pointer-events-none opacity-0': !hasPreviousSlides}"
@@ -36,7 +36,7 @@
             </template>
           </Slider>
         </div>
-        <div class="flex items-center justify-center w-[176px] shrink-0">
+        <div class="flex items-center justify-center lg:w-[176px] shrink-0">
           <button
             class="text-[#111] transition-opacity duration-200"
             :class="{'pointer-events-none opacity-0': !hasNextSlides}"
@@ -47,12 +47,12 @@
         </div>
       </div>
       <!-- Details -->
-      <div class="w-[264px] flex flex-col min-h-0 overflow-hidden">
+      <div class="lg:w-[264px] flex flex-col min-h-0 overflow-hidden">
         <div class="uppercase font-bold text-[20px]">
           {{ project.location }} ({{ project.year }})
         </div>
         <div class="border-t-2 border-black mt-[30px] pb-[30px] w-[20px]" />
-        <div class="space-y-[2.5rem] mb-[42px]">
+        <div class="mb-[42px]">
           <div>
             <div class="font-bold text-[14px] uppercase">
               Area
@@ -62,12 +62,13 @@
             </div>
           </div>
         </div>
-        <div class="flex space-x-[3.875rem] mb-[32px]">
+        <div class="flex mb-[32px]">
           <NuxtLink
             v-for="link in pageLinks"
             :key="link.url"
             :to="`/projects/${project.id}/model`"
             class="flex flex-col items-center"
+            :class="{'ml-[62px]': i > 0}"
           >
             <Component :is="link.icon" class="h-[37px] mb-[12px]" />
             <div class="uppercase text-[14px] font-bold">
@@ -76,10 +77,14 @@
           </NuxtLink>
         </div>
 
-        <div class="flex space-x-[1.875rem] items-center mb-[32px]">
+        <div class="flex items-center mb-[32px]">
           <span class="uppercase font-medium text-[14px] text-[#ccc]">Share</span>
-          <ul class="flex items-center space-x-[1.875rem]">
-            <li v-for="link in shareLinks" :key="link.url">
+          <ul class="flex items-center ml-[30px]">
+            <li
+              v-for="(link, i) in shareLinks"
+              :key="link.url"
+              :class="{'ml-[30px]': i > 0}"
+            >
               <a
                 :href="link.url"
                 target="_blank"

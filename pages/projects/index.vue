@@ -9,7 +9,7 @@
       </template>
     </Slider>
 
-    <div class="absolute top-0 bottom-0 left-[124px] z-30 flex items-center">
+    <div class="absolute top-0 bottom-0 lg:left-[124px] z-30 flex items-center">
       <button
         class="text-white transition-opacity duration-200"
         @click="prevProject"
@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    <div class="absolute top-0 bottom-0 right-[124px] z-30 flex items-center">
+    <div class="absolute top-0 bottom-0 lg:right-[124px] z-30 flex items-center">
       <button
         class="text-white transition-opacity duration-200"
         @click="nextProject"
@@ -27,14 +27,14 @@
       </button>
     </div>
 
-    <div class="absolute bottom-[133px] left-[200px] z-30">
+    <div class="absolute lg:bottom-[133px] lg:left-[200px] z-30">
       <nuxt-link
         :to="`/projects/${activeProject.id}`"
         class="block text-[14px] font-semibold uppercase tracking-[7px] text-white hover:underline underline-offset-1"
         v-html="activeProject.name.replace(' ', '<br>')"
       />
     </div>
-    <div class="absolute bottom-[133px] right-[200px] z-30">
+    <div class="absolute lg:bottom-[133px] lg:right-[200px] z-30">
       <div class="text-[14px] font-semibold uppercase tracking-[7px] text-white">
         {{ (activeProjectIndex + 1).toString().padStart(2, '0') }}/{{ projects.length.toString().padStart(2, '0') }}
       </div>

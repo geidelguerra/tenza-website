@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-[#f5f5f5] relative h-screen flex">
+  <footer class="bg-[#f5f5f5] relative h-screen flex overflow-hidden w-full">
     <div class="absolute top-0 bottom-0 left-0 right-0 overflow-hidden">
       <img src="/footer_bg.jpg" class="w-full h-full object-cover bg-[#f5f5f5]">
       <div class="absolute top-0 bottom-0 left-0 right-0 bg-black bg-blend-luminosity opacity-80" />
@@ -11,21 +11,24 @@
             Ernesto Anton
           </h1>
           <div class="font-semibold text-[17px] mb-[69px] tracking-[0.17px]">
-            Executive Partner and Founder
+            Partner and Founder
           </div>
           <div class="flex space-x-[7.75rem]">
             <div class="w-[412px] text-[20px] tracking-[0.2px] leading-[27px]">
               Ernesto founded the practice on 2020 after moving to Miami from New York City. With the believe that the quality of our surroundings affects the quality of our lives and driven by his passion for timeless design and innovation he has stablished a sustainable approach to the architecture exercise. Anton is also a passionate soccer and racquetball player who enjoys good storytelling in any shape or form.
             </div>
-            <div class="rounded-full overflow-hidden w-[260px] h-[260px]">
+            <div class="rounded-full overflow-hidden w-[260px] h-[260px] border-2 border-[#f5f5f5]">
               <img class="object-cover w-full h-full" src="~/assets/images/studio/studio_02.jpg" alt="Ernesto Anton">
             </div>
           </div>
         </div>
       </div>
-      <div class="flex justify-between items-center h-[207px] mx-[43px] pr-[42px] border-t border-white">
-        <div class="text-[14px] text-white font-bold">
+      <div class="flex justify-between items-center lg:h-[207px] lg:mx-[43px] lg:pr-[42px] border-t border-[#f5f5f5]">
+        <div class="text-[14px] text-[#f5f5f5] font-bold">
           Copyright &copy; Tenza {{ new Date().getFullYear() }}
+        </div>
+        <div class="flex-1 text-[#f5f5f5] text-center text-[14px] font-bold">
+          300 Bayview Dr. Suite 1202 Sunny Isles, FL 33160. anton@tenza.us. +1 (305) 606-2800
         </div>
         <Networks :networks="networks" />
       </div>

@@ -8,7 +8,7 @@
     <scroll-tracker ref="about" class="relative">
       <template #default="{ progress }">
         <div class="sticky top-0 z-10 flex items-center h-screen">
-          <div class="ml-[209px] w-[800px] h-[805px]">
+          <div class="lg:ml-[209px] lg:w-[800px] lg:h-[805px]">
             <animation src="/home_animation.json" :progress="progress" @load="animationLoaded = true" />
           </div>
         </div>

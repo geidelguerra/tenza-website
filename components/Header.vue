@@ -1,11 +1,14 @@
 <template>
-  <header class="fixed top-0 z-40 flex justify-between w-full">
-    <NuxtLink to="/" class="block bg-transparent absolute top-[45px] left-[45px]">
+  <header class="fixed z-40 flex w-full p-[45px] justify-between">
+    <NuxtLink to="/" class="block bg-transparent">
       <Logo
         class="w-[42px] transition-colors duration-500"
         :class="lightMode ? 'text-black' : 'text-white'"
       />
     </NuxtLink>
+
+    <div class="flex-1" />
+
     <TheNavbar :light-mode="lightMode" />
   </header>
 </template>

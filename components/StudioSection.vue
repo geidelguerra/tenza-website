@@ -4,7 +4,7 @@
     :data-title="data.attrs.title"
     class="flex items-center w-full h-screen"
   >
-    <div class="flex flex-col h-[452px]">
+    <div class="flex flex-col lg:h-[452px]">
       <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px] leading-none">
         {{ data.attrs.title }}
       </h2>

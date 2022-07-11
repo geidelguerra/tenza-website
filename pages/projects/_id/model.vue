@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen bg-[#EBEAE5] pt-[108px]">
+  <div class="relative h-screen bg-[#EBEAE5] lg:pt-[108px]">
     <client-only>
       <ThreeDViewer
         :model-url="project.scene.path"
@@ -13,14 +13,22 @@
       <div>Loading... ({{ modelLoadProgress.toFixed(2) }}%)</div>
     </div>
     <template v-else>
-      <div class="fixed bottom-[46px] left-[46px] pointer-events-none z-30">
+      <div class="fixed lg:bottom-[46px] lg:left-[46px] pointer-events-none z-30">
         <div class="flex flex-col justify-center uppercase text-[11px]">
           <div class="flex items-center">
             <div class="w-[32px] flex justify-center">
               <RotateIcon />
             </div>
             <div class="ml-[23px]">
-              Drag left click to rotate
+              Orbit
+            </div>
+          </div>
+          <div class="flex items-center mt-[14px]">
+            <div class="w-[32px] flex justify-center">
+              <RotateIcon class="scale-x-[-100%]" />
+            </div>
+            <div class="ml-[23px]">
+              Pan
             </div>
           </div>
           <div class="flex items-center mt-[14px]">
@@ -28,12 +36,12 @@
               <ZoomIcon />
             </div>
             <div class="ml-[23px]">
-              Scroll to Zoom
+              Zoom
             </div>
           </div>
         </div>
       </div>
-      <div class="fixed bottom-[46px] right-[46px] z-30">
+      <div class="fixed lg:bottom-[46px] lg:right-[46px] z-30">
         <NuxtLink
           :to="`/projects/${project.id}`"
           class="flex align-middle items-center space-x-[0.5rem] text-[11px] px-[10px] py-[6px] text-black border-2 border-black uppercase"

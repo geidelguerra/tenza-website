@@ -1,6 +1,6 @@
 <template>
-  <div class="h-[452px] flex">
-    <ul class="w-full text-right pr-[52px] flex flex-col justify-between">
+  <div class="lg:h-[452px] flex">
+    <ul class="w-full text-right lg:pr-[52px] flex flex-col justify-between">
       <template v-for="(item, idx) in items">
         <li :key="idx">
           <a
