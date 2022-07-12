@@ -27,8 +27,12 @@
         <div class="text-[14px] text-[#f5f5f5] font-bold">
           Copyright &copy; Tenza {{ new Date().getFullYear() }}
         </div>
-        <div class="flex-1 text-[#f5f5f5] text-center text-[14px] font-bold">
-          300 Bayview Dr. Suite 1202 Sunny Isles, FL 33160. anton@tenza.us. +1 (305) 606-2800
+        <div class="flex-1 text-[#f5f5f5] text-center text-[14px] font-bold flex justify-center">
+          <div>anton@tenza.us</div>
+          <div class="mx-[25px]">
+            300 Bayview Dr. Suite 1202 Sunny Isles, FL 33160
+          </div>
+          <div>+1 (305) 606-2800</div>
         </div>
         <Networks :networks="networks" />
       </div>
