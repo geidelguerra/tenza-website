@@ -1,58 +1,58 @@
 <template>
-  <div class="bg-white lg:pt-[108px] flex flex-col h-screen">
-    <div class="lg:ml-[270px] lg:mr-[392px] lg:mb-[93px] flex justify-between items-end">
+  <div class="bg-white lg:pt-[108px] flex flex-col h-screen lg:px-[200px]">
+    <div class="lg:mb-[93px] flex justify-between items-end">
       <h1
         class="font-extrabold text-[26px] tracking-[3.64px] uppercase"
         v-html="project.name.replace(' ', '<br>')"
       />
     </div>
-    <div class="flex lg:pl-[94px] lg:pr-[111px] lg:pb-[139px] w-full flex-1 overflow-hidden">
+    <div class="flex lg:mb-[139px] w-full flex-1 overflow-hidden relative">
       <!-- Gallery -->
       <div
         class="flex flex-1"
-        :class="{'bg-white fixed top-0 left-0 right-0 bottom-0 z-50': galleryFullScreen}"
+        :class="{
+          'relative': !galleryFullScreen,
+          'bg-white fixed top-0 left-0 right-0 bottom-0 z-50': galleryFullScreen
+        }"
+        @click="galleryFullScreen = !galleryFullScreen"
       >
-        <div class="flex items-center justify-center lg:w-[176px] shrink-0">
+        <Slider
+          :key="galleryFullScreen"
+          :active-index="activeSlideIndex"
+          class="w-full h-full cursor-pointer"
+        >
+          <template v-for="(image, i) in project.gallery">
+            <img
+              :key="i"
+              :src="image"
+              class="absolute top-0 left-0 object-cover w-full h-full"
+            >
+          </template>
+        </Slider>
+        <div class="absolute left-0 z-30 flex items-center justify-center h-full">
           <button
-            class="text-[#111] transition-opacity duration-200"
-            :class="{'pointer-events-none opacity-0': !hasPreviousSlides}"
-            @click="activeSlideIndex--"
+            class="text-white transition-opacity duration-200 p-[10px] block"
+            @click.stop="prevSlide"
           >
             <ArrowLeft class="w-[27px]" />
           </button>
         </div>
-        <div class="relative flex-1 h-full cursor-pointer" @click="galleryFullScreen = !galleryFullScreen">
-          <Slider
-            :key="galleryFullScreen"
-            :active-index="activeSlideIndex"
-            class="w-full h-full"
-          >
-            <template v-for="(image, i) in project.gallery">
-              <img
-                :key="i"
-                :src="image"
-                class="absolute top-0 left-0 object-contain w-full h-full"
-              >
-            </template>
-          </Slider>
-        </div>
-        <div class="flex items-center justify-center lg:w-[176px] shrink-0">
+        <div class="absolute right-0 z-30 flex items-center justify-center h-full">
           <button
-            class="text-[#111] transition-opacity duration-200"
-            :class="{'pointer-events-none opacity-0': !hasNextSlides}"
-            @click="activeSlideIndex++"
+            class="text-white transition-opacity duration-200 p-[10px] block"
+            @click.stop="nextSlide"
           >
             <ArrowRight class="w-[27px]" />
           </button>
         </div>
       </div>
       <!-- Details -->
-      <div class="lg:w-[264px] flex flex-col min-h-0 overflow-hidden">
+      <div class="w-full lg:max-w-[400px] lg:ml-[32px] flex flex-col min-h-0 overflow-hidden">
         <div class="uppercase font-bold text-[20px]">
           {{ project.location }} ({{ project.year }})
         </div>
         <div class="border-t-2 border-black mt-[30px] pb-[30px] w-[20px]" />
-        <div class="mb-[42px]">
+        <div class="mb-[32px]">
           <div>
             <div class="font-bold text-[14px] uppercase">
               Area
@@ -62,7 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="flex mb-[32px]">
+        <div v-if="pageLinks.length > 0" class="flex mb-[32px]">
           <NuxtLink
             v-for="link in pageLinks"
             :key="link.url"
@@ -77,7 +77,7 @@
           </NuxtLink>
         </div>
 
-        <div class="flex items-center mb-[32px]">
+        <!-- <div class="flex items-center mb-[32px]">
           <span class="uppercase font-medium text-[14px] text-[#ccc]">Share</span>
           <ul class="flex items-center ml-[30px]">
             <li
@@ -94,8 +94,8 @@
               </a>
             </li>
           </ul>
-        </div>
-        <div class="flex-1 overflow-y-auto scrollbars pr-[20px]">
+        </div> -->
+        <div class="flex-1 overflow-y-auto scrollbars pr-[20px] text-justify">
           <LongArrow class="inline-block align-baseline" /> {{ project.description }}
         </div>
       </div>
@@ -172,9 +172,45 @@ export default {
     this.$store.commit('lightMode', true)
   },
   methods: {
+    prevSlide () {
+      let index = this.activeSlideIndex - 1
+
+      if (index < 0) {
+        index = this.numberOfSlides - 1
+      }
+
+      this.activeSlideIndex = index
+    },
+    nextSlide () {
+      let index = this.activeSlideIndex + 1
+
+      if (index >= this.numberOfSlides) {
+        index = 0
+      }
+
+      this.activeSlideIndex = index
+    },
     onKeyUp (event) {
-      if (event.key === 'Escape') {
+      if (['Enter'].includes(event.key)) {
+        this.galleryFullScreen = true
+
+        return
+      }
+
+      if (['Escape'].includes(event.key)) {
         this.galleryFullScreen = false
+
+        return
+      }
+
+      if (['ArrowLeft'].includes(event.key)) {
+        this.prevSlide()
+
+        return
+      }
+
+      if (['ArrowRight'].includes(event.key)) {
+        this.nextSlide()
       }
     }
   }

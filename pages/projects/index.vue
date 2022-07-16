@@ -9,7 +9,7 @@
       </template>
     </Slider>
 
-    <div class="absolute top-0 bottom-0 lg:left-[124px] z-30 flex items-center">
+    <div class="absolute lg:top-[225px] lg:left-[200px] z-30 flex items-center">
       <button
         class="text-white transition-opacity duration-200"
         @click="prevProject"
@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    <div class="absolute top-0 bottom-0 lg:right-[124px] z-30 flex items-center">
+    <div class="absolute lg:top-[225px] lg:left-[240px] z-30 flex items-center">
       <button
         class="text-white transition-opacity duration-200"
         @click="nextProject"
