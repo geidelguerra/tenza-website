@@ -1,17 +1,19 @@
 <template>
   <div v-scroll="{ onScroll }" class="bg-white">
-    <section id="intro" class="flex items-center justify-center w-full h-screen lg:px-[240px]">
+    <section id="intro" class="flex items-center justify-center w-full h-screen lg:px-[200px]">
       <div class="flex justify-between w-full">
-        <div class="flex flex-col justify-between">
-          <h1 class="font-bold text-[82px] w-[616px] tracking-[0.82px] leading-[98px]">
+        <div class="w-full pr-[100px]">
+          <h1 class="font-bold lg:text-[70px] tracking-[0.7px] leading-[70px] mb-[97px]">
             We design and  help you build  your legacy.
           </h1>
-          <div class="lg:w-[587px] text-[18px] leading-[22px]">
+          <div class="w-full text-[18px] leading-[22px] text-justify">
             <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
           </div>
         </div>
-        <div class="lg:w-[547px] lg:h-[547px] bg-black rounded-r-full rounded-bl-full overflow-hidden">
-          <img src="~assets/images/studio/studio_01.jpg" class="object-cover w-full h-full">
+        <div class="pl-[100px]">
+          <div class="w-full overflow-hidden bg-black rounded-r-full rounded-bl-full aspect-1">
+            <img src="~assets/images/studio/studio_01.jpg" class="object-cover object-center w-full h-full">
+          </div>
         </div>
       </div>
     </section>
