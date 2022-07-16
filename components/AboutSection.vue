@@ -1,6 +1,6 @@
 <template>
   <section v-bind="$attrs" class="h-screen flex items-center justify-end bg-[#F5F5F5]">
-    <div class="lg:mr-[208px] lg:w-[615px]">
+    <div>
       <TextAnimator
         tag="h2"
         :text="header"
@@ -12,7 +12,7 @@
 
       <TextAnimator
         :text="text"
-        class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px]"
+        class="text-[15px] text-[#111] leading-[30px] tracking-[0.15px] text-justify"
         :delay="200"
         :animate-on-mounted="false"
         :animate-on-visibility="true"
