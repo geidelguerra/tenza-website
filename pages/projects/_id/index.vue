@@ -31,7 +31,7 @@
         </Slider>
         <div class="absolute left-0 z-30 flex items-center justify-center h-full">
           <button
-            class="text-white transition-opacity duration-200 p-[10px] block"
+            class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
             @click.stop="prevSlide"
           >
             <ArrowLeft class="w-[27px]" />
@@ -39,7 +39,7 @@
         </div>
         <div class="absolute right-0 z-30 flex items-center justify-center h-full">
           <button
-            class="text-white transition-opacity duration-200 p-[10px] block"
+            class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
             @click.stop="nextSlide"
           >
             <ArrowRight class="w-[27px]" />

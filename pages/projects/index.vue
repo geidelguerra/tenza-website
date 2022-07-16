@@ -9,21 +9,18 @@
       </template>
     </Slider>
 
-    <div class="absolute lg:top-[225px] lg:left-[200px] z-30 flex items-center">
+    <div class="absolute lg:top-[225px] lg:left-[88px] flex z-20">
       <button
-        class="text-white transition-opacity duration-200"
+        class="text-white"
         @click="prevProject"
       >
-        <ArrowLeft class="w-[27px]" />
+        <ArrowLeft class="h-[20px]" />
       </button>
-    </div>
-
-    <div class="absolute lg:top-[225px] lg:left-[240px] z-30 flex items-center">
       <button
-        class="text-white transition-opacity duration-200"
+        class="text-white duration-200 ml-[40px]"
         @click="nextProject"
       >
-        <ArrowRight class="w-[27px]" />
+        <ArrowRight class="h-[20px]" />
       </button>
     </div>
 
