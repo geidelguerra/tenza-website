@@ -33,10 +33,16 @@
       </template>
     </scroll-tracker>
 
-    <transition name="slide-up">
+    <transition
+      appear
+      enter-active-class="transition-all duration-700"
+      leave-active-class="transition-all duration-700"
+      enter-class="translate-y-full opacity-0"
+      leave-to-class="translate-y-full opacity-0"
+    >
       <ScrollDownIndicator
         v-if="showScrollIndicator"
-        class="fixed bottom-[45px] left-[50%] translate-x-[-50%]"
+        class="fixed bottom-[45px] left-[50%] translate-x-[-50%] z-20"
         :light-mode="lightMode"
       />
     </transition>
@@ -91,7 +97,7 @@ export default {
       this.$store.commit('loading', this.animationLoaded && this.imagesLoaded)
     },
     onScroll (scrollTop, scrollHeight, progress) {
-      this.showScrollIndicator = progress < 0.75
+      this.showScrollIndicator = scrollTop === 0
       this.lightMode = scrollTop > this.$refs.about.$el.offsetTop && scrollTop < this.$refs.about.$el.scrollHeight + this.$refs.about.$el.offsetTop
     }
   }

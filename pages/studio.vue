@@ -75,7 +75,13 @@
       </div>
     </div>
 
-    <transition name="slide-up">
+    <transition
+      appear
+      enter-active-class="transition-all duration-700"
+      leave-active-class="transition-all duration-700"
+      enter-class="translate-y-full opacity-0"
+      leave-to-class="translate-y-full opacity-0"
+    >
       <ScrollDownIndicator
         v-if="showScrollIndicator"
         class="fixed bottom-[45px] left-[50%] translate-x-[-50%]"
@@ -119,7 +125,7 @@ export default {
   },
   methods: {
     onScroll (scrollTop, scrollHeight, progress) {
-      this.showScrollIndicator = progress < 0.875
+      this.showScrollIndicator = scrollTop === 0
       this.lightMode = scrollTop < this.$el.scrollHeight
     }
   }
