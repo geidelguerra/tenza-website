@@ -1,10 +1,28 @@
 <template>
   <div class="bg-white lg:pt-[108px] flex flex-col h-screen lg:px-[200px]">
     <div class="lg:mb-[93px] flex justify-between items-end">
-      <h1
-        class="font-extrabold text-[26px] tracking-[3.64px] uppercase"
-        v-html="project.name.replace(' ', '<br>')"
-      />
+      <div>
+        <h1
+          class="font-extrabold text-[26px] tracking-[3.64px] uppercase mb-[20px]"
+          v-html="project.name.replace(' ', '<br>')"
+        />
+        <div class="flex">
+          <nuxt-link
+            v-if="prevProject"
+            class="text-black p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-10"
+            :to="`/projects/${prevProject.id}`"
+          >
+            <ArrowLeft class="h-[20px]" />
+          </nuxt-link>
+          <nuxt-link
+            v-if="nextProject"
+            class="text-black ml-[40px] p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-10"
+            :to="`/projects/${nextProject.id}`"
+          >
+            <ArrowRight class="h-[20px]" />
+          </nuxt-link>
+        </div>
+      </div>
     </div>
     <div class="flex lg:mb-[139px] w-full flex-1 overflow-hidden relative">
       <!-- Gallery -->
@@ -104,7 +122,7 @@
 </template>
 
 <script>
-import { getProject } from '@/api'
+import { getProject, getProjects } from '@/api'
 import ModelIcon from '~/assets/images/3d_model_icon.svg?inline'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
@@ -126,12 +144,14 @@ export default {
   layout: 'noFooter',
   async asyncData ({ params, payload }) {
     return {
-      project: payload || await getProject(params.id)
+      project: payload || await getProject(params.id),
+      projects: await getProjects()
     }
   },
   data () {
     return {
       project: null,
+      projects: [],
       activeSlideIndex: 0,
       galleryFullScreen: false
     }
@@ -160,6 +180,27 @@ export default {
     },
     numberOfSlides () {
       return this.project ? this.project.gallery.length : 0
+    },
+    currentProjectIndex () {
+      return this.projects.findIndex(item => item.id === this.project.id)
+    },
+    prevProject () {
+      let i = this.currentProjectIndex - 1
+
+      if (i < 0) {
+        i = this.projects.length - 1
+      }
+
+      return this.projects[i]
+    },
+    nextProject () {
+      let i = this.currentProjectIndex + 1
+
+      if (i >= this.projects.length) {
+        i = 0
+      }
+
+      return this.projects[i]
     }
   },
   beforeMount () {

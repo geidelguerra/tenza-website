@@ -18,13 +18,13 @@
     <div class="absolute top-0 bottom-0 left-0 right-0 z-20 flex flex-col">
       <div class="absolute lg:top-[225px] lg:left-[200px] flex">
         <button
-          class="text-white transition-opacity duration-200"
+          class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
           @click="prevSlide"
         >
           <ArrowLeft class="h-[20px]" />
         </button>
         <button
-          class="text-white transition-opacity duration-200 ml-[40px]"
+          class="text-white ml-[40px] p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
           @click="nextSlide"
         >
           <ArrowRight class="h-[20px]" />
