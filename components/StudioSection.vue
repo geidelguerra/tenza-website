@@ -9,7 +9,7 @@
         {{ data.attrs.title }}
       </h2>
       <div class="flex-1" />
-      <div class="text-[20px]">
+      <div class="text-[20px] text-justify">
         <slot />
       </div>
     </div>

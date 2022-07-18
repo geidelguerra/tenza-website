@@ -9,7 +9,7 @@
       </template>
     </Slider>
 
-    <div class="absolute lg:top-[225px] lg:left-[88px] flex z-20">
+    <div class="absolute lg:top-[225px] lg:left-[200px] flex z-20">
       <button
         class="text-white"
         @click="prevProject"

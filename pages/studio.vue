@@ -23,7 +23,7 @@
         <studio-sections-navigator :items="sections" />
       </div>
 
-      <div class="lg:ml-[218px] lg:max-w-[450px]">
+      <div class="lg:ml-[200px] lg:max-w-[500px]">
         <studio-section
           id="architecture"
           title="Architecture"
