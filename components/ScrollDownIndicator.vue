@@ -5,7 +5,7 @@
     :class="lightMode ? 'text-black' : 'text-white'"
     v-on="$listeners"
   >
-    <ArrowDown class="mt-[11px]" />
+    <ArrowDown class="mt-[11px] w-[11px] lg:w-[23px]" />
   </button>
 </template>
 

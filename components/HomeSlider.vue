@@ -16,7 +16,7 @@
     </Slider>
 
     <div class="absolute top-0 bottom-0 left-0 right-0 z-20 flex flex-col">
-      <div class="absolute lg:top-[225px] lg:left-[200px] flex">
+      <div class="absolute left-[45px] top-[151px] lg:top-[225px] lg:left-[200px] flex">
         <button
           class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
           @click="prevSlide"
@@ -30,13 +30,13 @@
           <ArrowRight class="h-[20px]" />
         </button>
       </div>
-      <div class="flex-1 lg:ml-[200px] flex items-center">
+      <div class="flex-1 ml-[45px] lg:ml-[200px] flex items-center">
         <div>
           <TextAnimator
             tag="h2"
             :text="slides[slideIndex].text"
             :delay="500"
-            class="text-white font-bold lg:text-[70px] tracking-[0.7px] leading-[70px] overflow-hidden"
+            class="text-white font-bold text-[25px] tracking-[0.25px] leading-[30px] lg:text-[70px] lg:tracking-[0.7px] lg:leading-[70px] overflow-hidden"
           />
         </div>
       </div>

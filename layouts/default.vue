@@ -1,6 +1,6 @@
 <template>
   <div class="text-black bg-[#F5F5F5] min-h-screen w-full">
-    <Header :light-mode="lightMode" />
+    <Header :route="$route" :light-mode="lightMode" />
 
     <main>
       <Nuxt />
@@ -40,9 +40,6 @@ export default {
     },
     loading () {
       return this.$store.state.loading
-    },
-    showFooter () {
-      return this.$store.state.showFooter
     }
   },
   watch: {

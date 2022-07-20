@@ -4,7 +4,7 @@
       <TextAnimator
         tag="h2"
         :text="header"
-        class="text-[#111111] font-extrabold lg:text-[82px] tracking-[0.82px] leading-[98px]"
+        class="text-[#111111] font-extrabold text-[40px] leading-[40px] tracking-[0.4px] mb-[26px] lg:text-[82px] lg:tracking-[0.82px] lg:leading-[98px]"
         :animate-on-mounted="false"
         :animate-on-visibility="true"
         :animate-once="true"

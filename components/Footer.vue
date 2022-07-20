@@ -34,7 +34,7 @@
           </div>
           <div>+1 (305) 606-2800</div>
         </div>
-        <Networks :networks="networks" />
+        <Networks />
       </div>
     </div>
   </footer>

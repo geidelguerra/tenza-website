@@ -35,8 +35,17 @@ export default {
     EmailIcon
   },
   props: {
-    networks: { type: Array, default: () => ([]) },
     lightMode: Boolean
+  },
+  data () {
+    return {
+      networks: [
+        { icon: 'TwitterIcon', url: 'https://twitter.com/tenzastudio' },
+        { icon: 'InstagramIcon', url: 'https://instagram.com/tenza.inc' },
+        { icon: 'LinkedInIcon', url: 'https://linkedin.com/company/tenza-inc' },
+        { icon: 'EmailIcon', url: 'mailto:anton@tenza.us' }
+      ]
+    }
   }
 }
 </script>
