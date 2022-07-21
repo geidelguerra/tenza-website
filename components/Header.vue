@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <ul class="flex-col hidden lg:flex">
+    <ul class="lg:absolute lg:top-[45px] lg:right-[45px] flex-col hidden lg:flex">
       <template v-for="(item, i) in menu">
         <li :key="i" :class="{'mt-[18px]': i > 0}">
           <NuxtLink
