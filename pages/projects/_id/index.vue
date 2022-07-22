@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-white lg:pt-[108px] flex flex-col h-screen lg:px-[200px]">
+  <div class="bg-white pt-[151px] pb-[45px] px-[45px] lg:pt-[108px] flex flex-col h-screen lg:px-[200px] lg:pb-0">
     <div class="lg:mb-[93px] flex justify-between items-end">
-      <div>
+      <div class="flex items-end justify-between w-full lg:block">
         <h1
-          class="font-extrabold text-[26px] tracking-[3.64px] uppercase mb-[20px]"
+          class="font-extrabold text-[26px] tracking-[3.64px] uppercase lg:mb-[20px]"
           v-html="project.name.replace(' ', '<br>')"
         />
         <div class="flex">
@@ -27,7 +27,7 @@
     <div class="flex lg:mb-[139px] w-full flex-1 overflow-hidden relative">
       <!-- Gallery -->
       <div
-        class="flex flex-1"
+        class="flex-1 hidden lg:flex"
         :class="{
           'relative': !galleryFullScreen,
           'bg-white fixed top-0 left-0 right-0 bottom-0 z-50': galleryFullScreen
@@ -66,12 +66,12 @@
       </div>
       <!-- Details -->
       <div class="w-full lg:max-w-[400px] lg:ml-[32px] flex flex-col min-h-0 overflow-hidden">
-        <div class="uppercase font-bold text-[20px]">
+        <div class="uppercase font-bold text-[20px] mb-[30px]">
           {{ project.location }} ({{ project.year }})
         </div>
-        <div class="border-t-2 border-black mt-[30px] pb-[30px] w-[20px]" />
+        <div class="hidden lg:block border-t-2 border-black pb-[30px] w-[20px]" />
         <div class="mb-[32px]">
-          <div>
+          <div class="mb-[32px]">
             <div class="font-bold text-[14px] uppercase">
               Area
             </div>
@@ -79,20 +79,21 @@
               {{ project.area }} SQFT
             </div>
           </div>
-        </div>
-        <div v-if="pageLinks.length > 0" class="flex mb-[32px]">
-          <NuxtLink
-            v-for="link in pageLinks"
-            :key="link.url"
-            :to="`/projects/${project.id}/model`"
-            class="flex flex-col items-center"
-            :class="{'ml-[62px]': i > 0}"
-          >
-            <Component :is="link.icon" class="h-[37px] mb-[12px]" />
-            <div class="uppercase text-[14px] font-bold">
-              {{ link.text }}
-            </div>
-          </NuxtLink>
+
+          <div v-if="pageLinks.length > 0" class="flex">
+            <NuxtLink
+              v-for="link in pageLinks"
+              :key="link.url"
+              :to="`/projects/${project.id}/model`"
+              class="flex flex-col items-center"
+              :class="{'ml-[62px]': i > 0}"
+            >
+              <Component :is="link.icon" class="h-[37px] mb-[12px]" />
+              <div class="uppercase text-[14px] font-bold">
+                {{ link.text }}
+              </div>
+            </NuxtLink>
+          </div>
         </div>
 
         <!-- <div class="flex items-center mb-[32px]">

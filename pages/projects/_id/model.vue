@@ -1,5 +1,5 @@
 <template>
-  <div class="relative h-screen bg-[#EBEAE5] lg:pt-[108px]">
+  <div class="relative h-screen bg-[#EBEAE5]">
     <client-only>
       <ThreeDViewer
         :model-url="project.scene.path"
@@ -13,7 +13,7 @@
       <div>Loading... ({{ modelLoadProgress.toFixed(2) }}%)</div>
     </div>
     <template v-else>
-      <div class="fixed lg:bottom-[46px] lg:left-[46px] pointer-events-none z-30">
+      <div class="fixed bottom-[45px] left-[45px] pointer-events-none z-30">
         <div class="flex flex-col justify-center uppercase text-[11px]">
           <div class="flex items-center">
             <div class="w-[32px] flex justify-center">
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="fixed lg:bottom-[46px] lg:right-[46px] z-30">
+      <div class="fixed bottom-[45px] right-[45px] z-30">
         <NuxtLink
           :to="`/projects/${project.id}`"
           class="flex align-middle items-center space-x-[0.5rem] text-[11px] px-[10px] py-[6px] text-black border-2 border-black uppercase"

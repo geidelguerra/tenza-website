@@ -1,16 +1,16 @@
 <template>
   <div v-scroll="{ onScroll }" class="bg-white">
     <section id="intro" class="flex items-center justify-center w-full h-screen lg:px-[200px]">
-      <div class="flex justify-between w-full">
-        <div class="w-full pr-[100px]">
-          <h1 class="font-bold lg:text-[70px] tracking-[0.7px] leading-[70px] mb-[97px]">
+      <div class="flex justify-between w-full px-[45px] lg:px-0">
+        <div class="w-full lg:pr-[100px]">
+          <h1 class="font-bold text-[40px] mb-[40px] lg:text-[70px] lg:tracking-[0.7px] lg:leading-[70px] lg:mb-[97px]">
             We design and  help you build  your legacy.
           </h1>
           <div class="w-full text-[18px] leading-[22px] text-justify">
             <span class="font-bold">Tenza</span> is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
           </div>
         </div>
-        <div class="pl-[100px]">
+        <div class="hidden lg:block pl-[100px]">
           <div class="w-full overflow-hidden bg-black rounded-r-full rounded-bl-full aspect-1">
             <img src="~assets/images/studio/studio_01.jpg" class="object-cover object-center w-full h-full">
           </div>
@@ -18,8 +18,8 @@
       </div>
     </section>
 
-    <div ref="sections" class="relative flex">
-      <div class="sticky top-0 left-0 lg:ml-[430px] z-10 flex items-center h-screen">
+    <div ref="sections" class="relative flex px-[45px] lg:px-0">
+      <div class="hidden sticky top-0 left-0 lg:ml-[430px] z-10 lg:flex items-center h-screen">
         <studio-sections-navigator :items="sections" />
       </div>
 

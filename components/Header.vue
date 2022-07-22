@@ -87,6 +87,7 @@ export default {
     'route.fullPath' (val) {
       // eslint-disable-next-line no-console
       console.log(val)
+      this.menuOpen = false
     }
   }
 }
