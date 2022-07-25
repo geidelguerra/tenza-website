@@ -29,18 +29,25 @@
           </div>
         </div>
       </div>
-      <div class="hidden lg:flex justify-between items-center lg:h-[207px] lg:mx-[43px] lg:pr-[42px] border-t border-[#f5f5f5]">
-        <div class="text-[14px] text-[#f5f5f5] font-bold">
+      <div class="flex flex-wrap justify-center px-[45px] py-[20px] lg:p-0 lg:justify-between items-center lg:h-[207px] lg:mx-[45px] border-t border-[#f5f5f5]">
+        <div class="hidden lg:block text-[12px] lg:text-[14px] text-[#f5f5f5] font-bold mb-[20px] lg:mb-0">
           Copyright &copy; Tenza {{ new Date().getFullYear() }}
         </div>
-        <div class="flex-1 text-[#f5f5f5] text-center text-[14px] font-bold flex justify-center">
-          <div>anton@tenza.us</div>
+        <div class="lg:flex-1 text-[#f5f5f5] text-center text-[12px] lg:text-[14px] font-bold flex justify-center mb-[20px] lg:mb-0">
+          <div class="whitespace-nowrap">
+            anton@tenza.us
+          </div>
           <div class="mx-[25px]">
             300 Bayview Dr. Suite 1202 Sunny Isles, FL 33160
           </div>
-          <div>+1 (305) 606-2800</div>
+          <div class="whitespace-nowrap">
+            +1 (305) 606-2800
+          </div>
         </div>
-        <Networks />
+        <Networks class="mb-[20px] lg:mb-0" />
+        <div class="lg:hidden w-full text-[12px] lg:text-[14px] text-[#f5f5f5] font-bold text-center">
+          Copyright &copy; Tenza {{ new Date().getFullYear() }}
+        </div>
       </div>
     </div>
   </footer>
