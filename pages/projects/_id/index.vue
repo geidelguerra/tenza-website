@@ -26,44 +26,11 @@
     </div>
     <div class="flex lg:mb-[139px] w-full flex-1 overflow-hidden relative">
       <!-- Gallery -->
-      <div
+      <Gallery
+        :fullscreen.sync="galleryFullscreen"
+        :images="project.gallery"
         class="flex-1 hidden lg:flex"
-        :class="{
-          'relative': !galleryFullScreen,
-          'bg-white fixed top-0 left-0 right-0 bottom-0 z-50': galleryFullScreen
-        }"
-        @click="galleryFullScreen = !galleryFullScreen"
-      >
-        <Slider
-          :key="galleryFullScreen"
-          :active-index="activeSlideIndex"
-          class="w-full h-full cursor-pointer"
-        >
-          <template v-for="(image, i) in project.gallery">
-            <img
-              :key="i"
-              :src="image"
-              class="absolute top-0 left-0 object-cover w-full h-full"
-            >
-          </template>
-        </Slider>
-        <div class="absolute left-0 z-30 flex items-center justify-center h-full">
-          <button
-            class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
-            @click.stop="prevSlide"
-          >
-            <ArrowLeft class="w-[27px]" />
-          </button>
-        </div>
-        <div class="absolute right-0 z-30 flex items-center justify-center h-full">
-          <button
-            class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
-            @click.stop="nextSlide"
-          >
-            <ArrowRight class="w-[27px]" />
-          </button>
-        </div>
-      </div>
+      />
       <!-- Details -->
       <div class="w-full lg:max-w-[400px] lg:ml-[32px] flex flex-col min-h-0 overflow-hidden">
         <div class="uppercase font-bold text-[20px] mb-[30px]">
@@ -71,7 +38,7 @@
         </div>
         <div class="hidden lg:block border-t-2 border-black pb-[30px] w-[20px]" />
         <div class="mb-[32px]">
-          <div class="mb-[32px]">
+          <div>
             <div class="font-bold text-[14px] uppercase">
               Area
             </div>
@@ -96,28 +63,16 @@
           </div>
         </div>
 
-        <!-- <div class="flex items-center mb-[32px]">
-          <span class="uppercase font-medium text-[14px] text-[#ccc]">Share</span>
-          <ul class="flex items-center ml-[30px]">
-            <li
-              v-for="(link, i) in shareLinks"
-              :key="link.url"
-              :class="{'ml-[30px]': i > 0}"
-            >
-              <a
-                :href="link.url"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Component :is="link.icon" class="w-18" />
-              </a>
-            </li>
-          </ul>
-        </div> -->
         <div class="flex-1 overflow-y-auto scrollbars pr-[20px] text-justify">
           <LongArrow class="inline-block align-baseline" /> {{ project.description }}
         </div>
       </div>
+    </div>
+    <div class="flex justify-center pt-[20px] lg:hidden">
+      <button class="text-white px-[15px] py-[10px] rounded-full bg-black" @click="galleryFullscreen = true">
+        Gallery
+      </button>
+      <Gallery v-if="galleryFullscreen" :images="project.gallery" :fullscreen.sync="galleryFullscreen" />
     </div>
   </div>
 </template>
@@ -131,6 +86,7 @@ import TwitterIcon from '~/assets/images/twitter.svg?inline'
 import LinkedInIcon from '~/assets/images/linkedin_alt.svg?inline'
 import LongArrow from '~/assets/images/long_arrow.svg?inline'
 import Slider from '~/components/Slider.vue'
+import Gallery from '~/components/Gallery.vue'
 
 export default {
   components: {
@@ -140,7 +96,8 @@ export default {
     TwitterIcon,
     LinkedInIcon,
     LongArrow,
-    Slider
+    Slider,
+    Gallery
   },
   layout: 'noFooter',
   async asyncData ({ params, payload }) {
@@ -154,7 +111,8 @@ export default {
       project: null,
       projects: [],
       activeSlideIndex: 0,
-      galleryFullScreen: false
+      galleryFullscreen: false,
+      showGallery: false
     }
   },
   computed: {
@@ -234,13 +192,13 @@ export default {
     },
     onKeyUp (event) {
       if (['Enter'].includes(event.key)) {
-        this.galleryFullScreen = true
+        this.galleryFullscreen = true
 
         return
       }
 
       if (['Escape'].includes(event.key)) {
-        this.galleryFullScreen = false
+        this.galleryFullscreen = false
 
         return
       }
