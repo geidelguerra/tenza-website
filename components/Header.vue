@@ -7,19 +7,8 @@
       />
     </NuxtLink>
 
-    <!-- <button
-      class="absolute top-[45px] right-[20px] z-30 flex w-[24px] h-[24px] items-center justify-center lg:hidden"
-      @click.stop="menuOpen = !menuOpen"
-    >
-      <MenuExpanded v-if="menuOpen" class="text-black" />
-      <MenuCollapsed
-        v-if="!menuOpen"
-        class="transition-colors duration-500"
-        :class="lightMode ? 'text-black' : 'text-white'"
-      />
-    </button> -->
     <div class="absolute top-[40px] right-[30px] z-30 items-center justify-center lg:hidden">
-      <MobileMenuButton :expanded="menuOpen" :light-mode="menuOpen" @click="menuOpen = !menuOpen" />
+      <MobileMenuButton :expanded="menuOpen" :light-mode="lightMode || menuOpen" @click="menuOpen = !menuOpen" />
     </div>
 
     <transition
@@ -69,16 +58,12 @@
 
 <script>
 import Logo from '~/assets/images/logo.svg?inline'
-// import MenuCollapsed from '~/assets/images/menu_collapsed.svg?inline'
-// import MenuExpanded from '~/assets/images/menu_expanded.svg?inline'
 import Networks from '~/components/Networks.vue'
 import MobileMenuButton from '~/components/MobileMenuButton.vue'
 
 export default {
   components: {
     Logo,
-    // MenuCollapsed,
-    // MenuExpanded,
     Networks,
     MobileMenuButton
   },
