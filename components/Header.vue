@@ -1,13 +1,16 @@
 <template>
-  <header class="fixed z-40 flex justify-between w-full">
-    <NuxtLink to="/" class="block bg-transparent absolute left-[20px] top-[45px] z-30">
+  <header
+    class="fixed z-40 flex justify-between w-full transition-all duration-500 h-[75px] lg:h-auto bg-transparent"
+    :class="{'bg-white': lightMode}"
+  >
+    <NuxtLink to="/" class="block bg-transparent absolute left-[20px] top-[20px] lg:top-[45px] z-30">
       <Logo
         class="w-[42px] transition-colors duration-500"
         :class="lightMode || menuOpen ? 'text-black' : 'text-white'"
       />
     </NuxtLink>
 
-    <div class="absolute top-[40px] right-[30px] z-30 items-center justify-center lg:hidden">
+    <div class="absolute top-[20px] right-[30px] z-30 items-center justify-center lg:hidden">
       <MobileMenuButton :expanded="menuOpen" :light-mode="lightMode || menuOpen" @click="menuOpen = !menuOpen" />
     </div>
 
