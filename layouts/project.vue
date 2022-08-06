@@ -1,5 +1,12 @@
 <template>
-  <div class="flex flex-col h-screen text-black">
+  <Base class="flex flex-col h-screen text-black">
     <Nuxt />
-  </div>
+  </Base>
 </template>
+
+<script>
+import Base from './base.vue'
+export default {
+  components: { Base }
+}
+</script>

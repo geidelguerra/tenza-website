@@ -49,6 +49,9 @@ module.exports = {
         '2xl': '1536px',
         '2k': '2048px',
         '4k': '3840px'
+      },
+      height: {
+        screen: 'calc(var(--vh) * 100)'
       }
     }
   },

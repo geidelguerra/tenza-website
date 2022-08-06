@@ -1,5 +1,5 @@
 <template>
-  <div class="text-black bg-[#F5F5F5] min-h-screen w-full">
+  <Base class="text-black bg-[#F5F5F5] min-h-screen w-full">
     <Header :route="$route" :light-mode="lightMode" />
 
     <main>
@@ -14,16 +14,18 @@
     >
       <Splash class="w-[200px]" />
     </div> -->
-  </div>
+  </Base>
 </template>
 
 <script>
+import Base from './base.vue'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
 // import Splash from '~/components/Splash.vue'
 
 export default {
   components: {
+    Base,
     Header,
     Footer
     // Splash

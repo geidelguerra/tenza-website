@@ -74,7 +74,6 @@ export default {
     postcss: {
       plugins: {
         tailwindcss: {},
-        'postcss-100vh-fix': {},
         autoprefixer: {},
         'postcss-pxtorem': {
           rootValue: 16,
