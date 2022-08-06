@@ -56,5 +56,16 @@ Vue.use({
         ...options
       })
     }
+
+    // Vue.prototype.$scrollNextScreen = function (target, options = {}) {
+    //   return this.$anime({
+    //     targets: target || 'body',
+    //     scrollTop,
+    //     scrollLeft,
+    //     easing: 'easeInOutCubic',
+    //     duration: 1000,
+    //     ...options
+    //   })
+    // }
   }
 })

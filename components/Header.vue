@@ -1,14 +1,14 @@
 <template>
   <header class="fixed z-40 flex justify-between w-full">
-    <NuxtLink to="/" class="block bg-transparent absolute left-[45px] top-[45px] z-30">
+    <NuxtLink to="/" class="block bg-transparent absolute left-[20px] top-[45px] z-30">
       <Logo
         class="w-[42px] transition-colors duration-500"
         :class="lightMode || menuOpen ? 'text-black' : 'text-white'"
       />
     </NuxtLink>
 
-    <button
-      class="absolute top-[45px] right-[45px] z-30 flex w-[24px] h-[24px] items-center justify-center lg:hidden"
+    <!-- <button
+      class="absolute top-[45px] right-[20px] z-30 flex w-[24px] h-[24px] items-center justify-center lg:hidden"
       @click.stop="menuOpen = !menuOpen"
     >
       <MenuExpanded v-if="menuOpen" class="text-black" />
@@ -17,7 +17,10 @@
         class="transition-colors duration-500"
         :class="lightMode ? 'text-black' : 'text-white'"
       />
-    </button>
+    </button> -->
+    <div class="absolute top-[40px] right-[30px] z-30 items-center justify-center lg:hidden">
+      <MobileMenuButton :expanded="menuOpen" :light-mode="menuOpen" @click="menuOpen = !menuOpen" />
+    </div>
 
     <transition
       enter-active-class="transition-all duration-500"
@@ -66,16 +69,18 @@
 
 <script>
 import Logo from '~/assets/images/logo.svg?inline'
-import MenuCollapsed from '~/assets/images/menu_collapsed.svg?inline'
-import MenuExpanded from '~/assets/images/menu_expanded.svg?inline'
+// import MenuCollapsed from '~/assets/images/menu_collapsed.svg?inline'
+// import MenuExpanded from '~/assets/images/menu_expanded.svg?inline'
 import Networks from '~/components/Networks.vue'
+import MobileMenuButton from '~/components/MobileMenuButton.vue'
 
 export default {
   components: {
     Logo,
-    MenuCollapsed,
-    MenuExpanded,
-    Networks
+    // MenuCollapsed,
+    // MenuExpanded,
+    Networks,
+    MobileMenuButton
   },
   props: {
     route: { type: Object, required: true },
