@@ -37,8 +37,8 @@
           {{ project.location }} ({{ project.year }})
         </div>
         <div class="hidden lg:block border-t-2 border-black pb-[30px] w-[20px]" />
-        <div class="mb-[32px]">
-          <div>
+        <div class="mb-[30px]">
+          <div class="mb-[30px] lg:mb-0">
             <div class="font-bold text-[14px] uppercase">
               Area
             </div>
@@ -47,9 +47,16 @@
             </div>
           </div>
 
+          <div class="lg:hidden aspect-w-16 aspect-h-10 mb-[30px]">
+            <Gallery
+              :fullscreen.sync="galleryFullscreen"
+              :images="project.gallery"
+            />
+          </div>
+
           <div v-if="pageLinks.length > 0" class="flex">
             <NuxtLink
-              v-for="link in pageLinks"
+              v-for="(link, i) in pageLinks"
               :key="link.url"
               :to="`/projects/${project.id}/model`"
               class="flex flex-col items-center"
@@ -68,12 +75,12 @@
         </div>
       </div>
     </div>
-    <div class="flex justify-center pt-[20px] lg:hidden">
+    <!-- <div class="flex justify-center pt-[20px] lg:hidden">
       <button class="text-white px-[15px] py-[10px] rounded-full bg-black" @click="galleryFullscreen = true">
         Gallery
       </button>
       <Gallery v-if="galleryFullscreen" :images="project.gallery" :fullscreen.sync="galleryFullscreen" />
-    </div>
+    </div> -->
   </div>
 </template>
 
