@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import Hammer from 'hammerjs'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import MenuExpanded from '~/assets/images/menu_expanded.svg?inline'
@@ -72,6 +73,10 @@ export default {
     return {
       activeImageIndex: 0
     }
+  },
+  mounted () {
+    new Hammer(this.$el).on('swipeleft', this.nextSlide)
+    new Hammer(this.$el).on('swiperight', this.prevSlide)
   },
   methods: {
     prevSlide () {

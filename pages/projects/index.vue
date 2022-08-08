@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import Hammer from 'hammerjs'
 import { getProjects } from '@/api'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
@@ -70,6 +71,8 @@ export default {
   },
   mounted () {
     this.$store.commit('lightMode', false)
+    new Hammer(this.$el).on('swipeleft', this.nextProject)
+    new Hammer(this.$el).on('swiperight', this.prevProject)
   },
   methods: {
     prevProject () {

@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import Hammer from 'hammerjs'
 import Slider from '~/components/Slider.vue'
 import TextAnimator from '~/components/TextAnimator.vue'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
@@ -75,6 +76,10 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+    new Hammer(this.$el).on('swipeleft', this.nextSlide)
+    new Hammer(this.$el).on('swiperight', this.prevSlide)
   },
   methods: {
     prevSlide () {
