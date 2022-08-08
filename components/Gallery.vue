@@ -41,13 +41,12 @@
       <div class="absolute bottom-[20px] lg:bottom-[45px] right-[20px] z-50 text-[14px] font-semibold uppercase tracking-[7px] text-white">
         {{ (activeImageIndex + 1).toString().padStart(2, '0') }}/{{ images.length.toString().padStart(2, '0') }}
       </div>
-      <button
-        v-if="fullscreen"
-        class="absolute top-[45px] right-[20px] z-50 text-white"
-        @click.stop="$emit('update:fullscreen', false)"
-      >
-        <MenuExpanded />
-      </button>
+      <div v-if="fullscreen" class="absolute top-[20px] right-[30px] z-50 text-white">
+        <MobileMenuButton
+          :expanded="true"
+          @click.stop="$emit('update:fullscreen', false)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -56,14 +55,14 @@
 import Hammer from 'hammerjs'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
-import MenuExpanded from '~/assets/images/menu_expanded.svg?inline'
 import Slider from '~/components/Slider.vue'
+import MobileMenuButton from '~/components/MobileMenuButton.vue'
 
 export default {
   components: {
     ArrowLeft,
     ArrowRight,
-    MenuExpanded,
+    MobileMenuButton,
     Slider
   },
   props: {
