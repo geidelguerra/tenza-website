@@ -1,6 +1,7 @@
 <template>
   <div v-bind="$attrs">
     <div
+      ref="container"
       class="w-full h-full"
       :class="{
         'relative': !fullscreen,
@@ -75,8 +76,8 @@ export default {
     }
   },
   mounted () {
-    new Hammer(this.$el).on('swipeleft', this.nextSlide)
-    new Hammer(this.$el).on('swiperight', this.prevSlide)
+    new Hammer(this.$refs.container).on('swipeleft', this.nextSlide)
+    new Hammer(this.$refs.container).on('swiperight', this.prevSlide)
   },
   methods: {
     prevSlide () {
