@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white pt-[151px] pb-[45px] px-[20px] lg:pt-[108px] flex flex-col lg:h-screen lg:px-[200px] lg:pb-0">
+  <div class="bg-white pt-[80px] pb-[45px] px-[20px] lg:pt-[108px] flex flex-col lg:h-screen lg:px-[200px] lg:pb-0">
     <div class="lg:mb-[93px] flex justify-between items-end">
       <div class="flex items-end justify-between w-full lg:block">
         <h1
