@@ -2,7 +2,7 @@
   <section
     :id="data.attrs.id"
     :data-title="data.attrs.title"
-    class="flex items-center w-full h-screen"
+    class="flex items-center w-full lg:h-screen mb-[40px] lg:mb-0"
   >
     <div class="flex flex-col lg:h-[452px]">
       <h2 class="text-[28px] font-bold uppercase tracking-[3.64px] mb-[38px] leading-none">

@@ -1,18 +1,47 @@
 <template>
   <div v-scroll="{ onScroll }" class="bg-white">
-    <section id="intro" class="flex items-center justify-center w-full h-screen lg:px-[200px]">
-      <div class="flex justify-between w-full px-[20px] lg:px-0">
-        <div class="w-full lg:pr-[100px]">
+    <section id="intro" class="flex items-center justify-center w-full lg:h-screen pt-[95px] l:pb-0 lg:pt-0 lg:px-[200px] mb-[80px] lg:mb-0">
+      <div class="lg:flex justify-between w-full px-[20px] lg:px-0">
+        <div class="w-full lg:pr-[100px] mb-[40px] lg:mb-0">
           <h1 class="font-bold text-[40px] mb-[40px] lg:text-[70px] lg:tracking-[0.7px] lg:leading-[70px] lg:mb-[97px]">
             We design and  help you build  your legacy.
           </h1>
-          <div class="w-full text-[18px] leading-[22px] text-justify">
+          <div class="w-full text-[20px] leading-[22px] text-justify">
             Tenza is a Miami based studio for sustainable architectural and interior design. Founded by Ernesto Anton in 2020 with built projects in Havana and New York the practice works as an ethnically diverse and cultural bridge between both countries. Though a young practice, Tenza is the result of our independent efforts over the years to create and innovate in the design field with a sustainable approach.
           </div>
         </div>
-        <div class="hidden lg:block pl-[100px]">
+        <div class="flex justify-center lg:pl-[100px]">
           <div class="w-full overflow-hidden bg-black rounded-r-full rounded-bl-full aspect-1">
             <img src="~assets/images/studio/studio_01.jpg" class="object-cover object-center w-full h-full">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flex justify-center w-full lg:items-center lg:h-screen mb-[80px] lg:mb-0">
+      <div class="text-black px-[20px]">
+        <div class="flex">
+          <div>
+            <h1 class="text-[20px] lg:text-[28px] uppercase leading-[34px] tracking-[3.6px] font-bold mb-[15px] lg:mb-[23px]">
+              Ernesto Anton
+            </h1>
+            <div class="font-semibold text-[17px] mb-[30px] lg:mb-[69px] tracking-[0.17px]">
+              Partner and Founder
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col lg:items-center lg:flex-row-reverse">
+          <div class="hidden lg:block lg:ml-[124px] rounded-full overflow-hidden w-[160px] h-[160px] lg:w-[260px] lg:h-[260px] border-2 border-[#f5f5f5] mb-[20px] lg:mb-0">
+            <img class="object-cover w-full h-full" src="~/assets/images/studio/ernesto_02.jpg" alt="Ernesto Anton">
+          </div>
+
+          <div class="lg:w-[500px] text-[20px] leading-[30px] lg:text-[20px] tracking-[0.2px] lg:leading-[27px] text-justify mb-[40px] lg:mb-0">
+            Ernesto founded the practice on 2020 after moving to Miami from New York City. With the believe that the quality of our surroundings affects the quality of our lives and driven by his passion for timeless design and innovation he has stablished a sustainable approach to the architecture exercise. Anton is also a passionate soccer and racquetball player who enjoys good storytelling in any shape or form.
+          </div>
+
+          <div class="lg:hidden">
+            <img class="object-cover w-full h-full" src="~/assets/images/studio/ernesto_02.jpg" alt="Ernesto Anton">
           </div>
         </div>
       </div>
