@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs">
+  <div v-bind="$attrs" @click.stop="$emit('update:fullscreen', true)">
     <div
       ref="container"
       class="w-full h-full bg-black"
@@ -9,6 +9,7 @@
       }"
     >
       <VZoomerGallery
+        v-if="fullscreen"
         ref="gallery"
         v-model="index"
         background-color="transparent"
@@ -16,6 +17,21 @@
         :list="images"
         :mouse-wheel-to-zoom="fullscreen"
       />
+      <Slider
+        v-else
+        :key="fullscreen"
+        :active-index="index"
+        class="w-full h-full cursor-pointer"
+      >
+        <template v-for="(image, i) in images">
+          <img
+            :key="i"
+            :src="image"
+            class="absolute top-0 left-0 object-cover w-full h-full"
+          >
+        </template>
+      </Slider>
+
       <div class="absolute top-0 left-0 z-30 flex items-center justify-center h-full">
         <button
           class="text-white p-[10px] block transition-all duration-200 bg-black bg-opacity-0 hover:bg-opacity-50"
@@ -41,9 +57,6 @@
           @click.stop="$emit('update:fullscreen', false)"
         />
       </div>
-      <button v-else class="absolute top-[20px] right-[30px] text-[14px] text-right z-50 font-bold text-white" @click="$emit('update:fullscreen', true)">
-        Expand
-      </button>
     </div>
   </div>
 </template>
@@ -52,12 +65,14 @@
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import MobileMenuButton from '~/components/MobileMenuButton.vue'
+import Slider from '~/components/Slider.vue'
 
 export default {
   components: {
     ArrowLeft,
     ArrowRight,
-    MobileMenuButton
+    MobileMenuButton,
+    Slider
   },
   props: {
     images: { type: Array, default: () => [] },
@@ -71,16 +86,38 @@ export default {
   watch: {
     fullscreen () {
       this.$nextTick(() => {
-        this.$refs.gallery.onWindowResize()
+        if (this.$refs.gallery) {
+          this.$refs.gallery.onWindowResize()
+        }
       })
     }
   },
   methods: {
     prevSlide () {
-      this.$refs.gallery.paginate(-1)
+      if (this.$refs.gallery) {
+        this.$refs.gallery.paginate(-1)
+      }
+
+      let i = this.index - 1
+
+      if (i < 0) {
+        i = this.images.length - 1
+      }
+
+      this.index = i
     },
     nextSlide () {
-      this.$refs.gallery.paginate(1)
+      if (this.$refs.gallery) {
+        this.$refs.gallery.paginate(1)
+      }
+
+      let i = this.index + 1
+
+      if (i >= this.images.length) {
+        i = 0
+      }
+
+      this.index = i
     }
   }
 }
