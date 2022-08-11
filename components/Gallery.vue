@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs" @click.stop="$emit('update:fullscreen', true)">
+  <div v-bind="$attrs">
     <div
       ref="container"
       class="w-full h-full"
@@ -21,13 +21,14 @@
         v-else
         :key="fullscreen"
         :active-index="index"
-        class="w-full h-full cursor-pointer"
+        class="w-full h-full"
       >
         <template v-for="(image, i) in images">
           <img
             :key="i"
             :src="image"
             class="absolute top-0 left-0 object-cover w-full h-full"
+            :draggable="false"
           >
         </template>
       </Slider>
@@ -62,11 +63,11 @@
 </template>
 
 <script>
+import Hammer from 'hammerjs'
 import ArrowLeft from '~/assets/images/arrow_left.svg?inline'
 import ArrowRight from '~/assets/images/arrow_right.svg?inline'
 import MobileMenuButton from '~/components/MobileMenuButton.vue'
 import Slider from '~/components/Slider.vue'
-
 export default {
   components: {
     ArrowLeft,
@@ -80,11 +81,16 @@ export default {
   },
   data () {
     return {
-      index: 0
+      index: 0,
+      hammer: null
     }
   },
   watch: {
-    fullscreen () {
+    fullscreen (val) {
+      if (!val) {
+        return
+      }
+
       this.$nextTick(() => {
         if (this.$refs.gallery) {
           this.$refs.gallery.onWindowResize()
@@ -92,10 +98,47 @@ export default {
       })
     }
   },
+  mounted () {
+    this.hammer = new Hammer(this.$refs.container)
+
+    this.hammer.on('tap', this.onTap)
+    this.hammer.on('swipeleft', this.onSwipeLeft)
+    this.hammer.on('swiperight', this.onSwipeRight)
+  },
+  beforeDestroy () {
+    if (this.hammer) {
+      this.hammer.off('tap', this.onTap)
+      this.hammer.off('swipeleft', this.onSwipeLeft)
+      this.hammer.off('swiperight', this.onSwipeRight)
+    }
+  },
   methods: {
+    onTap () {
+      if (this.fullscreen) {
+        return
+      }
+
+      this.$emit('update:fullscreen', true)
+    },
+    onSwipeLeft () {
+      if (this.fullscreen) {
+        return
+      }
+
+      this.nextSlide()
+    },
+    onSwipeRight () {
+      if (this.fullscreen) {
+        return
+      }
+
+      this.prevSlide()
+    },
     prevSlide () {
-      if (this.$refs.gallery) {
+      if (this.fullscreen) {
         this.$refs.gallery.paginate(-1)
+
+        return
       }
 
       let i = this.index - 1
@@ -107,8 +150,10 @@ export default {
       this.index = i
     },
     nextSlide () {
-      if (this.$refs.gallery) {
+      if (this.fullscreen) {
         this.$refs.gallery.paginate(1)
+
+        return
       }
 
       let i = this.index + 1
