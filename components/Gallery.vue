@@ -2,10 +2,10 @@
   <div v-bind="$attrs" @click.stop="$emit('update:fullscreen', true)">
     <div
       ref="container"
-      class="w-full h-full bg-black"
+      class="w-full h-full"
       :class="{
         'relative': !fullscreen,
-        'fixed top-0 left-0 right-0 bottom-0 z-50': fullscreen
+        'bg-black fixed top-0 left-0 right-0 bottom-0 z-50': fullscreen
       }"
     >
       <VZoomerGallery
