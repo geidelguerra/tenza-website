@@ -18,7 +18,8 @@
     "nuxt": "^2.15.7",
     "nuxt-rfg-icon": "^0.6.4",
     "three": "^0.134.0",
-    "vue-agile": "^2.0.0"
+    "vue-agile": "^2.0.0",
+    "vue-zoomer": "^0.3.10"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

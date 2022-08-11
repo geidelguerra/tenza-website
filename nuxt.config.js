@@ -39,7 +39,8 @@ export default {
     '~/plugins/scroll.client.js',
     '~/plugins/events.client.js',
     '~/plugins/lottiePlayer.client.js',
-    '~/plugins/click-outside.client.js'
+    '~/plugins/click-outside.client.js',
+    '~/plugins/zoomer.client.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

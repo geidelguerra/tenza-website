@@ -75,12 +75,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="flex justify-center pt-[20px] lg:hidden">
-      <button class="text-white px-[15px] py-[10px] rounded-full bg-black" @click="galleryFullscreen = true">
-        Gallery
-      </button>
-      <Gallery v-if="galleryFullscreen" :images="project.gallery" :fullscreen.sync="galleryFullscreen" />
-    </div> -->
   </div>
 </template>
 
