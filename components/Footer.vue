@@ -6,12 +6,12 @@
     </div>
     <div class="absolute top-0 bottom-0 left-0 right-0 flex flex-col w-full h-full pt-[75px]">
       <div class="flex flex-col items-center h-full">
-        <div class="flex flex-col justify-center items-center text-[#f5f5f5] text-center text-[20px] font-bold flex-1">
+        <div class="flex flex-col justify-center items-center text-[#f5f5f5] text-center text-[14px] lg:text-[20px] font-bold flex-1">
+          <div class="mb-[5px]">
+            300 Bayview Dr. Sunny Isles, FL 33160
+          </div>
           <div class="whitespace-nowrap mb-[5px]">
             <a href="mailto:anton@tenza.us" class="hover:underline">anton@tenza.us</a>
-          </div>
-          <div class="mb-[5px]">
-            300 Bayview Dr. Suite 1202 Sunny Isles, FL 33160
           </div>
           <div class="whitespace-nowrap">
             +1 (305) 606-2800
