@@ -151,12 +151,13 @@ export default {
   mounted () {
     this.$store.commit('showHeader', true)
     this.$store.commit('showFooter', true)
-    this.$store.commit('loading', true)
+
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+    })
 
     this.$images.loaded(() => {
-      // eslint-disable-next-line no-console
-      console.log('images loaded')
-      this.$store.commit('loading', false)
+      this.$nuxt.$loading.finish()
     })
 
     this.sections = Array.from(this.$refs.sections.querySelectorAll('section'))

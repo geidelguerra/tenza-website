@@ -6,12 +6,7 @@
       leave-active-class="transition-all duration-700"
       leave-to-class="scale-125 opacity-0"
     >
-      <div
-        v-if="showSplash"
-        class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white"
-      >
-        <Splash class="w-[200px]" />
-      </div>
+      <!-- <Splash v-if="showSplash" class="w-[200px]" /> -->
     </transition>
 
     <Header v-if="showHeader" :route="$route" :light-mode="lightMode" />
@@ -27,12 +22,12 @@
 <script>
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
-import Splash from '~/components/Splash.vue'
+// import Splash from '~/components/Splash.vue'
 export default {
   components: {
     Header,
-    Footer,
-    Splash
+    Footer
+    // Splash
   },
   data () {
     return {

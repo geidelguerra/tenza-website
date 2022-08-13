@@ -9,17 +9,17 @@ html {
 
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.75s;
+  transition: all 0.7s;
 }
 
 .page-enter,
 .page-leave-to {
   opacity: 0;
-  transform: scale(0.99) translateY(-1%);
+  /* transform: scale(0.99) translateY(-1%); */
 }
 
 .slide-up-enter-active, .slide-up-leave-active {
-  transition: all 0.75s;
+  transition: all 0.7s;
 }
 
 .slide-up-enter, .slide-up-leave-to {
@@ -28,7 +28,7 @@ html {
 }
 
 .section-enter-active, .section-leave-active {
-  transition: all 0.75s;
+  transition: all 0.7s;
 }
 
 .section-enter/*, .section-leave-to */ {
@@ -56,7 +56,7 @@ html {
 }
 
 .text-enter-active, .text-leave-active {
-  transition: all 0.75s;
+  transition: all 0.7s;
 }
 
 .text-enter, .text-leave-to {

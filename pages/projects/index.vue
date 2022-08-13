@@ -71,10 +71,13 @@ export default {
   mounted () {
     this.$store.commit('showHeader', true)
     this.$store.commit('showFooter', false)
-    this.$store.commit('loading', true)
+
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+    })
 
     this.$images.loaded(() => {
-      this.$store.commit('loading', false)
+      this.$nuxt.$loading.finish()
     })
 
     this.$store.commit('lightMode', false)

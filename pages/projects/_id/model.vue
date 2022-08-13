@@ -4,9 +4,9 @@
       <ThreeDViewer
         :model-url="project.scene.path"
         class="absolute top-0 bottom-0 left-0 right-0"
-        @model:loadingStarted="loading = true"
+        @model:loadingStarted="() => $nuxt.$loading.start()"
         @model:loadingProgress="({ progress }) => progress = progress"
-        @model:loadingFinished="loading = false"
+        @model:loadingFinished="() => $nuxt.$loading.finish()"
       />
     </client-only>
     <template v-if="!loading">
