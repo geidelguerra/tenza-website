@@ -1,17 +1,17 @@
 <template>
   <transition
     appear
-    enter-active-class="transition-all duration-700"
-    leave-active-class="transition-all duration-700"
+    enter-active-class="transition-all duration-1000"
+    leave-active-class="transition-all duration-1000"
     leave-to-class="opacity-0"
   >
     <div v-if="loading" class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white">
-      <svg class="w-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.99 20.18" fill="currentColor">
-        <polygon class="splash-letter splash-letter-1" points="0 0 0 1.76 2.46 1.76 2.46 7.08 2.46 8.05 2.46 9 4.37 9 4.37 8.05 4.37 7.08 4.37 1.76 6.83 1.76 6.83 0 0 0" />
-        <path class="splash-letter splash-letter-2" d="M9.19,3.57a2.69,2.69,0,0,1,2.52-1.81,2.57,2.57,0,0,1,2.55,1.81ZM13.39.32A4.53,4.53,0,0,0,11.78,0h-.06A4.32,4.32,0,0,0,11,.05,4.43,4.43,0,0,0,7.32,4.46a4.44,4.44,0,0,0,4.4,4.46h.34a4,4,0,0,0,1.81-.44l.07,0a4.56,4.56,0,0,0,1.33-1L14.2,6.11a4.07,4.07,0,0,1-.6.52,3.87,3.87,0,0,1-.44.23,3.3,3.3,0,0,1-1.26.29h-.18a2.64,2.64,0,0,1-2-.93h0a2.74,2.74,0,0,1-.51-.89h6.93V4.46A4.28,4.28,0,0,0,13.39.32" />
-        <path class="splash-letter splash-letter-3" d="M21.58,0a4.44,4.44,0,0,0-4.4,4.46V9h1.74V4.46a2.67,2.67,0,1,1,5.33,0V9H26V4.46A4.44,4.44,0,0,0,21.58,0" />
-        <polygon class="splash-letter splash-letter-4" points="9.07 11.26 9.07 13.04 13.64 13.04 9.27 18.74 9.07 18.99 9.07 20.18 16.28 20.18 16.28 18.42 11.7 18.42 16.09 12.68 16.28 12.43 16.28 11.26 9.07 11.26" />
-        <path class="splash-letter splash-letter-5" d="M24.23,18.42H21.61a2.63,2.63,0,0,1-2.7-2.65A2.7,2.7,0,0,1,21.61,13a2.63,2.63,0,0,1,2.62,2.73Zm-2.6-7.12a4.44,4.44,0,0,0-4.44,4.49,4.33,4.33,0,0,0,4.44,4.37H26V15.79a4.34,4.34,0,0,0-4.32-4.49" />
+      <svg shape-rendering="optimizeQuality" class="w-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.99 20.18" fill="currentColor">
+        <polygon shape-rendering="optimizeQuality" class="splash-letter splash-letter-1" points="0 0 0 1.76 2.46 1.76 2.46 7.08 2.46 8.05 2.46 9 4.37 9 4.37 8.05 4.37 7.08 4.37 1.76 6.83 1.76 6.83 0 0 0" />
+        <path shape-rendering="optimizeQuality" class="splash-letter splash-letter-2" d="M9.19,3.57a2.69,2.69,0,0,1,2.52-1.81,2.57,2.57,0,0,1,2.55,1.81ZM13.39.32A4.53,4.53,0,0,0,11.78,0h-.06A4.32,4.32,0,0,0,11,.05,4.43,4.43,0,0,0,7.32,4.46a4.44,4.44,0,0,0,4.4,4.46h.34a4,4,0,0,0,1.81-.44l.07,0a4.56,4.56,0,0,0,1.33-1L14.2,6.11a4.07,4.07,0,0,1-.6.52,3.87,3.87,0,0,1-.44.23,3.3,3.3,0,0,1-1.26.29h-.18a2.64,2.64,0,0,1-2-.93h0a2.74,2.74,0,0,1-.51-.89h6.93V4.46A4.28,4.28,0,0,0,13.39.32" />
+        <path shape-rendering="optimizeQuality" class="splash-letter splash-letter-3" d="M21.58,0a4.44,4.44,0,0,0-4.4,4.46V9h1.74V4.46a2.67,2.67,0,1,1,5.33,0V9H26V4.46A4.44,4.44,0,0,0,21.58,0" />
+        <polygon shape-rendering="optimizeQuality" class="splash-letter splash-letter-4" points="9.07 11.26 9.07 13.04 13.64 13.04 9.27 18.74 9.07 18.99 9.07 20.18 16.28 20.18 16.28 18.42 11.7 18.42 16.09 12.68 16.28 12.43 16.28 11.26 9.07 11.26" />
+        <path shape-rendering="optimizeQuality" class="splash-letter splash-letter-5" d="M24.23,18.42H21.61a2.63,2.63,0,0,1-2.7-2.65A2.7,2.7,0,0,1,21.61,13a2.63,2.63,0,0,1,2.62,2.73Zm-2.6-7.12a4.44,4.44,0,0,0-4.44,4.49,4.33,4.33,0,0,0,4.44,4.37H26V15.79a4.34,4.34,0,0,0-4.32-4.49" />
       </svg>
     </div>
   </transition>
@@ -48,48 +48,44 @@ export default {
 .splash-letter {
   animation-duration: 3s;
   animation-timing-function: ease-in-out;
-  animation-fill-mode: backwards;
+  animation-fill-mode: both;
   animation-direction: normal;
   animation-iteration-count: infinite;
+  transform-origin: center center;
 }
 
 .splash-letter-1 {
   animation-name: letter-1;
-  animation-delay: .4s;
   transform-origin: bottom right;
 }
 
 .splash-letter-2 {
   animation-name: letter-2;
-  animation-delay: 0.8s;
   transform-origin: bottom right;
 }
 
 .splash-letter-3 {
   animation-name: letter-3;
-  animation-delay: 1.2s;
 }
 
 .splash-letter-4 {
   animation-name: letter-4;
-  animation-delay: 1.6s;
 }
 
 .splash-letter-5 {
   animation-name: letter-5;
-  animation-delay: 0s;
   transform-origin: center center;
 }
 
 @keyframes letter-1 {
-  from {
+  0%,15% {
     opacity: 0;
     transform: scale(0.5) rotate(90deg) translate(19px, 11px);
   }
 
-  20%,80% {
-    opacity: 1;
+  30%,90% {
     transform: scale(1) rotate(0) translate(0, 0);
+    opacity: 1;
   }
 
   100% {
@@ -98,14 +94,14 @@ export default {
 }
 
 @keyframes letter-2 {
-  from {
+  0%,30%  {
     opacity: 0;
     transform: scale(0.5) rotate(90deg) translate(10px, 11px);
   }
 
-  20%,80% {
-    opacity: 1;
+  35%,90% {
     transform: scale(1) rotate(0) translate(0, 0);
+    opacity: 1;
   }
 
   100% {
@@ -114,14 +110,14 @@ export default {
 }
 
 @keyframes letter-3 {
-  from {
+  0%,35% {
     opacity: 0;
     transform: translate(0, 11px);
   }
 
-  20%,80% {
+  40%,90% {
+    transform: scale(1) rotate(0) translate(0, 0);
     opacity: 1;
-    transform: translate(0, 0);
   }
 
   100% {
@@ -130,14 +126,14 @@ export default {
 }
 
 @keyframes letter-4 {
-  from {
+  0%,40% {
     opacity: 0;
     transform: translate(9px, 0);
   }
 
-  20%,80% {
+  45%,90% {
+    transform: scale(1) rotate(0) translate(0, 0);
     opacity: 1;
-    transform: translate(0, 0);
   }
 
   100% {
@@ -151,13 +147,22 @@ export default {
     transform: scale(0.5) translate(-50%, -50%);
   }
 
-  30% {
-    opacity: 1;
-    transform: scale(1);
+  10% {
+    transform: scale(1.1) translate(-50%, -50%);
   }
 
-  40% {
-    transform: scale(1) translate(0, 0);
+  15% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 1;
+  }
+
+  30%,90% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 </style>
