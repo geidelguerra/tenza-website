@@ -7,7 +7,7 @@
     playsinline
     preload="auto"
   >
-    <source src="~/assets/splash.webm" type="video/webm">
+    <source src="/splash.webm" type="video/webm">
   </video>
 </template>
 

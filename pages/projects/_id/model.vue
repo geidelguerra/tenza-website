@@ -4,15 +4,12 @@
       <ThreeDViewer
         :model-url="project.scene.path"
         class="absolute top-0 bottom-0 left-0 right-0"
-        @model:loadingStarted="loadingModel = true"
-        @model:loadingProgress="({ progress }) => modelLoadProgress = progress"
-        @model:loadingFinished="loadingModel = false"
+        @model:loadingStarted="loading = true"
+        @model:loadingProgress="({ progress }) => progress = progress"
+        @model:loadingFinished="loading = false"
       />
     </client-only>
-    <div v-if="loadingModel" class="fixed top-0 bottom-0 left-0 right-0 z-40 flex items-center justify-center bg-[#EBEAE5]">
-      <div>Loading... ({{ modelLoadProgress.toFixed(2) }}%)</div>
-    </div>
-    <template v-else>
+    <template v-if="!loading">
       <div class="fixed bottom-[45px] left-[45px] pointer-events-none z-30">
         <div class="flex flex-col justify-center uppercase text-[11px]">
           <div class="flex items-center">
@@ -68,7 +65,6 @@ export default {
     ZoomIcon,
     RotateIcon
   },
-  layout: 'project',
   async asyncData ({ params, payload }) {
     return {
       project: payload || await getProject(params.id)
@@ -77,9 +73,22 @@ export default {
   data () {
     return {
       project: null,
-      loadingModel: false,
-      modelLoadProgress: 0
+      progress: 0
     }
+  },
+  computed: {
+    loading: {
+      get () {
+        return this.$store.state.loading
+      },
+      set (val) {
+        this.$store.commit('loading', val)
+      }
+    }
+  },
+  mounted () {
+    this.$store.commit('showHeader', false)
+    this.$store.commit('showFooter', false)
   }
 }
 </script>

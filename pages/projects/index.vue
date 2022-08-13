@@ -52,7 +52,6 @@ export default {
     ArrowRight,
     Slider
   },
-  layout: 'noFooter',
   async asyncData ({ store }) {
     return {
       projects: await getProjects()
@@ -70,7 +69,16 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('showHeader', true)
+    this.$store.commit('showFooter', false)
+    this.$store.commit('loading', true)
+
+    this.$images.loaded(() => {
+      this.$store.commit('loading', false)
+    })
+
     this.$store.commit('lightMode', false)
+
     new Hammer(this.$el).on('swipeleft', this.nextProject)
     new Hammer(this.$el).on('swiperight', this.prevProject)
   },

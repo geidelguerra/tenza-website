@@ -149,6 +149,16 @@ export default {
     }
   },
   mounted () {
+    this.$store.commit('showHeader', true)
+    this.$store.commit('showFooter', true)
+    this.$store.commit('loading', true)
+
+    this.$images.loaded(() => {
+      // eslint-disable-next-line no-console
+      console.log('images loaded')
+      this.$store.commit('loading', false)
+    })
+
     this.sections = Array.from(this.$refs.sections.querySelectorAll('section'))
 
     this.$store.commit('lightMode', true)

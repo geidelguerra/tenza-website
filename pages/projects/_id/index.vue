@@ -37,8 +37,8 @@
           {{ project.location }} ({{ project.year }})
         </div>
         <div class="hidden lg:block border-t-2 border-black pb-[30px] w-[20px]" />
-        <div class="mb-[30px]">
-          <div class="mb-[30px] lg:mb-0">
+        <div>
+          <div class="mb-[20px]">
             <div class="font-bold text-[14px] uppercase">
               Area
             </div>
@@ -47,14 +47,14 @@
             </div>
           </div>
 
-          <div class="lg:hidden aspect-w-16 aspect-h-10 mb-[30px]">
+          <div class="lg:hidden aspect-w-16 aspect-h-10 mb-[20px]">
             <Gallery
               :fullscreen.sync="galleryFullscreen"
               :images="project.gallery"
             />
           </div>
 
-          <div v-if="pageLinks.length > 0" class="flex">
+          <div v-if="pageLinks.length > 0" class="flex mb-[20px]">
             <NuxtLink
               v-for="(link, i) in pageLinks"
               :key="link.url"
@@ -100,7 +100,6 @@ export default {
     Slider,
     Gallery
   },
-  layout: 'noFooter',
   async asyncData ({ params, payload }) {
     return {
       project: payload || await getProject(params.id),
@@ -170,6 +169,14 @@ export default {
     document.removeEventListener('keyup', this.onKeyUp)
   },
   mounted () {
+    this.$store.commit('showHeader', true)
+    this.$store.commit('showFooter', false)
+    this.$store.commit('loading', true)
+
+    this.$images.loaded(() => {
+      this.$store.commit('loading', false)
+    })
+
     this.$store.commit('lightMode', true)
   },
   methods: {

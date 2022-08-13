@@ -1,6 +1,8 @@
 export const state = () => ({
   lightMode: false,
-  loading: true,
+  loading: false,
+  showHeader: false,
+  showFooter: false,
   networks: [
     { icon: 'TwitterIcon', url: 'https://twitter.com/tenzastudio' },
     { icon: 'InstagramIcon', url: 'https://instagram.com/tenza.inc' },
@@ -15,5 +17,11 @@ export const mutations = {
   },
   loading (state, val) {
     state.loading = val
+  },
+  showHeader (state, val) {
+    state.showHeader = val
+  },
+  showFooter (state, val) {
+    state.showFooter = val
   }
 }

@@ -82,21 +82,16 @@ export default {
       }
     }
   },
-  watch: {
-    animationLoaded: 'updateLoading',
-    imagesLoaded: 'updateLoading'
-  },
   mounted () {
-    this.$events.listenAll('#featured-slider img', 'load', (count, total) => {
-      if (count === total) {
-        this.imagesLoaded = true
-      }
+    this.$store.commit('showHeader', true)
+    this.$store.commit('showFooter', true)
+    this.$store.commit('loading', true)
+
+    this.$images.loaded(() => {
+      this.$store.commit('loading', false)
     })
   },
   methods: {
-    updateLoading () {
-      this.$store.commit('loading', this.animationLoaded && this.imagesLoaded)
-    },
     onScroll (scrollTop, scrollHeight, progress) {
       this.showScrollIndicator = scrollTop === 0
       this.lightMode = scrollTop > this.$refs.about.$el.offsetTop && scrollTop < this.$refs.about.$el.scrollHeight + this.$refs.about.$el.offsetTop
