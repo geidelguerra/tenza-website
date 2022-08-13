@@ -6,7 +6,7 @@
     leave-to-class="opacity-0"
   >
     <div v-if="loading" class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white">
-      <svg class="w-[200px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.99 20.18" fill="currentColor">
+      <svg class="w-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.99 20.18" fill="currentColor">
         <polygon class="splash-letter splash-letter-1" points="0 0 0 1.76 2.46 1.76 2.46 7.08 2.46 8.05 2.46 9 4.37 9 4.37 8.05 4.37 7.08 4.37 1.76 6.83 1.76 6.83 0 0 0" />
         <path class="splash-letter splash-letter-2" d="M9.19,3.57a2.69,2.69,0,0,1,2.52-1.81,2.57,2.57,0,0,1,2.55,1.81ZM13.39.32A4.53,4.53,0,0,0,11.78,0h-.06A4.32,4.32,0,0,0,11,.05,4.43,4.43,0,0,0,7.32,4.46a4.44,4.44,0,0,0,4.4,4.46h.34a4,4,0,0,0,1.81-.44l.07,0a4.56,4.56,0,0,0,1.33-1L14.2,6.11a4.07,4.07,0,0,1-.6.52,3.87,3.87,0,0,1-.44.23,3.3,3.3,0,0,1-1.26.29h-.18a2.64,2.64,0,0,1-2-.93h0a2.74,2.74,0,0,1-.51-.89h6.93V4.46A4.28,4.28,0,0,0,13.39.32" />
         <path class="splash-letter splash-letter-3" d="M21.58,0a4.44,4.44,0,0,0-4.4,4.46V9h1.74V4.46a2.67,2.67,0,1,1,5.33,0V9H26V4.46A4.44,4.44,0,0,0,21.58,0" />
@@ -51,33 +51,34 @@ export default {
   animation-fill-mode: backwards;
   animation-direction: normal;
   animation-iteration-count: infinite;
-  transform-origin: bottom right;
 }
 
 .splash-letter-1 {
   animation-name: letter-1;
-  animation-delay: .2s;
+  animation-delay: .4s;
+  transform-origin: bottom right;
 }
 
 .splash-letter-2 {
   animation-name: letter-2;
-  animation-delay: 0.4s;
+  animation-delay: 0.8s;
+  transform-origin: bottom right;
 }
 
 .splash-letter-3 {
   animation-name: letter-3;
-  animation-delay: 0.8s;
+  animation-delay: 1.2s;
 }
 
 .splash-letter-4 {
   animation-name: letter-4;
-  animation-delay: 1s;
+  animation-delay: 1.6s;
 }
 
 .splash-letter-5 {
   animation-name: letter-5;
   animation-delay: 0s;
-  transform-origin: bottom right;
+  transform-origin: center center;
 }
 
 @keyframes letter-1 {
@@ -147,16 +148,16 @@ export default {
 @keyframes letter-5 {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.9) translate(-50%, -50%);
   }
 
-  10% {
+  30% {
     opacity: 1;
     transform: scale(1.1);
   }
 
-  20% {
-    transform: scale(1);
+  40% {
+    transform: scale(1) translate(0, 0);
   }
 }
 </style>

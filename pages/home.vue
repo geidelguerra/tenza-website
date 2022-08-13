@@ -68,8 +68,7 @@ export default {
   data () {
     return {
       showScrollIndicator: true,
-      animationLoaded: false,
-      imagesLoaded: false
+      animationLoaded: false
     }
   },
   computed: {
