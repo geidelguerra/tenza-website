@@ -148,12 +148,12 @@ export default {
 @keyframes letter-5 {
   from {
     opacity: 0;
-    transform: scale(0.9) translate(-50%, -50%);
+    transform: scale(0.5) translate(-50%, -50%);
   }
 
   30% {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scale(1);
   }
 
   40% {
