@@ -90,7 +90,7 @@ export default {
     })
 
     this.$images.loaded(() => {
-      this.$nuxt.$loading.finish()
+      // this.$nuxt.$loading.finish()
     })
   },
   methods: {
