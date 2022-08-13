@@ -23,7 +23,7 @@ export default {
     return {
       loading: false,
       threshold: 0,
-      duration: 3000,
+      duration: 5000,
       timeout: null
     }
   },
@@ -47,6 +47,7 @@ export default {
 <style>
 .splash-letter {
   animation-duration: 3s;
+  animation-delay: 0.1s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: both;
   animation-direction: normal;
@@ -74,7 +75,6 @@ export default {
 
 .splash-letter-5 {
   animation-name: letter-5;
-  transform-origin: center center;
 }
 
 @keyframes letter-1 {
@@ -83,7 +83,7 @@ export default {
     transform: scale(0.5) rotate(90deg) translate(19px, 11px);
   }
 
-  30%,90% {
+  50%,90% {
     transform: scale(1) rotate(0) translate(0, 0);
     opacity: 1;
   }
@@ -99,7 +99,7 @@ export default {
     transform: scale(0.5) rotate(90deg) translate(10px, 11px);
   }
 
-  35%,90% {
+  55%,90% {
     transform: scale(1) rotate(0) translate(0, 0);
     opacity: 1;
   }
@@ -115,7 +115,7 @@ export default {
     transform: translate(0, 11px);
   }
 
-  40%,90% {
+  60%,90% {
     transform: scale(1) rotate(0) translate(0, 0);
     opacity: 1;
   }
@@ -131,7 +131,7 @@ export default {
     transform: translate(9px, 0);
   }
 
-  45%,90% {
+  65%,90% {
     transform: scale(1) rotate(0) translate(0, 0);
     opacity: 1;
   }

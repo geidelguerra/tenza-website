@@ -5,7 +5,7 @@
       <div class="absolute top-0 bottom-0 left-0 right-0 bg-black bg-blend-luminosity opacity-80" />
     </div>
     <div class="absolute top-0 bottom-0 left-0 right-0 flex flex-col w-full h-full pt-[75px]">
-      <div class="flex flex-col items-center h-full">
+      <div class="flex flex-col items-center h-full px-[20px]">
         <div class="flex flex-col justify-center items-center text-[#f5f5f5] text-center text-[14px] lg:text-[20px] font-bold flex-1">
           <div class="mb-[5px]">
             300 Bayview Dr. Sunny Isles, FL 33160
