@@ -18,7 +18,7 @@
       </div>
     </section>
 
-    <section class="flex justify-center w-full lg:items-center lg:h-screen mb-[80px] lg:mb-0">
+    <section id="me" class="flex justify-center w-full lg:items-center lg:h-screen mb-[80px] lg:mb-0">
       <div class="text-black px-[20px]">
         <div class="flex">
           <div>
@@ -115,6 +115,7 @@
         v-if="showScrollIndicator"
         class="fixed bottom-[45px] left-[50%] translate-x-[-50%]"
         :light-mode="true"
+        @click="$scrollTo('#me')"
       />
     </transition>
   </div>

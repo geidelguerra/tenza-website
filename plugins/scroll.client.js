@@ -46,26 +46,27 @@ Vue.use({
       }
     })
 
-    Vue.prototype.$scroll = function (target, { scrollTop, scrollLeft, ...options }) {
+    Vue.prototype.$scroll = function (target, options = {}) {
       return this.$anime({
         targets: target,
-        scrollTop,
-        scrollLeft,
+        scrollTop: options.scrollTop || 0,
+        scrollLeft: options.scrollLeft || 0,
         easing: 'easeInOutCubic',
         duration: 1000,
         ...options
       })
     }
 
-    // Vue.prototype.$scrollNextScreen = function (target, options = {}) {
-    //   return this.$anime({
-    //     targets: target || 'body',
-    //     scrollTop,
-    //     scrollLeft,
-    //     easing: 'easeInOutCubic',
-    //     duration: 1000,
-    //     ...options
-    //   })
-    // }
+    Vue.prototype.$scrollTo = function (target, options = {}) {
+      target = document.querySelector(target)
+
+      return this.$anime({
+        targets: options.container || document.scrollingElement,
+        scrollTop: target.offsetTop,
+        easing: 'easeInOutCubic',
+        duration: 1000,
+        ...options
+      })
+    }
   }
 })

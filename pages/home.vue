@@ -5,7 +5,7 @@
       <home-slider id="featured-slider" />
     </section>
 
-    <scroll-tracker ref="about" class="relative flex lg:px-[200px]">
+    <scroll-tracker id="about" ref="about" class="relative flex lg:px-[200px]">
       <template #default="{ progress }">
         <div class="hidden sticky top-0 z-10 lg:flex items-center w-full h-screen lg:w-1/2 lg:pr-[100px]">
           <animation src="/home_animation.json" :progress="progress" @load="animationLoaded = true" />
@@ -44,6 +44,7 @@
         v-if="showScrollIndicator"
         class="fixed bottom-[45px] left-[50%] translate-x-[-50%] z-20"
         :light-mode="lightMode"
+        @click="$scrollTo('#about')"
       />
     </transition>
   </div>
