@@ -5,7 +5,7 @@
     leave-active-class="transition-all duration-1000"
     leave-to-class="opacity-0"
   >
-    <div v-if="loading" class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-white">
+    <div v-if="loading" class="fixed top-0 bottom-0 left-0 right-0 z-50 flex items-center justify-center bg-[#F5F5F5]">
       <svg shape-rendering="optimizeQuality" class="w-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" fill="currentColor">
         <g transform="translate(2, 5)">
           <polygon shape-rendering="optimizeQuality" class="splash-letter splash-letter-1" points="0 0 0 1.76 2.46 1.76 2.46 7.08 2.46 8.05 2.46 9 4.37 9 4.37 8.05 4.37 7.08 4.37 1.76 6.83 1.76 6.83 0 0 0" />

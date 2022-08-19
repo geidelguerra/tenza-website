@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="$attrs" class="bg-white">
+  <div v-bind="$attrs" class="bg-[#F5F5F5]">
     <transition
       appear
       enter-active-class="transition-all duration-700"
