@@ -1,5 +1,5 @@
 <template>
-  <section v-bind="$attrs" class="flex items-center justify-end h-screen">
+  <section v-bind="$attrs" class="flex items-center justify-end py-[40px] lg:py-0 lg:h-screen">
     <div>
       <TextAnimator
         tag="h2"
