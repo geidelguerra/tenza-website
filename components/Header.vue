@@ -1,7 +1,7 @@
 <template>
   <header
     class="fixed z-40 flex justify-between w-full transition-all duration-500 h-[75px] lg:h-auto bg-transparent"
-    :class="{'bg-white': lightMode}"
+    :class="{'bg-[#F5F5F5]': lightMode}"
   >
     <NuxtLink to="/" class="block bg-transparent absolute left-[20px] top-[20px] lg:top-[45px] z-30">
       <Logo
