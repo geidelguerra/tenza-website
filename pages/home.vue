@@ -5,11 +5,12 @@
       <home-slider id="featured-slider" />
     </section>
 
-    <scroll-tracker id="about" ref="about" class="relative flex lg:px-[200px]">
+    <scroll-tracker id="about" ref="about" class="relative lg:flex lg:px-[200px]">
       <template #default="{ progress }">
         <div class="hidden sticky top-0 z-10 lg:flex items-center w-full h-screen lg:w-1/2 lg:pr-[100px]">
           <animation src="/home_animation.json" :progress="progress" @load="animationLoaded = true" />
         </div>
+        <animation class="w-full h-screen lg:hidden" src="/home_animation.json" :autoplay="true" :loop="true" @load="animationLoaded = true" />
         <div class="w-full px-[20px] lg:pr-0 lg:pl-[100px] lg:w-1/2">
           <!-- About 1 -->
           <about-section

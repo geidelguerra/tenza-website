@@ -4,16 +4,16 @@ import Vue from 'vue'
 
 Vue.use({
   install (Vue) {
-    Vue.directive('observer', {
+    Vue.directive('observe', {
       bind (el, bindings) {
-        const callback = bindings?.value?.callback || function (entries) {}
+        const callback = bindings?.value?.callback || function () {}
 
-        const targets = (bindings?.value?.targets || [])
+        const targets = [el]
 
         const observer = new IntersectionObserver(callback, {
           root: bindings?.value?.root,
           rootMargin: bindings?.value?.rootMargin,
-          threshold: bindings?.value?.threshold
+          threshold: bindings?.value?.threshold || [0, 0.5, 1]
         })
 
         targets.forEach(target => observer.observe(target))

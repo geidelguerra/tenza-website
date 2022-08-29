@@ -41,7 +41,8 @@ export default {
     '~/plugins/events.client.js',
     '~/plugins/lottiePlayer.client.js',
     '~/plugins/click-outside.client.js',
-    '~/plugins/zoomer.client.js'
+    '~/plugins/zoomer.client.js',
+    '~/plugins/observer.client.js'
   ],
 
   loading: '~/components/Splash.vue',
